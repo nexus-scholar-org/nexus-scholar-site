@@ -12,8 +12,7 @@ bundled, and a browser test fails the build if a page reaches any host other
 than this computer.
 
 This page lists every place where data leaves the machine, what is sent, and to
-whom. It was checked on 2026-11-10 against the beta 1.1.0b5 and the development
-branch.
+whom. It was checked on 2026-11-10 against the beta 1.1.0b6.
 
 ## Importing and screening: nothing
 
@@ -62,7 +61,7 @@ identifiers of your records** (DOIs, titles), never your decisions:
 
 | Action | Where you start it | Sent to |
 | :-- | :-- | :-- |
-| Search (a harvest) | Discovery, **Start the harvest** (next beta); `nexus-scholar run` | The databases your protocol selects among OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed (NCBI E-utilities); bioRxiv only when the protocol names it |
+| Search (a harvest) | Discovery, **Start the harvest**; `nexus-scholar run` | The databases your protocol selects among OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed (NCBI E-utilities); bioRxiv only when the protocol names it |
 | Plan (dry run) | Discovery, **Plan** | Nothing: the strings are translated on your computer |
 | Recall check | Discovery, **Recall** | The protocol query, to the protocol's databases; then each seed's identifier to Crossref and OpenAlex for a title check |
 | Abstract hydration and DOI verification, after a harvest | Part of the same run | Record DOIs (and arXiv ids) to Semantic Scholar, OpenAlex and Crossref |

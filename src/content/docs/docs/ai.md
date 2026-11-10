@@ -8,7 +8,7 @@ decides.** Nothing a model writes is a decision, a published file or a journal
 entry. Only the engine writes workspace artifacts and the audit journal, and
 only after a human decision.
 
-## What is built (1.1.0b5)
+## What is built (1.1.0b6)
 
 The screening half of the design is built: a proposal store, the rule table,
 the validators, the proposal tools of the MCP server, three drivers (your own
@@ -74,7 +74,7 @@ is a design with build order, not a feature of any release.
   verbatim; none decides anything.
 
 The first release of this design would ship L0 and L1; L2 is built only after
-a measurement on a real corpus. None of it is in 1.1.0b5.
+a measurement on a real corpus. None of it is in 1.1.0b6.
 
 ## What it costs, and who pays
 

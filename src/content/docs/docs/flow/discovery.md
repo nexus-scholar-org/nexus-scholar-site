@@ -8,7 +8,7 @@ Discovery searches the free databases your protocol selects, among
 protocol compiles, and records what each database was asked and what came back.
 Each run writes a PRISMA-S identification record per database.
 
-<p class="ns-beta"><strong>Not in 1.1.0b5.</strong> The Discovery screens are on the development branch and come with the next beta. In 1.1.0b5 the same search runs from the terminal with <code>nexus-scholar run</code>, or you search in the databases themselves and <a href="../../getting-started/#4-import-your-search-results">import their exports</a>.</p>
+<p class="ns-beta"><strong>New in 1.1.0b6.</strong> The Discovery screens were built and checked by one developer and have not been tried by a second person; no live search was run for the release, so expect rough edges. You can still search in the databases themselves and <a href="../../getting-started/#4-import-your-search-results">import their exports</a>.</p>
 
 ## Before you start
 
@@ -19,7 +19,9 @@ Two settings are needed before you start the app; see
   it (`MAILTO_NOT_SET`).
 - **`SCHOLAR_OPENALEX_KEY`**, a free OpenAlex API key. OpenAlex has required a
   key since 2026-02-13. Without it, OpenAlex shares a small daily budget with
-  everyone on your network address, and paging past the first page is refused.
+  everyone on your network address, and paging past the first page is refused,
+  so the OpenAlex search stops after one page. The app does not yet refuse a
+  run without the key.
 
 ## The steps
 
@@ -54,6 +56,16 @@ reported, how many records it returned, the cap and whether the cap was hit.
 Record ids do not depend on input order. A DOI that matches a different title
 is flagged, never swapped. Each merge during deduplication keeps the rule it
 was made by.
+
+## Known gaps in the search
+
+- **PubMed abstract terms search all fields.** The query uses a field tag
+  PubMed does not know, so an abstract-only term is silently widened. A fix is
+  planned.
+- **Default databases differ.** The browser and a plain terminal search use
+  five databases; a protocol that names none uses four (no PubMed).
+- **Not built:** pair-by-pair review of near-duplicates, one corpus from a
+  harvest plus exports, and a per-database stop.
 
 ## From the terminal
 

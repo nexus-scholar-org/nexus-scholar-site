@@ -7,7 +7,7 @@ This guide takes you from nothing to a published screening with an exported
 reference list. It takes about 15 minutes, plus the time you spend screening.
 Everything runs on your computer. No account or API key is needed to screen.
 
-<p class="ns-beta">This guide is for the beta, version <strong>1.1.0b5</strong>. To check the version you have, run <code>nexus-scholar --version</code>. The <a href="../known-limits/">known limits</a> say what the beta cannot do yet.</p>
+<p class="ns-beta">This guide is for the beta, version <strong>1.1.0b6</strong>. To check the version you have, run <code>nexus-scholar --version</code>. The <a href="../known-limits/">known limits</a> say what the beta cannot do yet.</p>
 
 The commands are the same on Windows (PowerShell), macOS and Linux unless a
 step says otherwise.
@@ -25,7 +25,7 @@ uv --version
 ## 2. Install Nexus Scholar
 
 ```bash
-uv tool install "nexus-scholar>=1.1.0b5"
+uv tool install "nexus-scholar>=1.1.0b6"
 ```
 
 The version in the command is needed while Nexus Scholar is in beta: it lets uv
@@ -37,8 +37,8 @@ one of them stops the app from starting. Check the install:
 nexus-scholar --version
 ```
 
-It should print `nexus-scholar 1.1.0b5`. You can now run `nexus-scholar` from
-any folder. If you use pip instead of uv: `pip install "nexus-scholar>=1.1.0b5"`.
+It should print `nexus-scholar 1.1.0b6`. You can now run `nexus-scholar` from
+any folder. If you use pip instead of uv: `pip install "nexus-scholar>=1.1.0b6"`.
 
 ## 3. Start the app and create a workspace
 
@@ -81,9 +81,10 @@ Each file is copied unchanged into the workspace, and every step is recorded in
 its audit journal. The same import is one command from the terminal:
 `nexus-scholar accept-corpus --workspace "<workspace folder>" --ris "Scopus=<scopus>.ris" --ris "Web of Science=<wos>.ris"`.
 
-Searching the free databases from the app (the Discovery screens) is on the
-development branch and comes with the next beta; see
-[Discovery](../flow/discovery/).
+Instead of importing exports, you can search the free databases from the app:
+open **Discovery** in the header. It needs your contact email and, for
+OpenAlex, a free API key; see [Discovery](../flow/discovery/). For now a corpus
+is a search or imported exports, not both.
 
 ## 5. Screen
 
@@ -132,7 +133,7 @@ What leaves your computer, and when, is listed in
 ## Updating
 
 ```bash
-uv tool install --force "nexus-scholar>=1.1.0b5"
+uv tool install --force "nexus-scholar>=1.1.0b6"
 ```
 
 Then check `nexus-scholar --version`. During the beta, finish a screening on
@@ -144,8 +145,8 @@ versions is not yet tested.
 | What you see | What to do |
 | :-- | :-- |
 | `nexus-scholar` is not found | Run `uv tool update-shell`, then open a new terminal. |
-| `uv tool install` says no version matches, or installs 1.0.0 | Keep the version in the command: `"nexus-scholar>=1.1.0b5"` (the beta is a pre-release). |
-| The app stops at start with `No module named 'httpcore'` | It was installed with `--prerelease allow`. Reinstall: `uv tool install --force "nexus-scholar>=1.1.0b5"`. |
+| `uv tool install` says no version matches, or installs 1.0.0 | Keep the version in the command: `"nexus-scholar>=1.1.0b6"` (the beta is a pre-release). |
+| The app stops at start with `No module named 'httpcore'` | It was installed with `--prerelease allow`. Reinstall: `uv tool install --force "nexus-scholar>=1.1.0b6"`. |
 | "No accepted corpus" (`SNAPSHOT_NOT_ACCEPTED`) | Import and accept your search results (step 4). |
 | `MAILTO_NOT_SET` before a search | Set `SCHOLAR_MAILTO` (and `SCHOLAR_OPENALEX_KEY`) as in [Configuration](../configuration/), then start the app again. |
 | `VERIFIED_EXISTS` when adding an export | A search already ran in this workspace. For now a corpus is a harvest or imported exports, not both. |

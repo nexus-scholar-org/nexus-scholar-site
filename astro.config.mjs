@@ -54,6 +54,7 @@ export default defineConfig({
         {
           label: 'Release notes',
           items: [
+            { label: '1.1.0b6', slug: 'docs/releases/1-1-0b6' },
             { label: '1.1.0b5', slug: 'docs/releases/1-1-0b5' },
             { label: '1.1.0b4', slug: 'docs/releases/1-1-0b4' },
             { label: '1.1.0b3', slug: 'docs/releases/1-1-0b3' },

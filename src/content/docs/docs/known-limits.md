@@ -1,6 +1,6 @@
 ---
 title: Known limits
-description: What the beta 1.1.0b5 cannot do yet.
+description: What the beta 1.1.0b6 cannot do yet.
 ---
 
 Nexus Scholar is a beta. This page says plainly what it cannot do yet, so that
@@ -13,7 +13,7 @@ alone, on their own computer. You bring RIS exports from the databases you
 searched, or PubMed `.nbib` exports. You leave with a published screening, its
 PRISMA counts and a draft methods paragraph.
 
-## Limits of 1.1.0b5
+## Limits of 1.1.0b6
 
 - **One reviewer.** A second screener, and agreement between two people
   (kappa), are not in the beta.
@@ -25,10 +25,15 @@ PRISMA counts and a draft methods paragraph.
 - **The approver is a typed name,** not a verified sign-in.
 - **AI drafts are optional and not validated.** Do not report a recall or
   accuracy figure for them.
-- **No search from the browser in 1.1.0b5.** The Discovery screens are on the
-  development branch and come with the next beta. A terminal search
-  (`nexus-scholar run`) needs `SCHOLAR_MAILTO`, and OpenAlex needs
-  `SCHOLAR_OPENALEX_KEY` (required by OpenAlex since 2026-02-13).
+- **The Discovery screens are new and have not been tried by a second
+  person.** No live search was run for the release. A search needs
+  `SCHOLAR_MAILTO`, and OpenAlex needs `SCHOLAR_OPENALEX_KEY` (required by
+  OpenAlex since 2026-02-13); without the key the OpenAlex search stops after
+  one page, and the app does not yet refuse the run.
+- **A harvest and imported exports cannot be combined in one corpus yet.**
+- **PubMed abstract terms search all fields.** A fix is planned.
+- **Near-duplicate pairs cannot be reviewed one by one.** Duplicates shows
+  counts per rule only.
 - **Inception has no Explore or Direction screen.** The browser flow goes
   Scope, Shape, Concepts and criteria, Review, Done.
 - **Creating the workspace is not bound to the previewed protocol.** A save
