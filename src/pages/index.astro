@@ -1,0 +1,430 @@
+---
+import { Image } from 'astro:assets';
+import '@fontsource-variable/literata/opsz.css';
+import '@fontsource-variable/public-sans';
+import '@fontsource/ibm-plex-mono/400.css';
+import '../styles/landing.css';
+import inception from '../assets/screens/inception.png';
+import discovery from '../assets/screens/discovery.png';
+import screening from '../assets/screens/screening.png';
+import workspaces from '../assets/screens/workspaces.png';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const docs = `${base}/docs`;
+const repo = 'https://github.com/nexus-scholar-org/nexus-scholar-harness';
+const pypi = 'https://pypi.org/project/nexus-scholar/';
+const install = 'uv tool install "nexus-scholar>=1.1.0b5"\nnexus-scholar ui';
+
+// The record and the criteria in the hero fragment are real: record STU-10b7daa2… of the golden
+// test workspace (30 records on UAV crop and weed mapping) and four of that protocol's seven
+// criteria, verbatim. The researcher excluded it on 2026-11-06 under EXC-03.
+const criteria = [
+  { id: 'INC-01', kind: 'Inclusion', text: 'Uses UAV-acquired imagery for crop/weed detection, segmentation, classification, or spatial weed mapping in an agricultural context (arable row crops, broadacre cereals, vegetables, or managed perennial orchards, vineyards, and pastures); UAV results must be separable in mixed-platform studies.' },
+  { id: 'INC-02', kind: 'Inclusion', text: 'Primary empirical method study or dataset/benchmark report describing a UAV crop/weed mapping method, experiment, or annotated dataset. Journal, conference, and substantive preprint reports are eligible (linked into study families).' },
+  { id: 'EXC-01', kind: 'Exclusion', text: 'Satellite-only, ground-robot-only, handheld, or laboratory/pot imaging with no separable eligible UAV mapping evidence.' },
+  { id: 'EXC-03', kind: 'Exclusion', text: 'Confirmed review (systematic, scoping, narrative, or bibliometric), editorial, commentary, protocol-only report, or standalone abstract with no associated substantive primary report.' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nexus Scholar: screen your systematic review on your own computer</title>
+    <meta name="description" content="Nexus Scholar is a free, local-first tool for systematic literature reviews. Write the protocol, search five free databases, screen titles and abstracts. Your workspace is a folder on your disk. Beta." />
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <link rel="canonical" href="https://nexus-scholar-org.github.io/nexus-scholar-site/" />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:title" content="Nexus Scholar" />
+    <meta property="og:description" content="A local-first tool for systematic literature reviews. Beta." />
+    <meta property="og:type" content="website" />
+    <script is:inline>
+      // The theme follows the choice made in the docs (Starlight keeps it under the same key),
+      // else the system setting. Nothing is sent anywhere.
+      (function () {
+        var t;
+        try { t = localStorage.getItem('starlight-theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+        document.documentElement.classList.add('js');
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap">
+        <a class="mark" href={`${base}/`}>Nexus Scholar</a>
+        <nav aria-label="Site">
+          <ul>
+            <li><a href={`${docs}/getting-started/`}>Docs</a></li>
+            <li><a href={repo}>GitHub</a></li>
+            <li><a href={pypi}>PyPI</a></li>
+            <li><button class="theme" type="button" id="theme" aria-label="Switch to the dark theme">Dark</button></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div class="hero-text">
+          <h1 id="title" class="lines">
+            <span class="line"><span data-line style="--i:0">Screen your review</span></span>
+            <span class="line"><span data-line style="--i:1">on your own computer.</span></span>
+          </h1>
+          <p class="lead">Nexus Scholar is a free tool for systematic literature reviews. <strong>Your workspace is a folder on your disk,</strong> every decision is a line in its audit journal, and nothing is sent anywhere unless you start a search or an AI run.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#install">Install the beta</a>
+            <a class="text" href={`${docs}/getting-started/`}>Read the docs</a>
+          </div>
+          <p class="beta"><strong>Beta 1.1.0b5.</strong> One reviewer, title and abstract screening, RIS and PubMed imports. The <a href={`${docs}/known-limits/`}>known limits</a> say the rest.</p>
+        </div>
+
+        <div class="hero-stage">
+          <div data-ui class="triage" id="triage">
+            <div class="t-bar">
+              <span>Record 3 of 30 · batch 1</span>
+              <span>Keys <span class="kbd">1</span> yes <span class="kbd">2</span> no <span class="kbd">3</span> not reported</span>
+            </div>
+            <div class="t-record">
+              <p class="t-title">Emerging UAV Solutions for Precision Crop Management</p>
+              <p class="t-meta">2025 · The database of origin is hidden.</p>
+              <p class="t-abstract" id="abstract">The rapid advancement of Unmanned Aerial Vehicles (UAVs) has significantly transformed the landscape of precision agriculture. Through high-resolution imaging, real-time data acquisition, autonomous field inspection, and integration with IoT-based sensor networks, drones have become central to modern farm management. This review synthesizes ten research papers published between 2021 and 2025 that collectively examine UAV applications in sustainable agriculture, weed and disease detection, field mapping, environmental monitoring, communication systems, and low-cost smart farming systems. Across these studies, drones demonstrate significant advantages: enhanced inspection accuracy, efficient resource allocation, improved sustainability, early detection of crop stress, and reduced labour requirements. At the same time, persisting challenges include battery limitations, weather dependence, high data-processing demands, fragmented data standardization, and limited usability for smallholder farmers.</p>
+              <button class="t-more" type="button" id="more" aria-expanded="false" aria-controls="abstract">Show the whole abstract</button>
+            </div>
+            <ul class="t-criteria" id="criteria">
+              {criteria.map((c) => (
+                <li data-id={c.id} data-kind={c.kind}>
+                  <div class="t-crit-head"><code>{c.id}</code><span>{c.kind}</span></div>
+                  <p class="t-crit-text">{c.text}</p>
+                  <div class="t-answers" role="group" aria-label={`${c.id} answer`}>
+                    <button type="button" class="yes" data-answer="yes" aria-pressed="false">Yes</button>
+                    <button type="button" class="no" data-answer="no" aria-pressed="false">No</button>
+                    <button type="button" class="nr" data-answer="not_reported" aria-pressed="false">Not reported</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <div class="t-decide">
+              <button type="button" class="primary" id="include" disabled>Include</button>
+              <button type="button" id="exclude" disabled>Exclude</button>
+              <button type="button" id="unclear">Unclear → full text</button>
+              <p class="t-ready" id="ready">Answer the criteria. Include is ready when every inclusion criterion is yes; Exclude as soon as one criterion fails. Four of the protocol's seven criteria are shown.</p>
+            </div>
+            <div class="t-journal">
+              <p class="t-label"><span id="jlabel">The event the engine wrote for this record on 6 November 2026</span><span class="badge">HUMAN</span></p>
+              <pre id="journal"><span class="k">"outcome":</span> <span class="ev">"EXCLUDE"</span>, <span class="k">"reason_code":</span> <span class="ev">"EXC-03"</span>,
+<span class="k">"method":</span> "HUMAN", <span class="k">"screener_id":</span> "researcher:local",
+<span class="k">"study_id":</span> "STU-10b7daa204b9eab1ffe895b4d35ff61b",
+<span class="k">"protocol_fingerprint":</span> "sha256:f81e6c58…8a4f755",
+<span class="k">"decided_at":</span> "2026-11-06T12:18:57.793Z"</pre>
+            </div>
+          </div>
+          <p class="caption">A real record and real criteria from a 30-record test review. Decide it here and see the event the engine would write. Nothing on this page is saved anywhere.</p>
+        </div>
+      </section>
+
+      <section class="section wrap reveal" aria-labelledby="h-steps">
+        <h2 id="h-steps">Three steps, three screens</h2>
+        <p class="intro">You give the engine a question, a protocol, and your answers. It gives you back a frozen protocol, a recorded search, and a published screening with its PRISMA counts. Each exchange below is the real app on the test review.</p>
+
+        <div class="flow">
+          <article class="exchange">
+            <p class="say">First, write the protocol. The engine drafts criteria from your answers; none enters the protocol until you accept it.</p>
+            <div class="call">
+              <p class="who">What you type on Scope</p>
+              <p class="typed">Reliability and generalization in UAV crop and weed mapping, from 2020, in English.</p>
+            </div>
+            <div class="response">
+              <figure>
+                <Image src={inception} alt="The Concepts and criteria step of the app. Three concepts, crop-weed, reliability and generalization, in text fields. Below, an inclusion criterion written by the wizard, marked Waiting for you with Accept and Reject buttons, and three exclusion criteria marked Accepted." widths={[640, 960, 1280, 1800]} sizes="(max-width: 48rem) 100vw, 36rem" loading="eager" />
+                <figcaption>Concepts and criteria. Every criterion is shown word for word with where it came from. A criterion the wizard wrote waits for your Accept.</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="exchange">
+            <p class="say">Then, search five free databases. The plan shows the exact string each one will receive before anything is sent.</p>
+            <div class="call">
+              <p class="who">What the protocol compiles for OpenAlex, shown before it is sent</p>
+              <pre>(UAV OR UAS OR drone OR drones OR "unmanned aerial vehicle" …) AND (weed OR weeds OR "crop weed" OR crop-weed …) AND (mapping OR detection OR segmentation OR classification …)</pre>
+            </div>
+            <div class="response">
+              <figure>
+                <Image src={discovery} alt="The Search plan step of the app. The heading reads: This is what each database will receive. The protocol fingerprint, then the OpenAlex query string marked Translated, not yet sent. A Limits card with the date window 2020 to 2026, language en, and a cap of 10000 per database. A card says the contact email is not set and shows the line to set it." widths={[640, 960, 1280, 1800]} sizes="(max-width: 48rem) 100vw, 36rem" />
+                <figcaption>Plan. A dry run: the protocol fingerprint, each database's translated query, and what the database cannot express. The search refuses to start until a contact email is set.</figcaption>
+              </figure>
+              <p class="note"><strong>Not in 1.1.0b5.</strong> The Discovery screens are built and come with the next beta. In 1.1.0b5 you import RIS or PubMed exports, or run the same search from the terminal. OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed; no other database.</p>
+            </div>
+          </article>
+
+          <article class="exchange wide">
+            <p class="say">Then, screen titles and abstracts. Your answers to the criteria decide the record, and the engine writes the event.</p>
+            <div class="call">
+              <p class="who">What you press</p>
+              <p class="keys"><kbd>1</kbd> yes <kbd>2</kbd> no <kbd>3</kbd> not reported, then <kbd>I</kbd> include, <kbd>E</kbd> exclude or <kbd>U</kbd> unclear</p>
+            </div>
+            <div class="response">
+              <figure>
+                <div class="frame drift">
+                  <Image src={screening} alt="The triage screen of the app at desktop width. Left, a counts rail: 30 need you, 0 decided, 0 skipped, with the current and next record. Centre, the record Determination of Olive Tree Components from Unmanned Aerial Vehicle Data, 2022, with its full abstract. Right, the optional checklist with the inclusion criteria INC-01 and INC-02 and Yes, No and Not reported buttons. Along the bottom, Include, Exclude, Unclear to full text and Skip." widths={[640, 960, 1280, 1800, 2400]} sizes="(max-width: 48rem) 100vw, 64rem" />
+                </div>
+                <figcaption>Triage on a desktop. The record in the middle, the queue on the left, the checklist on the right. The draft an agent made, if you asked for one, stays hidden until you have decided.</figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section wrap proof reveal" aria-labelledby="h-proof">
+        <h2 id="h-proof"><span>Every number</span><span class="l2">has a source.</span></h2>
+        <p class="intro">This is the audit journal of a real run: thirty records on UAV crop and weed mapping, screened and published on 6 November 2026. The engine appends a line for every step, including the ones it refused. A few of its 120 events:</p>
+        <table class="journal">
+          <thead><tr><th scope="col">Time</th><th scope="col">Event</th><th scope="col">Written by</th><th scope="col">What happened</th></tr></thead>
+          <tbody>
+            <tr class="day"><td colspan="4">4 November 2026</td></tr>
+            <tr><td class="when">16:49</td><td class="ev"><code>PROTOCOL_ADOPTED</code></td><td class="by">scholar-harness</td><td class="what">Adopted the frozen protocol, unchanged. Its fingerprint binds every later step.</td></tr>
+            <tr><td class="when">16:49</td><td class="ev"><code>CORPUS_SELECTED</code></td><td class="by">scholar-harness</td><td class="what">Selected 30 records for the run.</td></tr>
+            <tr><td class="when">16:49</td><td class="ev"><code>ARTIFACT_ACCEPTED</code></td><td class="by">accept-corpus</td><td class="what">Accepted the corpus snapshot. Screening starts from it; no database can be added after this.</td></tr>
+            <tr class="day"><td colspan="4">6 November 2026</td></tr>
+            <tr><td class="when">00:11</td><td class="ev"><code>SCREEN_PREPARE</code></td><td class="by">console</td><td class="what">Prepared the batches.</td></tr>
+            <tr><td class="when">00:44</td><td class="ev"><code>SCREENING_SETTINGS_CHANGED</code></td><td class="by">console</td><td class="what">Set blinding to reveal after decision, mode to human sees every record.</td></tr>
+            <tr><td class="when">12:10</td><td class="ev"><code>SCREENING_PROPOSAL_SUBMITTED</code></td><td class="by">proposals (MCP)</td><td class="what">Stored an agent proposal for each of 30 records. A proposal, never a decision.</td></tr>
+            <tr><td class="when">12:18</td><td class="ev"><code>SCREENING_DECISIONS_RECEIVED</code></td><td class="by">screening-events</td><td class="what">Received 1 decision event from the desktop: the record above, excluded under EXC-03.</td></tr>
+            <tr><td class="when">13:00</td><td class="ev"><code>SCREENING_PAIRING_REDEEMED</code></td><td class="by">console</td><td class="what">Batch 1 approved with the code shown in the terminal.</td></tr>
+            <tr class="refused"><td class="when">13:00</td><td class="ev"><code>SCREENING_GENERATION_REFUSED</code></td><td class="by">collect</td><td class="what">Refused to publish: APPROVAL_CONTENT_CHANGED. A decision had changed after the approval.</td></tr>
+            <tr><td class="when">13:21</td><td class="ev"><code>SCREENING_PAIRING_REDEEMED</code></td><td class="by">console</td><td class="what">Batch 2 approved again, with a new code.</td></tr>
+            <tr><td class="when">13:21</td><td class="ev"><code>SCREENING_GENERATION_PUBLISHED</code></td><td class="by">collect</td><td class="what">Published the screening generation, with its fingerprint and the approval's.</td></tr>
+            <tr><td class="when">13:21</td><td class="ev"><code>SCREENING_PUBLISH_COMPLETED</code></td><td class="by">console</td><td class="what">The published lists and the PRISMA report are written to the workspace.</td></tr>
+          </tbody>
+        </table>
+        <p class="intro">The counts that run published, which the methods paragraph is written from:</p>
+        <div class="counts" role="list">
+          <div role="listitem"><strong>30</strong><span>records identified</span></div>
+          <div role="listitem"><strong>0</strong><span>duplicates removed</span></div>
+          <div role="listitem"><strong>30</strong><span>screened</span></div>
+          <div class="tint-exclude" role="listitem"><strong>16</strong><span>excluded, with a reason each</span></div>
+          <div class="tint-include" role="listitem"><strong>8</strong><span>included</span></div>
+          <div class="tint-unclear" role="listitem"><strong>6</strong><span>unclear, sent to full text</span></div>
+        </div>
+      </section>
+
+      <section class="section wrap reveal" aria-labelledby="h-limits">
+        <div class="list-head">
+          <h2 id="h-limits">In the beta, and not yet</h2>
+          <p class="intro">Nexus Scholar is built by one researcher for researchers who screen alone. It claims only what the current release does. The rest is on the roadmap or parked, and this page will say when that changes.</p>
+        </div>
+        <div class="limits">
+          <section aria-labelledby="g1">
+            <h3 id="g1">In 1.1.0b5</h3>
+            <ul>
+              <li><span class="dot"></span><span>One reviewer, on one computer</span><span class="val">no second screener</span></li>
+              <li><span class="dot"></span><span>Title and abstract screening</span><span class="val">unclear goes to full text</span></li>
+              <li><span class="dot"></span><span>Imports: RIS, and PubMed <code>.nbib</code></span><span class="val">not CSV or BibTeX</span></li>
+              <li><span class="dot"></span><span>Protocol written in the browser</span><span class="val">Scope to Done</span></li>
+              <li><span class="dot"></span><span>Approval with a code shown in the terminal; the approver is a typed name</span><span class="val">not a sign-in</span></li>
+              <li><span class="dot"></span><span>AI drafts, optional, hidden until you decide, never recorded as your decision</span><span class="val">your own key</span></li>
+              <li><span class="dot"></span><span>RIS and CSV export, and a draft methods paragraph</span><span class="val">check every number</span></li>
+            </ul>
+          </section>
+          <section aria-labelledby="g2">
+            <h3 id="g2">Not yet</h3>
+            <ul>
+              <li><span class="dot unclear"></span><span>Searching the databases from the browser</span><span class="val">next beta</span></li>
+              <li><span class="dot unclear"></span><span>The Explore and Direction steps of inception</span><span class="val">terminal only</span></li>
+              <li><span class="dot exclude"></span><span>A second reviewer and agreement between people</span><span class="val">not planned for the beta</span></li>
+              <li><span class="dot exclude"></span><span>Full text, extraction, synthesis, citation graph</span><span class="val">parked</span></li>
+              <li><span class="dot exclude"></span><span>A validated accuracy figure for the AI drafts</span><span class="val">do not report one</span></li>
+            </ul>
+          </section>
+          <section aria-labelledby="g3">
+            <h3 id="g3">What leaves your computer</h3>
+            <ul>
+              <li><span class="dot none"></span><span>Importing, screening, publishing, exporting</span><span class="val">nothing</span></li>
+              <li><span class="dot none"></span><span>A search: your query and your contact email</span><span class="val">OpenAlex, Semantic Scholar, Crossref, arXiv, PubMed</span></li>
+              <li><span class="dot none"></span><span>AI drafts: title, abstract, year and your criteria, after you tick consent</span><span class="val">the provider you chose</span></li>
+              <li><span class="dot none"></span><span>Telemetry, analytics, accounts, update checks</span><span class="val">none</span></li>
+              <li><span class="dot none"></span><span>The full list, with the file to check it against</span><span class="val"><a href={`${docs}/data-flow/`}>Data flow and privacy</a></span></li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="install" id="install" aria-labelledby="h-install">
+        <div class="wrap reveal">
+          <div>
+            <h2 id="h-install">Two commands,<br />then this screen.</h2>
+            <p class="after">The app opens in your browser on Workspaces. Each review is a folder in Documents. Keep the terminal open: approval codes appear there.</p>
+            <div class="cmd">
+              <pre id="cmd" tabindex="0">{install}</pre>
+              <button class="copy" type="button" id="copy">Copy the commands</button>
+            </div>
+            <p class="small">Needs <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>. The version in the command keeps uv from taking betas of anything else; never use <code>--prerelease allow</code>. Then follow <a href={`${docs}/getting-started/`}>Getting started</a>, about 15 minutes.</p>
+          </div>
+          <figure>
+            <Image src={workspaces} alt="The Workspaces screen of the app: a list of review workspaces with their folders and a New workspace button." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 100vw, 52vw" />
+            <figcaption>Workspaces, the first screen. Everything you see here is a folder on your disk.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="tiles">
+        <div class="tile statement">
+          <p class="big">Every number has a source.</p>
+          <p class="legal">MIT licence. Beta 1.1.0b5. Built by one researcher; the <a href={`${docs}/legal/`}>data sources' terms</a> are theirs.</p>
+        </div>
+        <div class="tile navi">
+          <h3>Docs</h3>
+          <ul>
+            <li><a href={`${docs}/getting-started/`}>Getting started</a></li>
+            <li><a href={`${docs}/configuration/`}>Configuration</a></li>
+            <li><a href={`${docs}/data-flow/`}>Data flow and privacy</a></li>
+            <li><a href={`${docs}/ai/`}>How the AI is used</a></li>
+            <li><a href={`${docs}/known-limits/`}>Known limits</a></li>
+            <li><a href={`${docs}/releases/1-1-0b5/`}>Release notes</a></li>
+          </ul>
+        </div>
+        <div class="tile sources">
+          <h3>Searches</h3>
+          <ul>
+            <li>OpenAlex</li>
+            <li>Semantic Scholar</li>
+            <li>Crossref</li>
+            <li>arXiv</li>
+            <li>PubMed</li>
+          </ul>
+        </div>
+        <div class="tile contact">
+          <h3>Source and feedback</h3>
+          <ul>
+            <li><a class="mail" href={`${repo}/issues`}>Open an issue</a></li>
+            <li><a href={repo}>github.com/nexus-scholar-org</a></li>
+            <li><a href={pypi}>pypi.org/project/nexus-scholar</a></li>
+            <li><a href={`${docs}/contributing/`}>Contributing</a></li>
+          </ul>
+        </div>
+        <div class="tile wordmark" aria-hidden="true"><span>Nexus Scholar</span></div>
+        <a class="tile go" href={`${docs}/getting-started/`}>
+          <span>Read the docs</span>
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 24h30M26 12l12 12-12 12"/></svg>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      // Theme toggle: writes the key the docs use, so both halves of the site agree.
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('theme') as HTMLButtonElement;
+      const label = () => { const next = root.dataset.theme === 'dark' ? 'Light' : 'Dark'; themeBtn.textContent = next; themeBtn.setAttribute('aria-label', `Switch to the ${next.toLowerCase()} theme`); };
+      label();
+      themeBtn.addEventListener('click', () => {
+        root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('starlight-theme', root.dataset.theme!); } catch {}
+        label();
+      });
+
+      // Copy the install commands.
+      const copy = document.getElementById('copy') as HTMLButtonElement;
+      const cmd = document.getElementById('cmd') as HTMLPreElement;
+      copy.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(cmd.textContent || ''); copy.textContent = 'Copied'; }
+        catch { copy.textContent = 'Select and copy the lines above'; }
+        setTimeout(() => { copy.textContent = 'Copy the commands'; }, 2500);
+      });
+
+      // The abstract disclosure.
+      const more = document.getElementById('more') as HTMLButtonElement;
+      const abstract = document.getElementById('abstract')!;
+      more.addEventListener('click', () => {
+        const open = abstract.classList.toggle('open');
+        more.setAttribute('aria-expanded', String(open));
+        more.textContent = open ? 'Show less' : 'Show the whole abstract';
+      });
+
+      // The live triage fragment. The rule is the product's: Exclude is ready as soon as one
+      // criterion fails (an inclusion answered no, or an exclusion answered yes) and takes its
+      // reason from that criterion; Include is ready when every inclusion criterion is yes and
+      // no exclusion criterion is yes; Unclear is always possible. Nothing is saved.
+      const list = document.getElementById('criteria')!;
+      const items = Array.from(list.querySelectorAll('li')) as HTMLLIElement[];
+      const include = document.getElementById('include') as HTMLButtonElement;
+      const exclude = document.getElementById('exclude') as HTMLButtonElement;
+      const unclear = document.getElementById('unclear') as HTMLButtonElement;
+      const ready = document.getElementById('ready')!;
+      const journal = document.getElementById('journal')!;
+      const jlabel = document.getElementById('jlabel')!;
+      const answers = new Map<string, string>();
+      let current = 0;
+
+      function failing(): { id: string; kind: string } | null {
+        for (const li of items) {
+          const id = li.dataset.id!, kind = li.dataset.kind!, a = answers.get(id);
+          if (kind === 'Inclusion' && a === 'no') return { id, kind };
+          if (kind === 'Exclusion' && a === 'yes') return { id, kind };
+        }
+        return null;
+      }
+      function update() {
+        const f = failing();
+        const incs = items.filter((li) => li.dataset.kind === 'Inclusion');
+        const allYes = incs.every((li) => answers.get(li.dataset.id!) === 'yes');
+        const excYes = items.some((li) => li.dataset.kind === 'Exclusion' && answers.get(li.dataset.id!) === 'yes');
+        exclude.disabled = !f;
+        include.disabled = !(allYes && !excYes);
+        if (f) {
+          const code = f.kind === 'Inclusion' ? `FAILS-${f.id}` : f.id;
+          exclude.textContent = `Exclude · ${code}`;
+          ready.textContent = `Exclude is ready: ${f.id} ${f.kind === 'Inclusion' ? 'is not met' : 'applies'}, so the reason is ${code}.`;
+        } else {
+          exclude.textContent = 'Exclude';
+          ready.textContent = allYes ? 'Include is ready: every inclusion criterion shown is yes.' : 'Answer the criteria. Include is ready when every inclusion criterion is yes; Exclude as soon as one criterion fails. Four of the protocol’s seven criteria are shown.';
+        }
+      }
+      function answer(li: HTMLLIElement, value: string) {
+        answers.set(li.dataset.id!, value);
+        li.querySelectorAll('button[data-answer]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.answer === value)));
+        current = Math.min(items.indexOf(li) + 1, items.length - 1);
+        update();
+      }
+      items.forEach((li) => li.querySelectorAll('button[data-answer]').forEach((b) => {
+        b.addEventListener('click', () => answer(li, (b as HTMLElement).dataset.answer!));
+        b.addEventListener('focus', () => { current = items.indexOf(li); });
+      }));
+
+      function decide(outcome: string, reason: string | null) {
+        const stamp = new Date().toISOString();
+        const crit = Array.from(answers, ([id, a]) => `{"id": "${id}", "answer": "${a}"}`).join(', ');
+        journal.innerHTML =
+          `<span class="k">"outcome":</span> <span class="ev">"${outcome}"</span>, <span class="k">"reason_code":</span> <span class="ev">${reason ? `"${reason}"` : 'null'}</span>,\n` +
+          `<span class="k">"method":</span> "HUMAN", <span class="k">"screener_id":</span> "researcher:local",\n` +
+          `<span class="k">"study_id":</span> "STU-10b7daa204b9eab1ffe895b4d35ff61b",\n` +
+          `<span class="k">"protocol_fingerprint":</span> "sha256:f81e6c58…8a4f755",\n` +
+          `<span class="k">"criteria":</span> [${crit}],\n` +
+          `<span class="k">"decided_at":</span> "${stamp}"`;
+        journal.classList.remove('fresh'); void (journal as HTMLElement).offsetWidth; journal.classList.add('fresh');
+        jlabel.textContent = 'The event the engine would write for your decision now. Not saved.';
+      }
+      include.addEventListener('click', () => decide('INCLUDE', null));
+      exclude.addEventListener('click', () => { const f = failing(); if (f) decide('EXCLUDE', f.kind === 'Inclusion' ? `FAILS-${f.id}` : f.id); });
+      unclear.addEventListener('click', () => decide('MAYBE', null));
+
+      // Keys, only while the fragment has focus, as in the app.
+      document.getElementById('triage')!.addEventListener('keydown', (e) => {
+        if ((e.target as HTMLElement).tagName === 'TEXTAREA') return;
+        const map: Record<string, string> = { '1': 'yes', '2': 'no', '3': 'not_reported' };
+        if (map[e.key]) { answer(items[current], map[e.key]); e.preventDefault(); }
+        else if (e.key === 'i' || e.key === 'I') { if (!include.disabled) include.click(); }
+        else if (e.key === 'e' || e.key === 'E') { if (!exclude.disabled) exclude.click(); }
+        else if (e.key === 'u' || e.key === 'U') { unclear.click(); }
+      });
+
+      // Entrances: sections arrive once as they enter the viewport.
+      const io = new IntersectionObserver((entries) => {
+        for (const en of entries) if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      }, { rootMargin: '0px 0px -10% 0px' });
+      document.querySelectorAll('.reveal, .drift').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+---
+// Starlight's search button, adjusted so its visible text and accessible name agree
+// (WCAG 2.5.3, axe label-content-name-mismatch): the shortcut caps are hidden from assistive
+// technology and drawn from a data attribute, so the only visible text is the label itself.
+import Default from '@astrojs/starlight/components/Search.astro';
+---
+
+<Default {...Astro.props}><slot /></Default>
+
+<script>
+  const btn = document.querySelector('button[data-open-modal]');
+  const kbd = btn?.querySelector(':scope > kbd');
+  if (btn && kbd) {
+    kbd.setAttribute('aria-hidden', 'true');
+    for (const k of Array.from(kbd.querySelectorAll('kbd'))) {
+      (k as HTMLElement).dataset.key = k.textContent || '';
+      k.textContent = '';
+    }
+  }
+</script>

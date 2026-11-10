@@ -1,0 +1,68 @@
+/* Nexus Scholar Provenance tokens applied to Starlight (docs/ux/brand/tokens.json). */
+:root {
+  --sl-font: 'Public Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sl-font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --ns-display: 'Literata Variable', Georgia, 'Times New Roman', serif;
+  --sl-content-width: 46rem;
+  --sl-text-h1: 2rem;
+  --sl-text-h2: 1.5rem;
+  --sl-text-h3: 1.25rem;
+  --sl-text-h4: 1.125rem;
+}
+
+/* Dark (Starlight's default scope) */
+:root {
+  --sl-color-accent-low: #1b2a3f;
+  --sl-color-accent: #8fb3e6;
+  --sl-color-accent-high: #c9dbf5;
+  --sl-color-white: #e6e9ed;
+  --sl-color-gray-1: #d5dae1;
+  --sl-color-gray-2: #b4bdc7;
+  --sl-color-gray-3: #9aa5b1;
+  --sl-color-gray-4: #55616e;
+  --sl-color-gray-5: #2c343d;
+  --sl-color-gray-6: #1f262e;
+  --sl-color-gray-7: #181d23;
+  --sl-color-black: #111519;
+  --sl-color-text-accent: #8fb3e6;
+  --sl-color-bg-nav: #181d23;
+  --sl-color-bg-sidebar: #111519;
+  --sl-color-hairline: #2c343d;
+  --sl-color-hairline-light: #2c343d;
+  --sl-color-hairline-shade: #2c343d;
+}
+
+/* Light */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #e8eef7;
+  --sl-color-accent: #24456e;
+  --sl-color-accent-high: #16202b;
+  --sl-color-white: #16202b;
+  --sl-color-gray-1: #2b3744;
+  --sl-color-gray-2: #3f4b58;
+  --sl-color-gray-3: #55616e;
+  --sl-color-gray-4: #8a95a1;
+  --sl-color-gray-5: #d5dae1;
+  --sl-color-gray-6: #eef1f5;
+  --sl-color-gray-7: #f5f6f8;
+  --sl-color-black: #ffffff;
+  --sl-color-text-accent: #24456e;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #f5f6f8;
+  --sl-color-hairline: #d5dae1;
+  --sl-color-hairline-light: #d5dae1;
+  --sl-color-hairline-shade: #d5dae1;
+}
+
+.site-title { font-family: var(--ns-display); font-weight: 600; letter-spacing: -0.005em; }
+.sl-markdown-content h1, .sl-markdown-content h2 { font-family: var(--ns-display); font-weight: 600; letter-spacing: -0.01em; }
+.sl-markdown-content { font-size: 1.0625rem; line-height: 1.6; }
+.sl-markdown-content code:not(:where(.expressive-code *)) { font-size: 0.875em; }
+.sl-markdown-content table { font-variant-numeric: tabular-nums; }
+
+/* Beta banner */
+.ns-beta { background: var(--sl-color-accent-low); padding: 0.75rem 1rem; border-radius: 6px; }
+
+/* The search shortcut caps draw their key from a data attribute (see src/components/Search.astro). */
+button[data-open-modal] kbd[data-key]::before { content: attr(data-key); }
