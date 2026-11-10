@@ -221,7 +221,7 @@ button { font: inherit; color: inherit; }
 .section .intro + .intro { margin-top: 0.75rem; }
 
 /* How it works: call and response column */
-.flow { margin-top: 3.5rem; display: grid; gap: 5.5rem; }
+.flow { margin-top: 3.5rem; display: grid; gap: 5.5rem; margin-left: clamp(0rem, 12vw, 14rem); }
 .exchange { display: grid; gap: 1rem; max-width: 36rem; }
 .exchange > p.say { font-size: var(--step-lead); font-weight: 500; line-height: 1.35; text-wrap: pretty; }
 .exchange .call {
@@ -244,7 +244,7 @@ button { font: inherit; color: inherit; }
 .note { margin-top: 0.4rem; font-size: var(--step-small); color: var(--muted); }
 .note strong { color: var(--ink); }
 @media (max-width: 48rem) {
-  .flow { gap: 4rem; }
+  .flow { gap: 4rem; margin-left: 0; }
   .exchange .response, .exchange.wide .response { margin-left: 0; }
 }
 
@@ -327,7 +327,8 @@ button { font: inherit; color: inherit; }
 .install .small { margin-top: 1rem; font-size: var(--step-small); max-width: 40ch; }
 .install .small a { color: inherit; }
 .install figure { display: grid; gap: 0.6rem; }
-.install figure img { width: 100%; height: auto; border-radius: 6px; }
+.install figure .frame { aspect-ratio: 16 / 9; overflow: clip; border-radius: 6px; }
+.install figure img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .install figcaption { font-size: var(--step-small); }
 @media (max-width: 64rem) {
   .install .wrap { grid-template-columns: 1fr; }
