@@ -3,3 +3,4 @@ dist/
 .astro/
 .taste-skill/inspect/
 npm-install.log
+.preview/
