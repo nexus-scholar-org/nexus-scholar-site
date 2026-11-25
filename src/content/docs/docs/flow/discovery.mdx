@@ -82,11 +82,14 @@ and the steps are:
 
    <Shot src={discoveryImportCombined} alt="The Import step in a demo review after a harvest and two RIS files: four databases searched by the app, OpenAlex and Crossref from exports, 70 records identified, 3 duplicates removed and 67 studies to screen." caption="Each database with its records, and the counts for your PRISMA flow diagram." />
 5. **Duplicates.** How many records were merged, by rule (identifier, exact
-   title, close title). Pair-by-pair review is not built.
+   title, close title). Pair-by-pair review is not built. With imported files
+   only, it says "No deduplication has run yet": an export is deduplicated when
+   the corpus is accepted, and its counts are on the Hand-off.
 
    <Shot src={discoveryDedup} alt="Step 5 of 7, Duplicates, in a demo review: 40 records became 39 works, the number removed by each rule, and the rules in force." caption="What the harvest's records became, how many each rule removed, and the rules in force." />
 6. **Report.** The PRISMA-S identification per database and a methods paragraph
-   you mark as reviewed.
+   you mark as reviewed. It describes a search run; with imported files only,
+   it says "There is no such run".
 
    <Shot src={discoveryReport} alt="Step 6 of 7, the search report: for each database the executed string, the total it reported, the records fetched and when it was searched." caption="What each database was asked and what came back." />
 7. **Hand-off.** **Accept this corpus** freezes it, and screening starts from it.
