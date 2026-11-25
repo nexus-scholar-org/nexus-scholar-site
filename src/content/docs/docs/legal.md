@@ -18,8 +18,8 @@ citation chasing and the open-access look-up send your records' identifiers,
 to the services below. Each has its own terms
 of use, which you accept by using them; Nexus Scholar does not change them, and
 the maintainer has no agreement with any of these services. Nexus Scholar
-queries these five sources and bioRxiv when a protocol names it, and the
-open-access look-up also asks Unpaywall; it makes no claim about any other
+queries these five sources (and bioRxiv when a protocol names it or you tick it
+for a harvest), and the open-access look-up also asks Unpaywall; it makes no claim about any other
 database. Exports from other databases (Scopus, Web of Science, IEEE Xplore and
 others) are imported from the files you download yourself, under the terms of
 your own access.

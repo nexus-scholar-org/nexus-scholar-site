@@ -72,7 +72,7 @@ identifiers of your records** (DOIs, titles), never your decisions:
 
 | Action | Where you start it | Sent to |
 | :-- | :-- | :-- |
-| Search (a harvest) | Discovery, **Start the harvest**; `nexus-scholar run` | The databases your protocol selects among OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed (NCBI E-utilities); bioRxiv only when the protocol names it |
+| Search (a harvest) | Discovery, **Start the harvest**; `nexus-scholar run` | The databases your protocol selects among OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed (NCBI E-utilities); bioRxiv only when the protocol names it or you tick it on Plan or Harvest |
 | Plan (dry run) | Discovery, **Plan** | Nothing: the strings are translated on your computer |
 | Recall check | Discovery, **Recall** | The protocol query, to the protocol's databases; then each seed's identifier to Crossref and OpenAlex for a title check |
 | Abstract hydration and DOI verification, after a harvest | Part of the same run | Record DOIs (and arXiv ids) to Semantic Scholar, OpenAlex and Crossref |
