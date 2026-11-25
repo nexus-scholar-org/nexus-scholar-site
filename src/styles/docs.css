@@ -124,6 +124,8 @@ h1#_top, .sl-markdown-content h1, .sl-markdown-content h2 { font-family: var(--n
 @media (max-width: 50rem) {
   /* On a phone a long identifier in a cell may break, so a two- or three-column table fits the screen. */
   .sl-markdown-content :is(th, td):not(:where(.not-content *)) { padding-inline: 0.5rem; }
+  .sl-markdown-content :is(th, td):first-child:not(:where(.not-content *)) { padding-inline-start: 0; }
+  .sl-markdown-content :is(th, td):last-child:not(:where(.not-content *)) { padding-inline-end: 0; }
   .sl-markdown-content :is(th, td) code { overflow-wrap: anywhere; }
 }
 
