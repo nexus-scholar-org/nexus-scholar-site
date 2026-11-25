@@ -4,3 +4,4 @@ dist/
 .taste-skill/inspect/
 npm-install.log
 .preview/
+.taste-skill/docs-review/
