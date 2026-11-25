@@ -111,7 +111,7 @@ its audit journal. The same import is one command from the terminal:
 `nexus-scholar accept-corpus --workspace "<workspace folder>" --ris "Scopus=<scopus>.ris" --ris "Web of Science=<wos>.ris"`.
 
 Instead of importing exports, you can search the free databases from the app:
-open **Discovery** in the header. It needs your contact email and, for
+open **Discovery** in the header. It needs your contact e-mail and, for
 OpenAlex, a free API key; see [Discovery](../flow/discovery/). Since 1.1.0b7 a
 search and imported exports can be combined in one corpus, in any order.
 

@@ -27,10 +27,10 @@ your own access.
 | Source | What it is | Terms and documentation |
 | :-- | :-- | :-- |
 | OpenAlex | An open index of scholarly works, run by OurResearch. Requires a free API key since 2026-02-13. | [OpenAlex API documentation](https://docs.openalex.org/) · [Terms](https://openalex.org/terms) |
-| Crossref | The DOI registration agency's metadata API. Asks clients to identify themselves with a contact email (the "polite pool"). | [REST API documentation](https://www.crossref.org/documentation/retrieve-metadata/rest-api/) · [Terms](https://www.crossref.org/documentation/retrieve-metadata/rest-api/access-and-authentication/) |
+| Crossref | The DOI registration agency's metadata API. Asks clients to identify themselves with a contact e-mail (the "polite pool"). | [REST API documentation](https://www.crossref.org/documentation/retrieve-metadata/rest-api/) · [Terms](https://www.crossref.org/documentation/retrieve-metadata/rest-api/access-and-authentication/) |
 | Semantic Scholar | The Allen Institute for AI's academic graph API. | [API](https://www.semanticscholar.org/product/api) · [Terms](https://www.semanticscholar.org/product/api/license) |
 | arXiv | The preprint server's API. Asks for no more than one request every three seconds. | [API user manual](https://info.arxiv.org/help/api/user-manual.html) · [Terms of use](https://info.arxiv.org/help/api/tou.html) |
-| PubMed (NCBI E-utilities) | The National Library of Medicine's MEDLINE search API. Asks for a tool name and contact email, and limits unkeyed clients to three requests per second. | [E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK25497/) · [Usage policies](https://www.ncbi.nlm.nih.gov/home/about/policies/) |
+| PubMed (NCBI E-utilities) | The National Library of Medicine's MEDLINE search API. Asks for a tool name and contact e-mail, and limits unkeyed clients to three requests per second. | [E-utilities](https://www.ncbi.nlm.nih.gov/books/NBK25497/) · [Usage policies](https://www.ncbi.nlm.nih.gov/home/about/policies/) |
 
 What is sent to each, and when, is on [Data flow and privacy](../data-flow/).
 
