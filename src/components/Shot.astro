@@ -1,0 +1,29 @@
+---
+// A screenshot in the guide: a responsive, lazy picture that opens at full size, with a one-line caption.
+// The PNG source is 1408 px wide, twice the docs column, so it stays sharp at 2x and no wider.
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  caption: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<figure class="ns-shot">
+  <a class="ns-shot-link" href={src.src}>
+    <Image
+      src={src}
+      alt={alt}
+      widths={[704, 1056, 1408]}
+      sizes="(min-width: 72rem) 44rem, (min-width: 50rem) calc(100vw - 22rem), calc(100vw - 2rem)"
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="sr-only"> (opens the full-size picture)</span>
+  </a>
+  <figcaption>{caption}</figcaption>
+</figure>
