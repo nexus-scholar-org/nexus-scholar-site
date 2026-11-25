@@ -8,11 +8,13 @@ the app and its engine run as one process that listens only on this computer
 (`127.0.0.1`), and nothing is sent anywhere unless you start one of the actions
 below. There is no account, no telemetry, no analytics and no automatic update
 check. The app's pages load nothing from the internet: fonts and scripts are
-bundled, and a browser test fails the build if a page reaches any host other
-than this computer.
+bundled. A browser test checked this until the browser test suite was removed
+on 2026-11-23 (1.1.0b7); no automated test checks it now.
 
 This page lists every place where data leaves the machine, what is sent, and to
-whom. It was checked on 2026-11-10 against the beta 1.1.0b6.
+whom. It was checked against the code on 2026-11-10, for the beta 1.1.0b6. The
+lines for what 1.1.0b7 and 1.1.0b8 added come from their release notes and the
+user guide, not from a new check of the code.
 
 ## Importing and screening: nothing
 
@@ -38,8 +40,9 @@ notes, names and the rest of the workspace are not sent.
   (provider, model, prompt fingerprint, date and the sentence above) is written
   to the workspace and to the audit journal.
 - Keys stay in your operating system's keychain, or in your environment. They
-  are never written to a workspace, a configuration file, the journal or the
-  browser.
+  are never written to a workspace, the journal or the browser. Since 1.1.0b8
+  the Settings screen also keeps keys in the keychain; where no keychain can be
+  used, it asks before it keeps a key in a file only you can read.
 - What the provider does with the data is governed by **your** agreement with
   it (for example, whether it keeps or trains on API inputs). Check those terms
   before you consent, especially for unpublished or confidential records.
@@ -52,7 +55,13 @@ If you connect Claude Desktop or Claude Code to the `scholar-agent` MCP server,
 your Claude reads records from the workspace through the server's tools and
 submits drafts through it. The record text then goes to Anthropic **through
 your Claude app, under your Claude account's terms**, not through Nexus
-Scholar. The MCP server itself runs on your computer and holds no key.
+Scholar. The MCP server itself runs on your computer and holds no key. The
+Windows installer of 1.1.0b8 ships the same server as `nexus-scholar-mcp.exe`.
+
+Since 1.1.0b7 the server also has five `nexus_assistant_*` tools that let your
+AI client read drafts and workspaces and propose changes. What they
+read goes to your AI client's provider in the same way. They have not been
+tried with a real AI client.
 
 ## Searching and checking the literature (optional)
 
@@ -65,14 +74,20 @@ identifiers of your records** (DOIs, titles), never your decisions:
 | Plan (dry run) | Discovery, **Plan** | Nothing: the strings are translated on your computer |
 | Recall check | Discovery, **Recall** | The protocol query, to the protocol's databases; then each seed's identifier to Crossref and OpenAlex for a title check |
 | Abstract hydration and DOI verification, after a harvest | Part of the same run | Record DOIs (and arXiv ids) to Semantic Scholar, OpenAlex and Crossref |
-| Inception reconnaissance (a first pool of up to 25 papers) | The terminal wizard and the MCP tools | Your topic as a query, to OpenAlex, Semantic Scholar, Crossref and arXiv |
-| Full-text download, citation graph, verification (parked, not production) | Terminal | Unpaywall, `doi.org` and publisher sites; OpenAlex; Crossref |
+| Inception: Explore and Direction (a first sample of papers per database) | The Explore and Direction screens (1.1.0b7); the terminal wizard and the MCP tools | Your topic as a query, to the databases you choose |
+| Counts: the query workbench and the size estimate (1.1.0b7) | Inception step 5 and Plan (**Count**); Plan and Harvest (size estimate) | The query, to the databases you count; each button says how many requests it sends |
+| Citation chasing (1.1.0b7) | Discovery, **Chase**; `nexus-scholar chase run` | Your included studies, to OpenAlex first and Semantic Scholar second, to fetch their references and citing papers |
+| Open-access look-up and download (1.1.0b7) | Charting, **Look up open-access copies**; `scholar-pdf download` and `ingest` | Your studies' DOIs and your contact email to Unpaywall; to OpenAlex only with `SCHOLAR_OPENALEX_KEY`; then the PDF fetched from a location those services list as open access |
 
 With every search request the engine also sends who is asking: your contact
 email (`SCHOLAR_MAILTO`) in the User-Agent header to every provider and as
 `email` to PubMed; your OpenAlex key, to OpenAlex only, when set; your Semantic
 Scholar key, to Semantic Scholar only, when set. Responses are cached on your
 disk under `.cache/` unless `SCHOLAR_HTTP_CACHE` is off.
+
+The citation graph and the verification checks (retraction, open science,
+conflicts of interest, risk of bias), which also sent record identifiers, were
+removed in 1.1.0b7 and 1.1.0b8.
 
 ## Phones (not yet)
 

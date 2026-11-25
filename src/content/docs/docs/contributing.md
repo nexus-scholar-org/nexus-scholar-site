@@ -5,9 +5,9 @@ description: How to set up a source checkout, run the test gate, and open a pull
 
 Nexus Scholar is developed in the open at
 [nexus-scholar-org/nexus-scholar-harness](https://github.com/nexus-scholar-org/nexus-scholar-harness)
-under the MIT licence. The harness and its seven kits (protocol, search, PDF,
-RAG, graph, agent, verify) are one Python package, `nexus-scholar`, with the
-browser app beside it.
+under the MIT licence. The harness and its four kits (protocol, search, PDF,
+agent) are one Python package, `nexus-scholar`, with the browser app beside it.
+The RAG and verify kits were removed in 1.1.0b7 and the graph kit in 1.1.0b8.
 
 ## The fork and pull-request rule
 
@@ -38,10 +38,11 @@ cd nexus-scholar-harness
 uv sync --extra dev
 ```
 
-`uv sync --extra dev` installs the harness, all seven kits (editable, from
+`uv sync --extra dev` installs the harness, the four kits (editable, from
 `src/`), every command-line tool and the test tools. Heavy backends are
-opt-in extras: `--extra pdf`, `--extra rag`, `--extra extract`, or
-`--extra all`. The full test suite needs `--extra dev --extra pdf --extra rag`.
+opt-in extras: `--extra pdf`, `--extra extract`, or `--extra all` (`pdf` plus
+`extract`); the keychain and Anthropic calls need `--extra ai`. The full test
+suite needs `--extra dev --extra pdf`.
 Run everything through the project environment with `uv run ...`; never rely
 on a system Python.
 

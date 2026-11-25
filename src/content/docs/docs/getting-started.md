@@ -7,10 +7,14 @@ This guide takes you from nothing to a published screening with an exported
 reference list. It takes about 15 minutes, plus the time you spend screening.
 Everything runs on your computer. No account or API key is needed to screen.
 
-<p class="ns-beta">This guide is for the beta, version <strong>1.1.0b6</strong>. To check the version you have, run <code>nexus-scholar --version</code>. The <a href="../known-limits/">known limits</a> say what the beta cannot do yet.</p>
+<p class="ns-beta">This guide is for the beta, version <strong>1.1.0b8</strong>. To check the version you have, run <code>nexus-scholar --version</code>. The <a href="../known-limits/">known limits</a> say what the beta cannot do yet.</p>
 
 The commands are the same on Windows (PowerShell), macOS and Linux unless a
 step says otherwise.
+
+There are two ways to install. On any system, install with `uv` (steps 1 and
+2). On Windows you can instead run an installer that needs no Python and no
+terminal; see [On Windows, the installer](#on-windows-the-installer) below.
 
 ## 1. Install uv (once)
 
@@ -25,7 +29,7 @@ uv --version
 ## 2. Install Nexus Scholar
 
 ```bash
-uv tool install "nexus-scholar>=1.1.0b6"
+uv tool install "nexus-scholar>=1.1.0b8"
 ```
 
 The version in the command is needed while Nexus Scholar is in beta: it lets uv
@@ -37,8 +41,32 @@ one of them stops the app from starting. Check the install:
 nexus-scholar --version
 ```
 
-It should print `nexus-scholar 1.1.0b6`. You can now run `nexus-scholar` from
-any folder. If you use pip instead of uv: `pip install "nexus-scholar>=1.1.0b6"`.
+It should print `nexus-scholar 1.1.0b8`. You can now run `nexus-scholar` from
+any folder. If you use pip instead of uv: `pip install "nexus-scholar>=1.1.0b8"`.
+
+### On Windows, the installer
+
+On Windows you can skip steps 1 and 2: download
+`NexusScholar-1.1.0b8-setup.exe` from the
+[release page](https://github.com/nexus-scholar-org/nexus-scholar-harness/releases/tag/v1.1.0b8),
+run it, then start Nexus Scholar from the Start menu. It needs no Python, no
+terminal and no administrator password. The first start opens a short setup
+screen for your contact e-mail and keys; nothing there is needed to open a
+review. The rest of this guide is the same, except that approval codes appear
+in a small window, not in a terminal.
+
+Before you choose it, know that:
+
+- **It is not signed.** Windows may show "Windows protected your PC"; choose
+  "More info", then "Run anyway", only if you downloaded the file from the
+  release page above.
+- **It is for Windows only.** On macOS and Linux, install with `uv` or `pip`.
+- **It is new.** It was built and tried on GitHub's Windows runner and on one
+  developer PC. It was not tried on a clean computer, and its wizard pages, its
+  uninstaller and the Windows warning were not walked by a person.
+
+Uninstalling removes the program, never a review. See the
+[1.1.0b8 release notes](../releases/1-1-0b8/).
 
 ## 3. Start the app and create a workspace
 
@@ -74,8 +102,9 @@ imported as it is. Then open the **Import** step in the app:
    duplicates it will remove (same DOI, or the same title, first author and
    year one year either way) and the studies left to screen. These are the
    numbers for your PRISMA flow diagram.
-3. **Accept and freeze the corpus.** Screening starts from it, so after this no
-   database can be added or removed.
+3. **Accept and freeze the corpus** on the **Hand-off** step of Discovery.
+   Screening starts from it, so after this no database can be added or
+   removed.
 
 Each file is copied unchanged into the workspace, and every step is recorded in
 its audit journal. The same import is one command from the terminal:
@@ -83,8 +112,8 @@ its audit journal. The same import is one command from the terminal:
 
 Instead of importing exports, you can search the free databases from the app:
 open **Discovery** in the header. It needs your contact email and, for
-OpenAlex, a free API key; see [Discovery](../flow/discovery/). For now a corpus
-is a search or imported exports, not both.
+OpenAlex, a free API key; see [Discovery](../flow/discovery/). Since 1.1.0b7 a
+search and imported exports can be combined in one corpus, in any order.
 
 ## 5. Screen
 
@@ -133,23 +162,34 @@ What leaves your computer, and when, is listed in
 ## Updating
 
 ```bash
-uv tool install --force "nexus-scholar>=1.1.0b6"
+uv tool install --force "nexus-scholar>=1.1.0b8"
 ```
 
-Then check `nexus-scholar --version`. During the beta, finish a screening on
-the version you started it with when you can; reading a workspace across
-versions is not yet tested.
+Then check `nexus-scholar --version`. With the Windows installer, run the newer
+`setup.exe` instead.
+
+Since 1.1.0b8 each review has a format version. The first time a newer version
+opens a review, it saves a copy of the whole review first, PDFs included, as a
+zip under `.nexus-copies/` in your reviews folder; the five newest copies are
+kept. The copy is on the same disk, so it is not a backup. 1.1.0b7 and earlier
+do not check the format, so do not go back to them on a review a newer version
+has written. How to restore a copy is in the user guide,
+["The copy made before an update"](https://github.com/nexus-scholar-org/nexus-scholar-harness/blob/main/docs/nexus_scholar_user_guide.md#the-copy-made-before-an-update).
+During the beta, finish a screening on the version you started it with when
+you can.
 
 ## Troubleshooting
 
 | What you see | What to do |
 | :-- | :-- |
 | `nexus-scholar` is not found | Run `uv tool update-shell`, then open a new terminal. |
-| `uv tool install` says no version matches, or installs 1.0.0 | Keep the version in the command: `"nexus-scholar>=1.1.0b6"` (the beta is a pre-release). |
-| The app stops at start with `No module named 'httpcore'` | It was installed with `--prerelease allow`. Reinstall: `uv tool install --force "nexus-scholar>=1.1.0b6"`. |
+| `uv tool install` says no version matches, or installs 1.0.0 | Keep the version in the command: `"nexus-scholar>=1.1.0b8"` (the beta is a pre-release). |
+| The app stops at start with `No module named 'httpcore'` | It was installed with `--prerelease allow`. Reinstall: `uv tool install --force "nexus-scholar>=1.1.0b8"`. |
 | "No accepted corpus" (`SNAPSHOT_NOT_ACCEPTED`) | Import and accept your search results (step 4). |
 | `MAILTO_NOT_SET` before a search | Set `SCHOLAR_MAILTO` (and `SCHOLAR_OPENALEX_KEY`) as in [Configuration](../configuration/), then start the app again. |
-| `VERIFIED_EXISTS` when adding an export | A search already ran in this workspace. For now a corpus is a harvest or imported exports, not both. |
+| `OPENALEX_KEY_NOT_SET` before a search | Set `SCHOLAR_OPENALEX_KEY` as in [Configuration](../configuration/), then start the app again, or leave OpenAlex out of the run. |
+| `VERIFIED_EXISTS` when adding an export | `literature/verified.json` holds records that no search and no import of this app made, so the app does not know where they came from. Accept them as they are, or remove the file to import exports instead. After a search in the app, exports can be added: the Hand-off accept combines both. |
+| "Made with a newer version of Nexus Scholar" | A newer version has opened this review. Install that version or a later one to continue. |
 | "No records in this file" (`SOURCE_NOT_RIS`) | Export the results as RIS (`.ris` or `.txt`) from the database, or as `.nbib` from PubMed, not as CSV or BibTeX. |
 | "File too large" (`SOURCE_TOO_LARGE`) | Export in parts of under 50 MB and add each part under the same database name. |
 | `OPERATOR_CONTEXT_MISSING` when approving | Save your name under **Approver** on the Publish screen, then ask for a new code. |

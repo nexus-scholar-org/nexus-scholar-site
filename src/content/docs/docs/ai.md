@@ -8,7 +8,7 @@ decides.** Nothing a model writes is a decision, a published file or a journal
 entry. Only the engine writes workspace artifacts and the audit journal, and
 only after a human decision.
 
-## What is built (1.1.0b6)
+## What is built (1.1.0b8)
 
 The screening half of the design is built: a proposal store, the rule table,
 the validators, the proposal tools of the MCP server, three drivers (your own
@@ -38,11 +38,28 @@ screen.
 - **Blinding.** The draft is hidden until you decide (the default), and the
   setting is recorded in each decision's provenance.
 - **You see every record.** The beta has one mode: the researcher decides every
-  record. A setting named "AI-agreed exclusion" exists in the beta but changes
-  nothing in the queue; it is only reported in the methods paragraph.
+  record. Since 1.1.0b7 the mode "AI-agreed exclusion" is refused when you save
+  it; the Prepare screen still offers it and then shows the refusal.
+- **A run names its provider, model and cost ceiling.** Since 1.1.0b7 an agent
+  run or a calibration is refused without all three, and there is no default
+  model. A blank ceiling means no ceiling.
+- **Decisions stored from drafts are declared.** Since 1.1.0b7, if you stored
+  decisions from the agent's drafts without reading each record, you declare
+  them on their own screen and can draw a sample of the adopted exclusions to
+  read. Declared decisions are left out of the agreement figures, and the
+  methods paragraph states how many records you read, how many decisions came
+  from drafts and what a sample found.
+- **Quoted spans are highlighted.** Once a draft is shown, Triage marks the
+  spans of the title and abstract that the draft quoted, tied to their
+  criterion.
+- **An assistant and a critic over MCP.** Since 1.1.0b7 five
+  `nexus_assistant_*` tools let an AI client read drafts and workspaces,
+  propose changes and report findings, which appear as suggestions and check
+  rows. No tool searches, accepts, decides or publishes. They were not yet
+  tried with a real AI client.
 
-The drafts are not validated. Do not report a recall or accuracy figure for
-them from the beta.
+The drafts are not validated, and the agent's measured thresholds are not
+decided. Do not report a recall or accuracy figure for them from the beta.
 
 ## What is decided, not built: the autonomy ladder
 
@@ -74,7 +91,7 @@ is a design with build order, not a feature of any release.
   verbatim; none decides anything.
 
 The first release of this design would ship L0 and L1; L2 is built only after
-a measurement on a real corpus. None of it is in 1.1.0b6.
+a measurement on a real corpus. None of it is in 1.1.0b8.
 
 ## What it costs, and who pays
 

@@ -13,7 +13,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const docs = `${base}/docs`;
 const repo = 'https://github.com/nexus-scholar-org/nexus-scholar-harness';
 const pypi = 'https://pypi.org/project/nexus-scholar/';
-const install = 'uv tool install "nexus-scholar>=1.1.0b6"\nnexus-scholar ui';
+const install = 'uv tool install "nexus-scholar>=1.1.0b8"\nnexus-scholar ui';
+const release = `${repo}/releases/tag/v1.1.0b8`;
 
 // The record and the criteria in the hero fragment are real: record STU-10b7daa2… of the golden
 // test workspace (30 records on UAV crop and weed mapping) and four of that protocol's seven
@@ -72,12 +73,12 @@ const criteria = [
             <span class="line"><span data-line style="--i:0">Screen your review</span></span>
             <span class="line"><span data-line style="--i:1">on your own computer.</span></span>
           </h1>
-          <p class="lead">Nexus Scholar is a free tool for systematic literature reviews. <strong>Your workspace is a folder on your disk,</strong> every decision is a line in its audit journal, and nothing is sent anywhere unless you start a search or an AI run.</p>
+          <p class="lead">Nexus Scholar is a free tool for systematic literature reviews. <strong>Your workspace is a folder on your disk,</strong> every decision is a line in its audit journal, and nothing is sent anywhere unless you start a search, a full-text look-up or an AI run.</p>
           <div class="hero-actions">
             <a class="btn" href="#install">Install the beta</a>
             <a class="text" href={`${docs}/getting-started/`}>Read the docs</a>
           </div>
-          <p class="beta"><strong>Beta 1.1.0b6.</strong> One reviewer, title and abstract screening, search or RIS and PubMed imports. The <a href={`${docs}/known-limits/`}>known limits</a> say the rest.</p>
+          <p class="beta"><strong>Beta 1.1.0b8.</strong> One reviewer, desktop only, title and abstract screening, a search and RIS or PubMed imports. The <a href={`${docs}/known-limits/`}>known limits</a> say the rest.</p>
         </div>
 
         <div class="hero-stage">
@@ -154,7 +155,7 @@ const criteria = [
                 <div class="crop" style="--zoom:130%;--x:-14%;--y:-5.85%"><Image src={discovery} alt="The Search plan step of the app. The heading reads: This is what each database will receive. The protocol fingerprint, then the OpenAlex query string marked Translated, not yet sent. A Limits card with the date window 2020 to 2026, language en, and a cap of 10000 per database. A card says the contact email is not set and shows the line to set it." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 150vw, 80vw" /></div>
                 <figcaption>Plan. A dry run: the protocol fingerprint, each database's translated query, and what the database cannot express. The search refuses to start until a contact email is set, as here.</figcaption>
               </figure>
-              <p class="note"><strong>New in 1.1.0b6,</strong> and not yet tried by a second person. A search needs your contact email, and OpenAlex needs a free API key. OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed; no other database. You can still import RIS or PubMed exports instead.</p>
+              <p class="note"><strong>Not yet tried by a second person.</strong> A search needs your contact email, and OpenAlex needs a free API key. OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed; no other database. You can also import RIS or PubMed exports, instead of a search or, since 1.1.0b7, with it in one corpus.</p>
             </div>
           </article>
 
@@ -216,25 +217,29 @@ const criteria = [
         </div>
         <div class="limits">
           <section aria-labelledby="g1">
-            <h3 id="g1">In 1.1.0b6</h3>
+            <h3 id="g1">In 1.1.0b8</h3>
             <ul>
               <li><span class="dot"></span><span>One reviewer, on one computer</span><span class="val">no second screener</span></li>
               <li><span class="dot"></span><span>Title and abstract screening</span><span class="val">unclear goes to full text</span></li>
               <li><span class="dot"></span><span>Imports: RIS, and PubMed <code>.nbib</code></span><span class="val">not CSV or BibTeX</span></li>
-              <li><span class="dot"></span><span>Protocol written in the browser</span><span class="val">Scope to Done</span></li>
-              <li><span class="dot"></span><span>Searching five free databases from the browser, with a PRISMA-S record</span><span class="val">new; needs an OpenAlex key</span></li>
-              <li><span class="dot"></span><span>Approval with a code shown in the terminal; the approver is a typed name</span><span class="val">not a sign-in</span></li>
+              <li><span class="dot"></span><span>Protocol written in the browser, with Explore, Direction and the query workbench</span><span class="val">Scope to Done</span></li>
+              <li><span class="dot"></span><span>Searching five free databases from the browser, with a PRISMA-S record</span><span class="val">needs an OpenAlex key</span></li>
+              <li><span class="dot"></span><span>One corpus from a search plus imported exports</span><span class="val">since 1.1.0b7</span></li>
+              <li><span class="dot"></span><span>Citation chasing, a criteria pilot, and charting the kept studies at full text</span><span class="val">used only on test data</span></li>
+              <li><span class="dot"></span><span>Approval with a code shown on your computer; the approver is a typed name</span><span class="val">not a sign-in</span></li>
               <li><span class="dot"></span><span>AI drafts, optional, hidden until you decide, never recorded as your decision</span><span class="val">your own key</span></li>
               <li><span class="dot"></span><span>RIS and CSV export, and a draft methods paragraph</span><span class="val">check every number</span></li>
+              <li><span class="dot"></span><span>A Windows installer, a start without a terminal, and a Settings screen</span><span class="val">not signed</span></li>
+              <li><span class="dot"></span><span>A copy of each review before a newer version first opens it</span><span class="val">same disk, not a backup</span></li>
             </ul>
           </section>
           <section aria-labelledby="g2">
             <h3 id="g2">Not yet</h3>
             <ul>
-              <li><span class="dot unclear"></span><span>One corpus from a search plus imported exports</span><span class="val">one or the other for now</span></li>
-              <li><span class="dot unclear"></span><span>The Explore and Direction steps of inception</span><span class="val">terminal only</span></li>
+              <li><span class="dot unclear"></span><span>Installers for macOS and Linux</span><span class="val">use uv or pip</span></li>
               <li><span class="dot exclude"></span><span>A second reviewer and agreement between people</span><span class="val">not planned for the beta</span></li>
-              <li><span class="dot exclude"></span><span>Full text, extraction, synthesis, citation graph</span><span class="val">parked</span></li>
+              <li><span class="dot exclude"></span><span>Reading a PDF's text for you</span><span class="val">parked</span></li>
+              <li><span class="dot exclude"></span><span>Synthesis, verification checks, citation graph</span><span class="val">removed</span></li>
               <li><span class="dot exclude"></span><span>A validated accuracy figure for the AI drafts</span><span class="val">do not report one</span></li>
             </ul>
           </section>
@@ -243,12 +248,13 @@ const criteria = [
             <ul>
               <li><span class="dot none"></span><span>Importing, screening, publishing, exporting</span><span class="val">nothing</span></li>
               <li><span class="dot none"></span><span>A search: your query and your contact email</span><span class="val">OpenAlex, Semantic Scholar, Crossref, arXiv, PubMed</span></li>
+              <li><span class="dot none"></span><span>Citation chasing and the open-access look-up: your studies' identifiers</span><span class="val">OpenAlex, Semantic Scholar, Unpaywall</span></li>
               <li><span class="dot none"></span><span>AI drafts: title, abstract, year and your criteria, after you tick consent</span><span class="val">the provider you chose</span></li>
               <li><span class="dot none"></span><span>Telemetry, analytics, accounts, update checks</span><span class="val">none</span></li>
             </ul>
           </section>
         </div>
-        <p class="intro">Every line above is checked against the code that does it, file by file, on the <a href={`${docs}/data-flow/`}>Data flow and privacy</a> page.</p>
+        <p class="intro">Every place data leaves your computer is listed on the <a href={`${docs}/data-flow/`}>Data flow and privacy</a> page, which says what was checked against the code and when.</p>
       </section>
 
       <section class="install" id="install" aria-labelledby="h-install">
@@ -261,6 +267,7 @@ const criteria = [
               <button class="copy" type="button" id="copy">Copy the commands</button>
             </div>
             <p class="small">Needs <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>. The version in the command keeps uv from taking betas of anything else; never use <code>--prerelease allow</code>. Then follow <a href={`${docs}/getting-started/`}>Getting started</a>, about 15 minutes.</p>
+            <p class="small">On Windows there is a second way: <code>NexusScholar-1.1.0b8-setup.exe</code> from the <a href={release}>release page</a>, with no Python and no terminal. It is not signed, so Windows may warn you. It was built and tried in CI and on one developer PC, not on a clean computer. Windows only.</p>
           </div>
           <figure>
             <div class="frame"><Image src={workspaces} alt="The Workspaces screen of the app. The heading asks which review you are working on. Below, New workspace and New review buttons, then a table with two workspaces, Golden UAV 30 marked Screening in progress and a second review marked No corpus yet, each with its folder on this computer." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 100vw, 52vw" /></div>
@@ -274,7 +281,7 @@ const criteria = [
       <div class="tiles">
         <div class="tile statement">
           <p class="big">Every number has a source.</p>
-          <p class="legal">MIT licence. Beta 1.1.0b6. Built by one researcher; the <a href={`${docs}/legal/`}>data sources' terms</a> are theirs.</p>
+          <p class="legal">MIT licence. Beta 1.1.0b8. Built by one researcher; the <a href={`${docs}/legal/`}>data sources' terms</a> are theirs.</p>
         </div>
         <div class="tile navi">
           <h3>Docs</h3>
@@ -284,7 +291,7 @@ const criteria = [
             <li><a href={`${docs}/data-flow/`}>Data flow and privacy</a></li>
             <li><a href={`${docs}/ai/`}>How the AI is used</a></li>
             <li><a href={`${docs}/known-limits/`}>Known limits</a></li>
-            <li><a href={`${docs}/releases/1-1-0b6/`}>Release notes, 1.1.0b6</a></li>
+            <li><a href={`${docs}/releases/1-1-0b8/`}>Release notes, 1.1.0b8</a></li>
           </ul>
         </div>
         <div class="tile sources">
