@@ -3,6 +3,16 @@ title: Screening
 description: Title and abstract screening by one reviewer, with optional AI drafts, batch approval and publication.
 ---
 
+import Shot from '../../../../components/Shot.astro';
+import screeningPrepareSettings from '../../../../assets/screens/guide/screening-prepare-settings.png';
+import screeningPrepared from '../../../../assets/screens/guide/screening-prepared.png';
+import screeningProposals from '../../../../assets/screens/guide/screening-proposals.png';
+import screeningTriageExclude from '../../../../assets/screens/guide/screening-triage-exclude.png';
+import screeningTriageRevealed from '../../../../assets/screens/guide/screening-triage-revealed.png';
+import screeningAgreement from '../../../../assets/screens/guide/screening-agreement.png';
+import screeningPublish from '../../../../assets/screens/guide/screening-publish.png';
+import screeningHomePublished from '../../../../assets/screens/guide/screening-home-published.png';
+
 Screening is where the beta is most complete. You read each record's title and
 abstract, answer the protocol's criteria, and the decision follows from your
 answers. Every decision is an event written by the engine to the workspace, and
@@ -19,10 +29,14 @@ are:
 - what happens after you decide (show the draft, or move on at once);
 - whether you see every record.
 
+<Shot src={screeningPrepareSettings} alt="The Prepare settings while screening: the agent’s draft revealed after your decision, the rule for a criterion the title and abstract do not report, what happens after you decide, and who sees each record, with Save settings." caption="The four settings; a change to the first two is recorded as an amendment." />
+
 When the protocol sets blinding, Prepare shows it read-only. Since 1.1.0b7
 blinding and the not-reported rule can be changed from Prepare after the
 protocol is signed, as a recorded amendment. After a few seconds it says
 "Batches prepared".
+
+<Shot src={screeningPrepared} alt="Batches: 3 batches prepared of 10 records each and Batches prepared, and below it Pilot your criteria first with the Draw a pilot of 50 button." caption="Three batches prepared, and Pilot your criteria first below them." />
 
 **Pilot your criteria first** (since 1.1.0b7, optional) draws 20 to 100
 records at random, with a recorded seed. You screen them in Triage; pilot
@@ -42,6 +56,8 @@ its provider, model and cost ceiling; there is no default model. What is sent,
 to whom and under which consent is in [Data flow and privacy](../../data-flow/);
 the design is in [How the AI is used](../../ai/).
 
+<Shot src={screeningProposals} alt="Agent proposals: the providers Anthropic, OpenAI-compatible endpoint and Google Gemini, each with No key set, the message No key for this provider, Nothing was sent, and the run gate with its consent box." caption="With no provider key, nothing is sent; you can skip this step." />
+
 ## 3. Triage
 
 Read each record and answer the criteria until the decision is clear. The keys
@@ -52,9 +68,13 @@ are **1** yes, **2** no, **3** not reported.
 - **Include** is ready when every inclusion criterion is yes.
 - **Unclear** (goes to full text) is always possible.
 
+<Shot src={screeningTriageExclude} alt="Triage on one record: the title and abstract with the search terms underlined, the checklist with the criteria answered, and in the bottom bar Include greyed out and Exclude ready." caption="One inclusion criterion answered No: the bar says Exclude is ready and Include is off while it fails." />
+
 Your decisions are saved as you go. With no agent draft, the next record opens
 by itself; with a draft, it shows after your decision and **N** moves on.
 Identifiers and record details are under **Details**.
+
+<Shot src={screeningTriageRevealed} alt="Triage after a decision on a demo record: You decided Include, Saved, with Next record N; on the right the agent’s draft beside your checklist, and its quotes underlined in the abstract." caption="After your decision the draft is shown beside your answers; N moves on." />
 
 Since 1.1.0b7 the protocol's concepts and query terms are marked in the title
 and abstract, and, once the draft is shown, the spans the agent's draft quoted,
@@ -73,6 +93,8 @@ The agreement screen sets your decisions beside the agent's drafts, counting
 only the decisions you made before a draft was revealed. It is only meaningful
 if an agent proposed drafts, and the figures are advisory: do not report a
 recall or accuracy figure for the drafts from the beta.
+
+<Shot src={screeningAgreement} alt="The Agreement screen of a demo review: agreement with the agent, your includes it proposed to exclude, its includes you excluded, unclear on either side, a two-by-two table, and where you and the agent split by criterion." caption="Your decisions beside the agent’s drafts, counted; the figures are advisory." />
 
 If you stored decisions from the agent's drafts without reading each record,
 declare them on the screen **Decisions stored from the agent's draft** (since
@@ -98,9 +120,13 @@ drafts and what a sample found. The decisions themselves are not changed.
    decision recorded as the reviewer's, decisions stored from drafts declared,
    the protocol unchanged), **Publish the screening**.
 
+   <Shot src={screeningPublish} alt="The Publish screen: the PRISMA-ScR screening preview, every check marked Passes, the approver name Demo Reviewer saved, and the Approval panel with the Show the codes for every decided batch button." caption="Every check passes and the approver name is saved; the codes are asked for under Approval." />
+
 A decision changed after publishing makes the screening read "Published,
 decisions since": publish again so the exports match. Then go to
 [Export and methods](../export/).
+
+<Shot src={screeningHomePublished} alt="The screening home of a published test review: All 30 records are decided, with the links Export and methods, Chase citations and Chart the included studies." caption="After publishing, the screening home links to Export and methods." />
 
 ## What is written
 

@@ -3,6 +3,17 @@ title: "Inception: the protocol"
 description: Write the review's question, scope and screening criteria in the browser before any search or screening starts.
 ---
 
+import Shot from '../../../../components/Shot.astro';
+import inceptionScope from '../../../../assets/screens/guide/inception-scope.png';
+import inceptionExplore from '../../../../assets/screens/guide/inception-explore.png';
+import inceptionDirection from '../../../../assets/screens/guide/inception-direction.png';
+import inceptionShape from '../../../../assets/screens/guide/inception-shape.png';
+import inceptionConcepts from '../../../../assets/screens/guide/inception-concepts.png';
+import inceptionHowScreen from '../../../../assets/screens/guide/inception-how-screen.png';
+import inceptionCriteria from '../../../../assets/screens/guide/inception-criteria.png';
+import inceptionReview from '../../../../assets/screens/guide/inception-review.png';
+import inceptionDone from '../../../../assets/screens/guide/inception-done.png';
+
 A systematic review starts with a protocol: the question, the scope, and the
 inclusion and exclusion criteria that every record will be screened against.
 In Nexus Scholar the protocol is written first, and the workspace is created
@@ -15,17 +26,25 @@ On **Workspaces**, click **New review**. It opens your drafts; start a new one
 or resume one. The steps are:
 
 1. **Scope.** What the review is about: the topic, the years and the languages.
+
+   <Shot src={inceptionScope} alt="Step 1 of 6, Scope: a research topic on crop and weed mapping from UAV images, the years 2020 to 2026 and the language en, with the Continue to Explore button." caption="Scope: the topic, the years and the languages." />
 2. **Explore** (since 1.1.0b7). Searches a first sample of papers per database
    you choose, with a keyword query derived from your topic without AI, shown
    per database and editable. A database that returned nothing says "0
    results". Synonyms from the sample are accepted one by one; papers you
    anchor become recall seeds.
+
+   <Shot src={inceptionExplore} alt="Step 2 of 6, Explore, before any search: the question, the keyword query sent to the databases, four databases ticked, the search mode and the Search the literature button." caption="Before the first search: the query and the databases can be edited; Search the literature sends it." />
 3. **Direction** (since 1.1.0b7). Offers directions drawn from phrases in at
    least two papers of that sample.
+
+   <Shot src={inceptionDirection} alt="Step 3 of 6, Direction, showing There is no pool to draw directions from, with a link to Explore." caption="Without a first search there is no pool to draw directions from." />
 4. **Shape.** The lens (paradigm) and playbook, the unit of analysis, what proof
    a reviewer would accept, what is out of scope, the research questions and
    the planned number of records. The lens the engine leans to and its draft
    question are shown as drafts; nothing is used until you choose it.
+
+   <Shot src={inceptionShape} alt="Step 4 of 6, Shape: four paradigms with Pragmatist / Mixed Methods chosen, and the playbooks with SCOPING_REVIEW chosen and marked Recommended, matches your lens." caption="Choose the lens and the playbook; the engine marks the ones it recommends." />
 5. **Concepts and criteria.** The concepts the search uses and the screening
    criteria, each shown word for word with where it came from. A criterion the
    engine wrote needs your **Accept**; one you typed is accepted by default. A
@@ -34,17 +53,27 @@ or resume one. The steps are:
      sent, its total and the count with each concept dropped; a seed check
      says whether your known papers can test the query. Every button says how
      many requests it sends; nothing is counted while you type;
+
+     <Shot src={inceptionConcepts} alt="Step 5 of 6, the Search panel: the concepts UAV and weed with their synonyms joined by OR, and the panels Counts, Known papers and Compare with an export, with nothing counted yet." caption="The query workbench: each concept with its synonyms; the Counts panel says nothing is counted yet." />
    - **how you will screen:** when to see the agent's draft, and what a draft
      does when the abstract does not report a criterion. No choice is
      preselected, and Review and Create refuse until you choose. Five wording
      checks flag criteria that mirror or contradict each other, hold several
      tests or need the full text.
+
+     <Shot src={inceptionHowScreen} alt="How you will screen: when the agent’s draft is shown and what a draft does when a criterion is not reported, each with one option chosen, and the extraction matrix columns below." caption="When to see the agent’s draft, and what a draft does when the abstract does not report a criterion." />
+
+   <Shot src={inceptionCriteria} alt="The criteria: two inclusion and three exclusion criteria, each Typed by you and Accepted, with Accept, Reject and Remove, and the reasons WRONG_PLATFORM, WRONG_TASK and WRONG_REPORT_TYPE." caption="A criterion you typed is accepted by default; each one keeps Accept, Reject and Remove." />
 6. **Review and create.** Nothing is written until you press **Create the
    workspace**. If the folder already holds a workspace, the screen offers to
    replace it and keep a backup; if it has screening decisions, you type the
    workspace's name to confirm.
+
+   <Shot src={inceptionReview} alt="Step 6 of 6, Review and create: the title and lead researcher fields, the protocol as it will be written, and the Create the workspace button on the right." caption="Check the protocol, then Create the workspace; nothing is written before." />
 7. **Done.** The folder and the protocol's fingerprint, and a link to open the
    workspace.
+
+   <Shot src={inceptionDone} alt="Done: The workspace is created, with its folder, the protocol fingerprint and the Open the workspace button." caption="The folder, the protocol’s fingerprint and Open the workspace." />
 
 Every save is checked against the draft's last update, so a second tab cannot
 overwrite your work without telling you. The screens are in English, French

@@ -3,6 +3,17 @@ title: Getting started
 description: Install Nexus Scholar and screen your first review, from nothing to a published screening with an exported reference list.
 ---
 
+import Shot from '../../../components/Shot.astro';
+import setup from '../../../assets/screens/guide/setup.png';
+import workspaces from '../../../assets/screens/guide/workspaces.png';
+import discoveryImport from '../../../assets/screens/guide/discovery-import.png';
+import discoveryHandoffAccept from '../../../assets/screens/guide/discovery-handoff-accept.png';
+import screeningHomeDecided from '../../../assets/screens/guide/screening-home-decided.png';
+import screeningPrepareConfirm from '../../../assets/screens/guide/screening-prepare-confirm.png';
+import screeningTriageExclude from '../../../assets/screens/guide/screening-triage-exclude.png';
+import screeningPublish from '../../../assets/screens/guide/screening-publish.png';
+import exportMethods from '../../../assets/screens/guide/export-methods.png';
+
 This guide takes you from nothing to a published screening with an exported
 reference list. It takes about 15 minutes, plus the time you spend screening.
 Everything runs on your computer. No account or API key is needed to screen.
@@ -56,6 +67,8 @@ screen for your contact e-mail and keys; nothing there is needed to open a
 review. The rest of this guide is the same, except that approval codes appear
 in a small window, not in a terminal.
 
+<Shot src={setup} alt="The Set up Nexus Scholar screen: an e-mail address field with a Save button, then the keys for the literature databases, each marked Not set." caption="The setup screen at the first start: nothing here is needed to open a review; a search needs the e-mail address." />
+
 Before you choose it, know that:
 
 - **It is not signed.** Windows may show "Windows protected your PC"; choose
@@ -83,6 +96,8 @@ and it is where approval codes appear later. Stop the app with **Ctrl+C**.
 
 Click **New workspace**, type your review's title, and create it. Then open it.
 
+<Shot src={workspaces} alt="The Workspaces screen with the New workspace, New review and Settings buttons above a list that holds one demo review, marked Screening in progress." caption="New workspace and New review are at the top; each row is one review folder." />
+
 A workspace made this way has a placeholder protocol, shown as a draft. It is
 enough to try the app. For a real review, write your question and your
 inclusion and exclusion criteria first with **New review**, the guided flow
@@ -104,9 +119,13 @@ imported as it is. Then open the **Import** step in the app:
    duplicates it will remove (same DOI, or the same title, first author and
    year one year either way) and the studies left to screen. These are the
    numbers for your PRISMA flow diagram.
+
+   <Shot src={discoveryImport} alt="The Import step after two RIS files were added: OpenAlex with 13 records and Crossref with 17, and the counts for the PRISMA flow diagram: 30 identified, 0 duplicates removed, 30 studies to screen." caption="The records found in each database, the duplicates removed and the studies left to screen, in a demo review." />
 3. **Accept and freeze the corpus** on the **Hand-off** step of Discovery.
    Screening starts from it, so after this no database can be added or
    removed.
+
+   <Shot src={discoveryHandoffAccept} alt="The Hand-off step: what screening will receive, the mix of databases, and the Accept this corpus button in the gate panel on the right." caption="Nothing goes to screening until you press Accept this corpus." />
 
 Each file is copied unchanged into the workspace, and every step is recorded in
 its audit journal. The same import is one command from the terminal:
@@ -121,10 +140,14 @@ search and imported exports can be combined in one corpus, in any order.
 
 Go to **Screening**. The steps are across the top:
 
+<Shot src={screeningHomeDecided} alt="The screening home of a demo review: the steps Home, Prepare, Agent proposals, Triage, Agreement and Publish across the top, the line All 30 records are decided, and the progress." caption="The steps are across the top: Prepare, Agent proposals, Triage, Agreement and Publish." />
+
 1. **Prepare.** Check the settings, then **Prepare batches** → **Prepare now**.
    The settings are the batch size (5 to 100 records), whether an agent's drafts
    are hidden until you decide, what happens after you decide, and whether you
    see every record. After a few seconds it says "Batches prepared".
+
+   <Shot src={screeningPrepareConfirm} alt="The Prepare screen with the settings while screening and, on the right, the question Prepare batches of 10 records? with the Prepare now and Cancel buttons." caption="Prepare batches asks once more; Prepare now writes the batches." />
 2. **Agent proposals** (optional). Skip it to screen on your own.
 3. **Triage.** Read each record and answer the criteria until the decision is
    clear (keys **1** yes, **2** no, **3** not reported). Exclude is ready as soon
@@ -132,12 +155,16 @@ Go to **Screening**. The steps are across the top:
    **E** then **Enter** excludes. Include is ready when every inclusion
    criterion is yes. Unclear (goes to full text) is always possible. Your
    decisions are saved as you go.
+
+   <Shot src={screeningTriageExclude} alt="Triage on one record: the title and abstract with the search terms underlined, the checklist with the criteria answered, and in the bottom bar Include greyed out and Exclude ready." caption="One inclusion criterion answered No: the bar says Exclude is ready and Include is off while it fails." />
 4. **Agreement.** Only meaningful if an agent proposed drafts.
 5. **Publish.** Type your name under **Approver** and **Save name**. Approvals
    are recorded under it; it is a name typed on this computer, not a verified
    sign-in. Click **Show the codes for every decided batch**, read the codes in
    the terminal where the app runs (or in the small window it opens), paste
    them, and approve. When every check passes, **Publish the screening**.
+
+   <Shot src={screeningPublish} alt="The Publish screen: the PRISMA-ScR screening preview, every check marked Passes, the approver name Demo Reviewer saved, and the Approval panel with the Show the codes for every decided batch button." caption="The approver name is saved; the codes are asked for under Approval." />
 
 A decision changed after publishing makes the screening read "Published,
 decisions since": publish again so the exports match. The details are in
@@ -152,6 +179,8 @@ paragraph** gives a methods paragraph with your PRISMA counts, the databases
 and dates you searched, and how AI drafts were used. It is a draft written from
 your workspace files: check every number before you use it. See
 [Export and methods](../flow/export/).
+
+<Shot src={exportMethods} alt="The Export and methods screen of a published test review: the draft methods paragraph with the Copy paragraph button, and Export decisions with RIS or CSV and a Download button." caption="Copy paragraph is under the draft methods paragraph; Download is on the right." />
 
 ## Where your work lives
 

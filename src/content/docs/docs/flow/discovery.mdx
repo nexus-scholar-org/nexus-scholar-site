@@ -3,6 +3,16 @@ title: "Discovery: the search"
 description: Search the free databases with the query the protocol compiles, and record what each database was asked and what came back.
 ---
 
+import Shot from '../../../../components/Shot.astro';
+import discoveryOverview from '../../../../assets/screens/guide/discovery-overview.png';
+import discoveryPlan from '../../../../assets/screens/guide/discovery-plan.png';
+import discoveryPlanStrings from '../../../../assets/screens/guide/discovery-plan-strings.png';
+import discoveryHarvest from '../../../../assets/screens/guide/discovery-harvest.png';
+import discoveryImportForm from '../../../../assets/screens/guide/discovery-import-form.png';
+import discoveryImport from '../../../../assets/screens/guide/discovery-import.png';
+import discoveryDedup from '../../../../assets/screens/guide/discovery-dedup.png';
+import discoveryHandoffAccept from '../../../../assets/screens/guide/discovery-handoff-accept.png';
+
 Discovery searches the free databases your protocol selects, among
 **OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed**, with the query your
 protocol compiles, and records what each database was asked and what came back.
@@ -30,12 +40,18 @@ environment or a `.env` file still wins.
 Open **Discovery** in the header. The entry page says where the search stands,
 and the steps are:
 
+<Shot src={discoveryOverview} alt="The Discovery overview, Where the search stands: Plan, Recall, Harvest, Import, Duplicates and Report, each with its state." caption="The entry page: where each step stands." />
+
 1. **Plan.** The exact string each database will receive, and what it cannot
    express. Showing the plan sends nothing. You choose and order the databases
    here; the order only sets the order in which the databases are searched
    and listed, and never changes the corpus. A size estimate gives a count per database
    and a suggested cap. The query workbench opens here too; **Record this amendment**
    needs a one-sentence reason and lists what the amendment makes stale.
+
+   <Shot src={discoveryPlan} alt="Step 1 of 7, the search plan: the databases to search in order, OpenAlex, Semantic Scholar and arXiv ticked, Crossref, PubMed and bioRxiv not, a note that this harvest leaves out Crossref, and the checks and limits on the right." caption="Choose and order the databases; the plan says why Crossref is left out of this query." />
+
+   <Shot src={discoveryPlanStrings} alt="The executed string per database: the query translated for OpenAlex, Semantic Scholar and arXiv, each marked Translated by the engine, not yet sent, with what it cannot express." caption="The exact string each database will receive; showing it sends nothing." />
 2. **Recall** (optional). Give papers you already know are relevant; the check
    says which databases find them. It never changes the query and never swaps a
    record. Each check is saved in the workspace.
@@ -47,17 +63,27 @@ and the steps are:
    after the search is unfinished, failed or stopped, also after a restart;
    **Finish preparing this corpus** completes it from the saved records without
    searching again.
+
+   <Shot src={discoveryHarvest} alt="Step 3, Harvest, before the start: the databases to search, the cap per database, a cap and a note for this harvest only, and the Start the harvest button." caption="Before the start: a cap and a note for this run, then Start the harvest." />
 4. **Import.** The same import screen as for exported files. Since 1.1.0b7 a
    harvest and staged RIS or `.nbib` exports are deduplicated together into one
    corpus, in any order. Imported records are not checked against Crossref or
    OpenAlex and their missing abstracts are not filled in; the Hand-off and the
    methods text say so.
+
+   <Shot src={discoveryImportForm} alt="Step 4 of 7, Import: the form with crossref-export.ris chosen and the database name Crossref, and below it the OpenAlex file already added." caption="Add a database file: the file, the database’s name and, if you have them, the search details." />
+
+   <Shot src={discoveryImport} alt="The Import step after two RIS files were added: OpenAlex with 13 records and Crossref with 17, and the counts for the PRISMA flow diagram: 30 identified, 0 duplicates removed, 30 studies to screen." caption="Each database with its records, and the counts for your PRISMA flow diagram." />
 5. **Duplicates.** How many records were merged, by rule (identifier, exact
    title, close title). Pair-by-pair review is not built.
+
+   <Shot src={discoveryDedup} alt="The Duplicates step after an import only: No deduplication has run yet, a search run deduplicates its records, a database export is deduplicated when you accept it." caption="After an import only, this step says that a database export is deduplicated when you accept it." />
 6. **Report.** The PRISMA-S identification per database and a methods paragraph
    you mark as reviewed.
 7. **Hand-off.** **Accept this corpus** freezes it, and screening starts from it.
    The accept refuses an unfinished preparation.
+
+   <Shot src={discoveryHandoffAccept} alt="The Hand-off step: what screening will receive, the mix of databases, and the Accept this corpus button in the gate panel on the right." caption="Accept this corpus freezes it, and screening starts from it." />
 8. **Chase** (after the screening is published). Fetches the references and
    the citing papers of your included studies (OpenAlex first, Semantic Scholar
    second), keeps only what is new to the corpus, and sends it to a second

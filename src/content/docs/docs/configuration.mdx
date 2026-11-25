@@ -3,6 +3,9 @@ title: Configuration
 description: The environment variables Nexus Scholar reads, which ones a search needs, and where keys are kept.
 ---
 
+import Shot from '../../../components/Shot.astro';
+import settings from '../../../assets/screens/guide/settings.png';
+
 Screening needs no configuration. A search of the free databases, and the
 optional AI drafts, read the settings below.
 
@@ -26,6 +29,8 @@ from Workspaces) holds your contact e-mail, the OpenAlex and Semantic Scholar
 keys, three optional AI keys, and the folder where your reviews are kept. On
 the Windows installer's first start, **Set up Nexus Scholar** asks for the same;
 nothing there is needed to open a review, and a search needs the e-mail.
+
+<Shot src={settings} alt="The Settings screen: the contact e-mail you@university.edu saved in your settings, then the Keys section with the OpenAlex and Semantic Scholar keys not set." caption="Your e-mail address is saved at the top; the keys follow below it." />
 
 A value set in the environment or in a `.env` file still wins over the screen,
 and the screen says where the value comes from. Set them in the terminal before
