@@ -8,11 +8,12 @@ import exportMethods from '../../../../assets/screens/guide/export-methods.png';
 import chartingTable from '../../../../assets/screens/guide/charting-table.png';
 import chartingColumns from '../../../../assets/screens/guide/charting-columns.png';
 import chartingStudy from '../../../../assets/screens/guide/charting-study.png';
+import chartingLookup from '../../../../assets/screens/guide/charting-lookup.png';
 
 After publishing, **Export and methods** appears on the screening home and on
 the Publish screen.
 
-<Shot src={exportMethods} alt="The Export and methods screen of a published demo review: the draft methods paragraph with the Copy paragraph button, and Export decisions with RIS or CSV and a Download button." caption="The methods paragraph with Copy paragraph, and the RIS or CSV download." />
+<Shot src={exportMethods} alt="The Export and methods screen of a published demo review: the draft methods paragraph with the Copy paragraph button, and Export decisions with RIS or CSV and a Download button." caption="The app's draft methods paragraph for this demo review, with Copy paragraph, and the RIS or CSV download." />
 
 ## Download the decisions
 
@@ -58,7 +59,7 @@ last change.
 
 <Shot src={chartingTable} alt="The Charting table of a demo review: each kept study with its round, its full-text status To get, the Attach a PDF and Paste a link actions, and its full-text decision To decide." caption="Each kept study with its full-text status, its file and its full-text decision." />
 
-<Shot src={chartingColumns} alt="The Charting view of a test review's table: one column per charting column of the protocol, still empty." caption="The Charting tab: one column per charting column of your protocol." />
+<Shot src={chartingColumns} alt="The Charting view of the same table: one column per charting column of the protocol, still empty." caption="The Charting tab: one column per charting column of your protocol." />
 
 <Shot src={chartingStudy} alt="One study at a time: the full-text status and full-text decision with the abstract on the left, and on the right the charting form with Not reported and Not applicable for each cell." caption="One study at a time: the full text on the left, the charting form on the right." />
 
@@ -70,6 +71,8 @@ that holds the PDF. Each fetched PDF waits as
 "Fetched, to confirm" until you open and confirm it. Publishers refuse
 automated downloads, so expect "Not retrieved" or a link to open yourself for
 many studies. Reading a PDF's text is parked: the form is filled by you.
+
+<Shot src={chartingLookup} alt="The Charting table of a demo review after a look-up of five records: an open copy found for four, four downloaded and waiting to be confirmed, one with no open copy listed, and the first row marked Fetched, to confirm, with Open the file, Confirm and Discard." caption="After a look-up: what was found, and each fetched file waiting for you to open and confirm it." />
 
 The charting export gives a spreadsheet (`.xlsx`), a full-text CSV and a
 charting CSV, the PRISMA full-text counts per round and in total, and a methods
