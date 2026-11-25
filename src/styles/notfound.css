@@ -8,3 +8,10 @@
 .lost .ways { list-style: none; padding: 0; margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
 .lost .ways a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 0.2em; }
 .lost .search { margin-top: 2rem; font-size: var(--step-small); color: var(--field-muted); }
+@media (min-width: 64rem) {
+  /* the numeral closes the right half of the screen */
+  .lost .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 4rem; align-items: center; }
+  .lost .wrap > * { grid-column: 1; }
+  .lost .code { grid-column: 2; grid-row: 1 / span 5; font-size: clamp(12rem, 24vw, 22rem); }
+  .lost h1 { margin-top: 0; }
+}
