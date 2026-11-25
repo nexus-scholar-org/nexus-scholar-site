@@ -39,7 +39,7 @@ What is sent to each, and when, is on [Data flow and privacy](../data-flow/).
 Built with [Astro](https://astro.build/) and
 [Starlight](https://starlight.astro.build/), both MIT. The typefaces are
 [Literata](https://github.com/googlefonts/literata) (Type Together for Google
-Fonts), [Public Sans](https://public-sans.digital.gov/) (the United States
+Fonts), [Public Sans](https://github.com/uswds/public-sans) (the United States
 General Services Administration) and
 [IBM Plex Mono](https://github.com/IBM/plex) (IBM), all under the SIL Open Font
 License 1.1, served from this site. The screenshots are of the app on a test

@@ -11,8 +11,9 @@ only after a human decision.
 ## What is built (1.1.0b8)
 
 The screening half of the design is built: a proposal store, the rule table,
-the validators, the proposal tools of the MCP server, three drivers (your own
-Anthropic key, your own Claude through MCP, and Gemini), agent runs with
+the validators, the proposal tools of the MCP server, the drivers (your own
+key with Anthropic, Google Gemini or an OpenAI-compatible endpoint, and your
+own Claude through MCP), agent runs with
 consent, estimate, cost ceiling and cancel, calibration runs, and the agreement
 screen.
 
