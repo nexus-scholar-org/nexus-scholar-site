@@ -34,7 +34,7 @@ notes, names and the rest of the workspace are not sent.
 
 | Provider | Where it goes | Key |
 | :-- | :-- | :-- |
-| Anthropic | `api.anthropic.com`, or the host in `ANTHROPIC_BASE_URL` if you set it | your own, from `nexus-scholar keys set anthropic` |
+| Anthropic | `api.anthropic.com`, or the host in <code>ANTHROPIC_<wbr>BASE_<wbr>URL</code> if you set it | your own, from `nexus-scholar keys set anthropic` |
 | OpenAI-compatible | the base URL you type on the Agent proposals screen (it can be a model on your own computer) | your own, if the endpoint needs one |
 | Google Gemini | `generativelanguage.googleapis.com` | your own, from `nexus-scholar keys set gemini` |
 
@@ -77,9 +77,9 @@ identifiers of your records** (DOIs, titles), never your decisions:
 | Recall check | Discovery, **Recall** | The protocol query, to the protocol's databases; then each seed's identifier to Crossref and OpenAlex for a title check |
 | Abstract hydration and DOI verification, after a harvest | Part of the same run | Record DOIs (and arXiv ids) to Semantic Scholar, OpenAlex and Crossref |
 | Inception: Explore and Direction (a first sample of papers per database) | The Explore and Direction screens (1.1.0b7); the terminal wizard and the MCP tools | Your topic as a keyword query, or the query as you edited it, to the databases you choose; a narrower search sends a direction's label |
-| Counts: the query workbench and the size estimate (1.1.0b7) | Inception step 5 and Plan (**Count**); Plan and Harvest (size estimate) | The query, to the databases you count; for the seed check, your known papers' DOIs to OpenAlex (only with `SCHOLAR_OPENALEX_KEY`). Each button says how many requests it sends |
+| Counts: the query workbench and the size estimate (1.1.0b7) | Inception step 5 and Plan (**Count**); Plan and Harvest (size estimate) | The query, to the databases you count; for the seed check, your known papers' DOIs to OpenAlex (only with <code>SCHOLAR_<wbr>OPENALEX_<wbr>KEY</code>). Each button says how many requests it sends |
 | Citation chasing (1.1.0b7) | Discovery, **Chase**; `nexus-scholar chase run` | Each included study's identifier (its DOI, OpenAlex id or Semantic Scholar id), to OpenAlex first and Semantic Scholar second, to fetch its references and citing papers |
-| Open-access look-up and download (1.1.0b7) | Charting, **Look up open-access copies**; `scholar-pdf download` and `ingest` | Your studies' DOIs and your contact e-mail to Unpaywall; the DOIs to OpenAlex only with `SCHOLAR_OPENALEX_KEY`; from Charting, the arXiv id of a study with no DOI to arXiv; then the PDF fetched from a location those services list as open access. Each download request names your contact e-mail in its User-Agent header to the website that holds the PDF (a publisher or a repository) and to any site it redirects to |
+| Open-access look-up and download (1.1.0b7) | Charting, **Look up open-access copies**; `scholar-pdf download` and `ingest` | Your studies' DOIs and your contact e-mail to Unpaywall; the DOIs to OpenAlex only with <code>SCHOLAR_<wbr>OPENALEX_<wbr>KEY</code>; from Charting, the arXiv id of a study with no DOI to arXiv; then the PDF fetched from a location those services list as open access. Each download request names your contact e-mail in its User-Agent header to the website that holds the PDF (a publisher or a repository) and to any site it redirects to |
 
 With every search request the engine also sends who is asking: your contact
 e-mail (`SCHOLAR_MAILTO`) in the User-Agent header to every provider and as

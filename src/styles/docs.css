@@ -122,11 +122,13 @@ h1#_top, .sl-markdown-content h1, .sl-markdown-content h2 { font-family: var(--n
     radial-gradient(farthest-side at 100% 50%, var(--ns-scroll-shade), transparent) right center / 0.875rem 100% no-repeat scroll;
 }
 @media (max-width: 50rem) {
-  /* On a phone a long identifier in a cell may break, so a two- or three-column table fits the screen. */
-  .sl-markdown-content :is(th, td):not(:where(.not-content *)) { padding-inline: 0.5rem; }
+  /* On a phone no column gets narrower than about 16 characters: a two-column table fits the screen,
+     a wider one scrolls in its own box behind the shade above. Identifiers never break inside a word;
+     in the Markdown, long ones in tables carry <wbr> after each underscore and slash. */
+  .sl-markdown-content :is(th, td):not(:where(.not-content *)) { padding-inline: 0.5rem; min-width: 8.5rem; }
   .sl-markdown-content :is(th, td):first-child:not(:where(.not-content *)) { padding-inline-start: 0; }
   .sl-markdown-content :is(th, td):last-child:not(:where(.not-content *)) { padding-inline-end: 0; }
-  .sl-markdown-content :is(th, td) code { overflow-wrap: anywhere; }
+  .sl-markdown-content :is(th, td) code { overflow-wrap: normal; }
 }
 
 /* Beta banner */
