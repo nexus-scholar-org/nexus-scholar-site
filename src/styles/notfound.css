@@ -1,0 +1,10 @@
+/* The 404 page: landing.css tokens and navigation, the hero's field, one message and the ways back. */
+.notfound { min-height: 100svh; display: grid; grid-template-rows: auto 1fr; background: var(--field); color: var(--field-ink); }
+.lost { display: grid; align-items: center; --focus: var(--field-ink); }
+.lost .wrap { width: 100%; padding-block: clamp(3rem, 8vw, 7rem); }
+.lost .code { font-family: var(--font-display); font-weight: 600; font-size: clamp(6rem, 22vw, 18rem); line-height: 0.85; letter-spacing: -0.03em; color: var(--field-2); }
+.lost h1 { margin-top: 1.5rem; font-family: var(--font-display); font-weight: 600; font-size: var(--step-display); line-height: 1.05; letter-spacing: -0.015em; }
+.lost .lead { margin-top: 1.5rem; max-width: 44ch; font-size: var(--step-lead); color: var(--field-muted); }
+.lost .ways { list-style: none; padding: 0; margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
+.lost .ways a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 0.2em; }
+.lost .search { margin-top: 2rem; font-size: var(--step-small); color: var(--field-muted); }

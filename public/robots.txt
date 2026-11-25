@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nexus-scholar-org.github.io/nexus-scholar-site/sitemap-index.xml

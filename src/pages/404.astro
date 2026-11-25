@@ -1,0 +1,57 @@
+---
+// GitHub Pages serves this file for any path under the site that does not exist, at the address
+// that was asked for, so every link here is absolute (with the base path).
+import '@fontsource-variable/literata/opsz.css';
+import '@fontsource-variable/public-sans';
+import '../styles/landing.css';
+import '../styles/notfound.css';
+import SiteMeta from '../components/SiteMeta.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const docs = `${base}/docs`;
+const repo = 'https://github.com/nexus-scholar-org/nexus-scholar-harness';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SiteMeta title="Page not found | Nexus Scholar" description="This address is not a page of the Nexus Scholar site." />
+    <script is:inline>
+      (function () {
+        var t;
+        try { t = localStorage.getItem('starlight-theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+  </head>
+  <body class="notfound">
+    <a class="skip" href="#main">Skip to the content</a>
+    <header class="nav">
+      <div class="wrap">
+        <a class="mark" href={`${base}/`}>Nexus Scholar</a>
+        <nav aria-label="Site">
+          <ul>
+            <li><a href={`${docs}/getting-started/`}>Docs</a></li>
+            <li><a href={repo}>GitHub</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="lost">
+      <div class="wrap">
+        <p class="code" aria-hidden="true">404</p>
+        <h1>This page is not here.</h1>
+        <p class="lead">The address may be mistyped, or the page has moved since the link was made. Every page of the site starts from one of these.</p>
+        <ul class="ways">
+          <li><a class="btn" href={`${base}/`}>The home page</a></li>
+          <li><a href={`${docs}/getting-started/`}>Getting started</a></li>
+          <li><a href={`${docs}/known-limits/`}>Known limits</a></li>
+          <li><a href={`${docs}/releases/1-1-0b8/`}>Release notes, 1.1.0b8</a></li>
+        </ul>
+        <p class="search">Or search the docs from the box at the top of any <a href={`${docs}/getting-started/`}>docs page</a>.</p>
+      </div>
+    </main>
+  </body>
+</html>

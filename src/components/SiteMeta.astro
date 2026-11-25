@@ -1,0 +1,45 @@
+---
+// The head tags the landing page and the 404 page share with the docs (which get theirs from
+// Starlight and the `head` list in astro.config.mjs): description, canonical URL, Open Graph and
+// Twitter cards with the social image, icons, theme colour, the sitemap and the font preloads.
+import literata from '@fontsource-variable/literata/files/literata-latin-opsz-normal.woff2?url';
+import publicSans from '@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path below the base, with a trailing slash; omit for a page that must not be indexed. */
+  path?: string;
+  socialTitle?: string;
+}
+const { title, description, path, socialTitle } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const origin = Astro.site ? Astro.site.href.replace(/\/$/, '') : '';
+const canonical = path !== undefined ? `${origin}${base}/${path}` : undefined;
+const image = `${origin}${base}/og.png`;
+const imageAlt = 'Nexus Scholar: screen your review on your own computer. A record from a test review with its criteria and the audit-journal event written for the decision.';
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+{canonical ? <link rel="canonical" href={canonical} /> : <meta name="robots" content="noindex" />}
+<link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+<link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+<link rel="sitemap" href={`${base}/sitemap-index.xml`} />
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" content="#16202b" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#111519" media="(prefers-color-scheme: dark)" />
+<meta property="og:title" content={socialTitle ?? title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+{canonical && <meta property="og:url" content={canonical} />}
+<meta property="og:site_name" content="Nexus Scholar" />
+<meta property="og:locale" content="en" />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={imageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content={imageAlt} />
+<link rel="preload" href={literata} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={publicSans} as="font" type="font/woff2" crossorigin />

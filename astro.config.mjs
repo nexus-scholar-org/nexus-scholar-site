@@ -12,6 +12,8 @@ export default defineConfig({
       title: 'Nexus Scholar',
       description: 'A local-first tool for systematic literature reviews. Beta.',
       favicon: '/favicon.svg',
+      // The site's own 404 page (src/pages/404.astro) replaces Starlight's.
+      disable404Route: true,
       customCss: [
         '@fontsource-variable/literata/opsz.css',
         '@fontsource-variable/public-sans',
@@ -28,6 +30,15 @@ export default defineConfig({
       credits: false,
       components: { Search: './src/components/Search.astro' },
       head: [
+        // The social card, touch icon and theme colour the docs pages share with the landing page (src/components/SiteMeta.astro).
+        { tag: 'meta', attrs: { property: 'og:image', content: 'https://nexus-scholar-org.github.io/nexus-scholar-site/og.png' } },
+        { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
+        { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+        { tag: 'meta', attrs: { property: 'og:image:alt', content: 'Nexus Scholar: screen your review on your own computer. A record from a test review with its criteria and the audit-journal event written for the decision.' } },
+        { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://nexus-scholar-org.github.io/nexus-scholar-site/og.png' } },
+        { tag: 'link', attrs: { rel: 'apple-touch-icon', href: '/nexus-scholar-site/apple-touch-icon.png' } },
+        { tag: 'meta', attrs: { name: 'theme-color', content: '#ffffff', media: '(prefers-color-scheme: light)' } },
+        { tag: 'meta', attrs: { name: 'theme-color', content: '#181d23', media: '(prefers-color-scheme: dark)' } },
         {
           // Expressive Code marks a scrollable code block as a region at runtime; give each one a name so the landmarks are unique.
           tag: 'script',
