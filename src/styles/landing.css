@@ -367,6 +367,8 @@ button { font: inherit; color: inherit; }
 .install .copy:active { transform: scale(0.98); }
 .install .small { margin-top: 1rem; font-size: 1rem; max-width: 50ch; }
 .install .small a { color: inherit; }
+.install .download { margin-top: 2.5rem; }
+.install .download h3 { font-family: var(--font-display); font-weight: 600; font-size: var(--step-lead); margin-bottom: 1rem; }
 .install figure { display: grid; gap: 0.6rem; }
 .install figure .frame { aspect-ratio: 16 / 9; overflow: clip; border-radius: 6px; }
 .install figure img { width: 100%; height: 100%; object-fit: cover; object-position: top; }

@@ -47,8 +47,9 @@ any folder. If you use pip instead of uv: `pip install "nexus-scholar>=1.1.0b8"`
 ### On Windows, the installer
 
 On Windows you can skip steps 1 and 2: download
-`NexusScholar-1.1.0b8-setup.exe` from the
-[release page](https://github.com/nexus-scholar-org/nexus-scholar-harness/releases/tag/v1.1.0b8),
+[`NexusScholar-1.1.0b8-setup.exe`](https://github.com/nexus-scholar-org/nexus-scholar-harness/releases/download/v1.1.0b8/NexusScholar-1.1.0b8-setup.exe)
+(about 112 MB; it is also on the
+[release page](https://github.com/nexus-scholar-org/nexus-scholar-harness/releases/tag/v1.1.0b8)),
 run it, then start Nexus Scholar from the Start menu. It needs no Python, no
 terminal and no administrator password. The first start opens a short setup
 screen for your contact e-mail and keys; nothing there is needed to open a
@@ -60,7 +61,8 @@ Before you choose it, know that:
 - **It is not signed.** Windows may show "Windows protected your PC"; choose
   "More info", then "Run anyway", only if you downloaded the file from the
   release page above.
-- **It is for Windows only.** On macOS and Linux, install with `uv` or `pip`.
+- **It is for Windows only.** Installers for macOS and Linux are coming soon;
+  until then, install with `uv` or `pip` there.
 - **It is new.** It was built and tried on GitHub's Windows runner and on one
   developer PC. It was not tried on a clean computer, and its wizard pages, its
   uninstaller and the Windows warning were not walked by a person.

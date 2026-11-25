@@ -16,6 +16,7 @@ const repo = 'https://github.com/nexus-scholar-org/nexus-scholar-harness';
 const pypi = 'https://pypi.org/project/nexus-scholar/';
 const install = 'uv tool install "nexus-scholar>=1.1.0b8"\nnexus-scholar ui';
 const release = `${repo}/releases/tag/v1.1.0b8`;
+const setup = `${repo}/releases/download/v1.1.0b8/NexusScholar-1.1.0b8-setup.exe`;
 
 // The record and the criteria in the hero fragment are real: record STU-10b7daa2… of the golden
 // test workspace (30 records on UAV crop and weed mapping) and four of that protocol's seven
@@ -243,7 +244,7 @@ const criteria = [
           <section aria-labelledby="g2">
             <h3 id="g2">Not yet</h3>
             <ul>
-              <li><span class="dot unclear"></span><span>Installers for macOS and Linux</span><span class="val">use uv or pip</span></li>
+              <li><span class="dot unclear"></span><span>Installers for macOS and Linux</span><span class="val">coming soon; use uv or pip today</span></li>
               <li><span class="dot exclude"></span><span>A second reviewer and agreement between people</span><span class="val">not planned for the beta</span></li>
               <li><span class="dot exclude"></span><span>Reading a PDF's text for you</span><span class="val">parked</span></li>
               <li><span class="dot exclude"></span><span>Synthesis, verification checks, citation graph</span><span class="val">removed</span></li>
@@ -275,7 +276,12 @@ const criteria = [
               <span class="sr-only" role="status" id="copied"></span>
             </div>
             <p class="small">Needs <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>. The version in the command keeps uv from taking betas of anything else; never use <code>--prerelease allow</code>. Then follow <a href={`${docs}/getting-started/`}>Getting started</a>, about 15 minutes.</p>
-            <p class="small">On Windows there is a second way: <code>NexusScholar-1.1.0b8-setup.exe</code> from the <a href={release}>release page</a>, with no Python and no terminal. It is not signed, so Windows may warn you. It was built and tried in CI and on one developer PC, not on a clean computer. Windows only.</p>
+            <div class="download">
+              <h3 id="h-download">Or the Windows installer</h3>
+              <a class="btn" href={setup}>Download for Windows</a>
+              <p class="small"><code>NexusScholar-1.1.0b8-setup.exe</code>, about 112 MB, from the <a href={release}>release page</a>. No Python and no terminal. It is not signed, so Windows may warn you. It was built and tried in CI and on one developer PC, not on a clean computer.</p>
+              <p class="small"><strong>macOS and Linux installers are coming soon.</strong> Until then the two commands above work on both.</p>
+            </div>
           </div>
           <figure>
             <div class="frame drift"><Image src={workspaces} alt="The Workspaces screen of the app. The heading asks which review you are working on, and the line under it names the folder whose reviews are listed. Below, New workspace and New review buttons, then a table with one review, Golden UAV 30, marked Corpus accepted, with its folder on this computer and the copy saved before an update." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 100vw, 52vw" /></div>

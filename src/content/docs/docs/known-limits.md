@@ -61,7 +61,7 @@ PRISMA counts and a draft methods paragraph.
 - **The Windows installer is not signed,** and it is for Windows only. It was
   not tried on a clean computer, and its wizard pages, its uninstaller and the
   Windows warning were not walked by a person. Installers for macOS and Linux
-  are not built; nothing was tried on macOS, or on Linux with a display.
+  are not built yet (coming soon); nothing was tried on macOS, or on Linux with a display.
 - **No update notice.** A newer version is not announced inside the app; look
   at the release page.
 - **The control window of the start without a terminal is in English only.**
