@@ -59,7 +59,7 @@ and the steps are:
    says which databases find them. It never changes the query and never swaps a
    record. Each check is saved in the workspace.
 
-   <Shot src={discoveryRecall} alt="Step 2 of 7, the recall check in a demo review: each paper given, whether each database found it, and two databases marked Failed." caption="The check lists each paper you gave and which database found it. Here two databases refused the request, so this check is partial." />
+   <Shot src={discoveryRecall} alt="Step 2 of 7, the recall check in a demo review: the query finds 3 of the 3 papers given, and each paper is listed with the databases that found it." caption="The check lists each paper you gave and which database found it." />
 3. **Harvest.** **Start the harvest**. Each database appears as it finishes,
    with the total it reported and how many records it returned. A database that
    stops at the cap reads "at least N". You can set a cap for this run and add a
@@ -69,7 +69,7 @@ and the steps are:
    **Finish preparing this corpus** completes it from the saved records without
    searching again.
 
-   <Shot src={discoveryHarvest} alt="Step 3, Harvest, before the start in a demo review: Semantic Scholar, arXiv and PubMed ticked, a cap of 10 for this harvest only, a note, and the Start the harvest button." caption="Before the start: a cap and a note for this run, then Start the harvest." />
+   <Shot src={discoveryHarvest} alt="Step 3, Harvest, before the start in a demo review: OpenAlex, Semantic Scholar, arXiv and PubMed ticked, a cap of 10 for this harvest only, a note, and the Start the harvest button." caption="Before the start: a cap and a note for this run, then Start the harvest." />
 
    <Shot src={discoveryHarvestResult} alt="The Harvest step when the harvest is finished: one row per database with the records fetched of the total the database reported, each stopped at the cap of 10." caption="When it finishes: one row per database, with what was fetched of the total the database reported. A count stopped at the cap is a lower bound." />
 4. **Import.** The same import screen as for exported files. Since 1.1.0b7 a
@@ -80,11 +80,11 @@ and the steps are:
 
    <Shot src={discoveryImportForm} alt="Step 4 of 7, Import: the form with crossref-export.ris chosen and the database name Crossref, and below it the OpenAlex file already added." caption="Add a database file: the file, the database’s name and, if you have them, the search details." />
 
-   <Shot src={discoveryImportCombined} alt="The Import step in a demo review after a harvest and two RIS files: three databases searched by the app, OpenAlex and Crossref from exports, 60 records identified, 1 duplicate removed and 59 studies to screen." caption="Each database with its records, and the counts for your PRISMA flow diagram." />
+   <Shot src={discoveryImportCombined} alt="The Import step in a demo review after a harvest and two RIS files: four databases searched by the app, OpenAlex and Crossref from exports, 70 records identified, 3 duplicates removed and 67 studies to screen." caption="Each database with its records, and the counts for your PRISMA flow diagram." />
 5. **Duplicates.** How many records were merged, by rule (identifier, exact
    title, close title). Pair-by-pair review is not built.
 
-   <Shot src={discoveryDedup} alt="Step 5 of 7, Duplicates, in a demo review: 30 records became 30 works, the number removed by each rule, and the rules in force." caption="What the harvest's records became, how many each rule removed, and the rules in force." />
+   <Shot src={discoveryDedup} alt="Step 5 of 7, Duplicates, in a demo review: 40 records became 39 works, the number removed by each rule, and the rules in force." caption="What the harvest's records became, how many each rule removed, and the rules in force." />
 6. **Report.** The PRISMA-S identification per database and a methods paragraph
    you mark as reviewed.
 
@@ -92,7 +92,7 @@ and the steps are:
 7. **Hand-off.** **Accept this corpus** freezes it, and screening starts from it.
    The accept refuses an unfinished preparation.
 
-   <Shot src={discoveryHandoffCombined} alt="The Hand-off step in a demo review: 59 works from five sources, three searched by the app and two from exports, 60 records identified and 1 duplicate removed, and the Accept this corpus button." caption="A harvest and two exports in one corpus: the mix of sources, the duplicates removed across both, and Accept this corpus." />
+   <Shot src={discoveryHandoffCombined} alt="The Hand-off step in a demo review: 67 works from six sources, four searched by the app and two from exports, 70 records identified and 3 duplicates removed, and the Accept this corpus button." caption="A harvest and two exports in one corpus: the mix of sources, the duplicates removed across both, and Accept this corpus." />
 8. **Chase** (after the screening is published). Fetches the references and
    the citing papers of your included studies (OpenAlex first, Semantic Scholar
    second), keeps only what is new to the corpus, and sends it to a second
