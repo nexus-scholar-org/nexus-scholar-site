@@ -112,7 +112,7 @@ h1#_top, .sl-markdown-content h1, .sl-markdown-content h2 { font-family: var(--n
 
 /* A table wider than its column scrolls in its own box; a shade at the edge that hides more says so.
    The two cover layers move with the content (local) and hide the shades at either end. */
-:root { --ns-scroll-shade: rgba(201, 219, 245, 0.22); }
+:root { --ns-scroll-shade: rgba(201, 219, 245, 0.35); }
 :root[data-theme='light'] { --ns-scroll-shade: rgba(22, 32, 43, 0.22); }
 .sl-markdown-content table:not(:where(.not-content *)) {
   background:
