@@ -49,7 +49,8 @@ last change.
 **Look up open-access copies** (`L`) shows first what it will ask (Unpaywall
 with your contact e-mail; OpenAlex only with `SCHOLAR_OPENALEX_KEY`; arXiv for
 a study with an arXiv id and no DOI), then fetches only PDFs those services
-list as open access. Each fetched PDF waits as
+list as open access. Each download names your contact e-mail to the website
+that holds the PDF. Each fetched PDF waits as
 "Fetched, to confirm" until you open and confirm it. Publishers refuse
 automated downloads, so expect "Not retrieved" or a link to open yourself for
 many studies. Reading a PDF's text is parked: the form is filled by you.

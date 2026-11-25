@@ -10,7 +10,7 @@ optional AI drafts, read the settings below.
 
 | Variable | Purpose |
 | :-- | :-- |
-| `SCHOLAR_MAILTO` | Your contact email, sent in the User-Agent header to every database you search, and as `email` to PubMed (NCBI). OpenAlex no longer reads it. **Required for a live search**: without it a terminal run, a browser harvest and a recall check refuse with `MAILTO_NOT_SET`. The open-access look-up sends it to Unpaywall and refuses without it. |
+| `SCHOLAR_MAILTO` | Your contact email, sent in the User-Agent header to every database you search, and as `email` to PubMed (NCBI). OpenAlex no longer reads it. **Required for a live search**: without it a terminal run, a browser harvest and a recall check refuse with `MAILTO_NOT_SET`. The open-access look-up sends it to Unpaywall and refuses without it, and each PDF download sends it, in the same header, to the website that holds the PDF. |
 | `SCHOLAR_OPENALEX_KEY` | A free OpenAlex API key. **OpenAlex has required a key since 2026-02-13.** A browser harvest that includes OpenAlex refuses with `OPENALEX_KEY_NOT_SET` until it is set. Without it, a terminal `run` still sends OpenAlex keyless requests, which share a small daily budget with everyone on your network address; paging past the first page is refused, and the OpenAlex leg then fails. The open-access look-up asks OpenAlex only with this key. |
 | `SCHOLAR_S2_KEY` | A Semantic Scholar API key (optional; without it the shared public pool is used). |
 | `NEXUS_WORKSPACES_ROOT` | The folder holding your workspaces for `nexus-scholar ui` (else `Documents/Nexus Scholar/workspaces`). |
