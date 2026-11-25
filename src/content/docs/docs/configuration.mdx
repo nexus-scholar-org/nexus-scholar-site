@@ -10,14 +10,14 @@ optional AI drafts, read the settings below.
 
 | Variable | Purpose |
 | :-- | :-- |
-| <code>SCHOLAR_<wbr>MAILTO</code> | Your contact e-mail, sent in the User-Agent header to every database you search, and as `email` to PubMed (NCBI). OpenAlex no longer reads it. **Required for a live search**: without it a terminal run, a browser harvest and a recall check refuse with <code>MAILTO_<wbr>NOT_<wbr>SET</code>. The open-access look-up sends it to Unpaywall and refuses without it, and each PDF download sends it, in the same header, to the website that holds the PDF. |
-| <code>SCHOLAR_<wbr>OPENALEX_<wbr>KEY</code> | A free OpenAlex API key. **OpenAlex has required a key since 2026-02-13.** A browser harvest that includes OpenAlex refuses with <code>OPENALEX_<wbr>KEY_<wbr>NOT_<wbr>SET</code> until it is set. Without it, a terminal `run` still sends OpenAlex keyless requests, which share a small daily budget with everyone on your network address; paging past the first page is refused, and the OpenAlex leg then fails. The open-access look-up asks OpenAlex only with this key. |
-| <code>SCHOLAR_<wbr>S2_<wbr>KEY</code> | A Semantic Scholar API key (optional; without it the shared public pool is used). |
-| <code>NEXUS_<wbr>WORKSPACES_<wbr>ROOT</code> | The folder holding your workspaces for `nexus-scholar ui` (else <code>Documents/<wbr>Nexus Scholar/<wbr>workspaces</code>). |
-| <code>NEXUS_<wbr>CONSOLE_<wbr>TOKEN</code> | The per-launch token of `nexus-scholar serve` (it prints one if unset). |
-| <code>ANTHROPIC_<wbr>API_<wbr>KEY</code>, <code>GEMINI_<wbr>API_<wbr>KEY</code>, <code>OPENAI_<wbr>API_<wbr>KEY</code> | Provider keys for the optional AI drafts, if you keep them in the environment rather than in the keychain. |
-| <code>NEXUS_<wbr>RECON_<wbr>ROOT</code> | Where the inception reconnaissance cache lives (default <code>.cache/<wbr>inception_<wbr>recon</code> in the repository checkout). |
-| <code>NEXUS_<wbr>MCP_<wbr>CONFIG_<wbr>HOME</code> | Where `setup-mcp` writes configuration files. |
+| <code>SCHOLAR_<wbr />MAILTO</code> | Your contact e-mail, sent in the User-Agent header to every database you search, and as `email` to PubMed (NCBI). OpenAlex no longer reads it. **Required for a live search**: without it a terminal run, a browser harvest and a recall check refuse with <code>MAILTO_<wbr />NOT_<wbr />SET</code>. The open-access look-up sends it to Unpaywall and refuses without it, and each PDF download sends it, in the same header, to the website that holds the PDF. |
+| <code>SCHOLAR_<wbr />OPENALEX_<wbr />KEY</code> | A free OpenAlex API key. **OpenAlex has required a key since 2026-02-13.** A browser harvest that includes OpenAlex refuses with <code>OPENALEX_<wbr />KEY_<wbr />NOT_<wbr />SET</code> until it is set. Without it, a terminal `run` still sends OpenAlex keyless requests, which share a small daily budget with everyone on your network address; paging past the first page is refused, and the OpenAlex leg then fails. The open-access look-up asks OpenAlex only with this key. |
+| <code>SCHOLAR_<wbr />S2_<wbr />KEY</code> | A Semantic Scholar API key (optional; without it the shared public pool is used). |
+| <code>NEXUS_<wbr />WORKSPACES_<wbr />ROOT</code> | The folder holding your workspaces for `nexus-scholar ui` (else <code>Documents/<wbr />Nexus Scholar/<wbr />workspaces</code>). |
+| <code>NEXUS_<wbr />CONSOLE_<wbr />TOKEN</code> | The per-launch token of `nexus-scholar serve` (it prints one if unset). |
+| <code>ANTHROPIC_<wbr />API_<wbr />KEY</code>, <code>GEMINI_<wbr />API_<wbr />KEY</code>, <code>OPENAI_<wbr />API_<wbr />KEY</code> | Provider keys for the optional AI drafts, if you keep them in the environment rather than in the keychain. |
+| <code>NEXUS_<wbr />RECON_<wbr />ROOT</code> | Where the inception reconnaissance cache lives (default <code>.cache/<wbr />inception_<wbr />recon</code> in the repository checkout). |
+| <code>NEXUS_<wbr />MCP_<wbr />CONFIG_<wbr />HOME</code> | Where `setup-mcp` writes configuration files. |
 
 ## Where to set them
 

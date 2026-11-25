@@ -7,7 +7,7 @@ This guide takes you from nothing to a published screening with an exported
 reference list. It takes about 15 minutes, plus the time you spend screening.
 Everything runs on your computer. No account or API key is needed to screen.
 
-<p class="ns-beta">This guide is for the beta, version <strong>1.1.0b8</strong>. To check the version you have, run <code>nexus-scholar --version</code>. The <a href="../known-limits/">known limits</a> say what the beta cannot do yet.</p>
+<p class="ns-beta">This guide is for the beta, version <strong>1.1.0b8</strong>. To check the version you have, run <code>{'nexus-scholar --version'}</code>. The <a href="../known-limits/">known limits</a> say what the beta cannot do yet.</p>
 
 The commands are the same on Windows (PowerShell), macOS and Linux unless a
 step says otherwise.
@@ -187,15 +187,15 @@ you can.
 | `nexus-scholar` is not found | Run `uv tool update-shell`, then open a new terminal. |
 | `uv tool install` says no version matches, or installs 1.0.0 | Keep the version in the command: `"nexus-scholar>=1.1.0b8"` (the beta is a pre-release). |
 | The app stops at start with `No module named 'httpcore'` | It was installed with `--prerelease allow`. Reinstall: `uv tool install --force "nexus-scholar>=1.1.0b8"`. |
-| "No accepted corpus" (<code>SNAPSHOT_<wbr>NOT_<wbr>ACCEPTED</code>) | Import and accept your search results (step 4). |
-| <code>MAILTO_<wbr>NOT_<wbr>SET</code> before a search | Save your e-mail on the **Settings** screen (it applies at once), or set <code>SCHOLAR_<wbr>MAILTO</code> as in [Configuration](../configuration/) and start the app again. |
-| <code>OPENALEX_<wbr>KEY_<wbr>NOT_<wbr>SET</code> before a search | Save the OpenAlex key on the **Settings** screen, or set <code>SCHOLAR_<wbr>OPENALEX_<wbr>KEY</code> as in [Configuration](../configuration/) and start the app again; or leave OpenAlex out of the run. |
-| <code>VERIFIED_<wbr>EXISTS</code> when adding an export | <code>literature/<wbr>verified.json</code> holds records that no search and no import of this app made, so the app does not know where they came from. Accept them as they are, or remove the file to import exports instead. After a search in the app, exports can be added: the Hand-off accept combines both. |
+| "No accepted corpus" (<code>SNAPSHOT_<wbr />NOT_<wbr />ACCEPTED</code>) | Import and accept your search results (step 4). |
+| <code>MAILTO_<wbr />NOT_<wbr />SET</code> before a search | Save your e-mail on the **Settings** screen (it applies at once), or set <code>SCHOLAR_<wbr />MAILTO</code> as in [Configuration](../configuration/) and start the app again. |
+| <code>OPENALEX_<wbr />KEY_<wbr />NOT_<wbr />SET</code> before a search | Save the OpenAlex key on the **Settings** screen, or set <code>SCHOLAR_<wbr />OPENALEX_<wbr />KEY</code> as in [Configuration](../configuration/) and start the app again; or leave OpenAlex out of the run. |
+| <code>VERIFIED_<wbr />EXISTS</code> when adding an export | <code>literature/<wbr />verified.json</code> holds records that no search and no import of this app made, so the app does not know where they came from. Accept them as they are, or remove the file to import exports instead. After a search in the app, exports can be added: the Hand-off accept combines both. |
 | "Made with a newer version of Nexus Scholar" | A newer version has written this review in a format this version cannot read. Install that version or a later one to continue. |
-| "No records in this file" (<code>SOURCE_<wbr>NOT_<wbr>RIS</code>) | Export the results as RIS (`.ris` or `.txt`) from the database, or as `.nbib` from PubMed, not as CSV or BibTeX. |
-| "File too large" (<code>SOURCE_<wbr>TOO_<wbr>LARGE</code>) | Export in parts of under 50 MB and add each part under the same database name. |
-| <code>OPERATOR_<wbr>CONTEXT_<wbr>MISSING</code> when approving | Save your name under **Approver** on the Publish screen, then ask for a new code. |
-| <code>APPROVAL_<wbr>CONTENT_<wbr>CHANGED</code> when publishing | A decision changed after the last approval. Approve the last batch again (a new code), then publish. |
+| "No records in this file" (<code>SOURCE_<wbr />NOT_<wbr />RIS</code>) | Export the results as RIS (`.ris` or `.txt`) from the database, or as `.nbib` from PubMed, not as CSV or BibTeX. |
+| "File too large" (<code>SOURCE_<wbr />TOO_<wbr />LARGE</code>) | Export in parts of under 50 MB and add each part under the same database name. |
+| <code>OPERATOR_<wbr />CONTEXT_<wbr />MISSING</code> when approving | Save your name under **Approver** on the Publish screen, then ask for a new code. |
+| <code>APPROVAL_<wbr />CONTENT_<wbr />CHANGED</code> when publishing | A decision changed after the last approval. Approve the last batch again (a new code), then publish. |
 | A card with a code in capitals | The card says what happened and the next step; the code is what to quote if you ask for help. |
 | The browser did not open | Start with `nexus-scholar ui --no-browser` and open the one-time link it prints. |
 
