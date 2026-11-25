@@ -17,7 +17,7 @@ import discoveryReport from '../../../../assets/screens/guide/discovery-report.p
 import discoveryHandoffCombined from '../../../../assets/screens/guide/discovery-handoff-combined.png';
 
 Discovery searches the free databases your protocol selects, among
-**OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed**, with the query your
+**OpenAlex, Semantic Scholar, Crossref, arXiv, PubMed and bioRxiv**, with the query your
 protocol compiles, and records what each database was asked and what came back.
 Each run writes a PRISMA-S identification record per database.
 
@@ -112,7 +112,7 @@ was made by.
 ## Known gaps in the search
 
 - **Default databases.** Since 1.1.0b7 the default is OpenAlex, Semantic
-  Scholar, Crossref and arXiv. PubMed is off by default and still selectable;
+  Scholar, Crossref and arXiv. PubMed and bioRxiv are off by default and still selectable;
   a protocol that names its databases runs exactly those. Crossref is not
   ticked for a query that joins two or more concepts, and Plan warns while it
   is.
