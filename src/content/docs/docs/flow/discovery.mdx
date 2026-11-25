@@ -63,8 +63,8 @@ and the steps are:
 3. **Harvest.** **Start the harvest**. Each database appears as it finishes,
    with the total it reported and how many records it returned. A database that
    stops at the cap reads "at least N". You can set a cap for this run and add a
-   note; both are recorded. Cancelling keeps what was fetched and archives the
-   run as partial; nothing is built from it. Harvest says when the preparation
+   note; both are recorded. **Stop the harvest and keep what was fetched**
+   marks the run partial; nothing is built from it. Harvest says when the preparation
    after the search is unfinished, failed or stopped, also after a restart;
    **Finish preparing this corpus** completes it from the saved records without
    searching again.
@@ -93,7 +93,8 @@ and the steps are:
 
    <Shot src={discoveryReport} alt="Step 6 of 7, the search report: for each database the executed string, the total it reported, the records fetched and when it was searched." caption="What each database was asked and what came back." />
 7. **Hand-off.** **Accept this corpus** freezes it, and screening starts from it.
-   The accept refuses an unfinished preparation.
+   The accept refuses an unfinished preparation; with exports staged, it
+   accepts the exports alone and leaves that harvest out.
 
    <Shot src={discoveryHandoffCombined} alt="The Hand-off step in a demo review: 67 works from six sources, four searched by the app and two from exports, 70 records identified and 3 duplicates removed, and the Accept this corpus button." caption="A harvest and two exports in one corpus: the mix of sources, the duplicates removed across both, and Accept this corpus." />
 8. **Chase** (after the screening is published). Fetches the references and
