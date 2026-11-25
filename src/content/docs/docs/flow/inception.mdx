@@ -6,6 +6,7 @@ description: Write the review's question, scope and screening criteria in the br
 import Shot from '../../../../components/Shot.astro';
 import inceptionScope from '../../../../assets/screens/guide/inception-scope.png';
 import inceptionExplore from '../../../../assets/screens/guide/inception-explore.png';
+import inceptionExplorePool from '../../../../assets/screens/guide/inception-explore-pool.png';
 import inceptionDirection from '../../../../assets/screens/guide/inception-direction.png';
 import inceptionShape from '../../../../assets/screens/guide/inception-shape.png';
 import inceptionConcepts from '../../../../assets/screens/guide/inception-concepts.png';
@@ -34,11 +35,13 @@ or resume one. The steps are:
    results". Synonyms from the sample are accepted one by one; papers you
    anchor become recall seeds.
 
-   <Shot src={inceptionExplore} alt="Step 2 of 6, Explore, before any search: the question, the keyword query sent to the databases, four databases ticked, the search mode and the Search the literature button." caption="Before the first search: the query and the databases can be edited; Search the literature sends it." />
+   <Shot src={inceptionExplore} alt="Step 2 of 6, Explore, after the first search in a demo review: a pool of 25 papers marked partial, the keyword query that was sent, and the four databases asked." caption="After the first search: the pool, the query that was sent and the databases asked. Here one database did not answer, so the pool is marked partial." />
+
+   <Shot src={inceptionExplorePool} alt="The lower part of Explore: how often your concepts occur in the pool, schools of thought counted by keyword rules, and the checks to look at." caption="Below the pool: your concepts counted in it, a first reading by keyword rules, and the checks to look at." />
 3. **Direction** (since 1.1.0b7). Offers directions drawn from phrases in at
    least two papers of that sample.
 
-   <Shot src={inceptionDirection} alt="Step 3 of 6, Direction, showing There is no pool to draw directions from, with a link to Explore." caption="Without a first search there is no pool to draw directions from." />
+   <Shot src={inceptionDirection} alt="Step 3 of 6, Direction: three directions proposed from the pool, each with its anchor papers and their DOIs, then Write my own direction and Continue without a direction." caption="Directions drawn from the pool: pick one, write your own, or continue without one." />
 4. **Shape.** The lens (paradigm) and playbook, the unit of analysis, what proof
    a reviewer would accept, what is out of scope, the research questions and
    the planned number of records. The lens the engine leans to and its draft
