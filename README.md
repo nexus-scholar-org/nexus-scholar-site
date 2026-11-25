@@ -23,7 +23,7 @@ npm run preview    # serves dist/ at http://localhost:4321/nexus-scholar-site/
 | The landing page | `src/pages/index.astro` (content and the live triage fragment) and `src/styles/landing.css` |
 | A docs page | The Markdown file under `src/content/docs/docs/`; the sidebar order is in `astro.config.mjs` |
 | A release note | Add `src/content/docs/docs/releases/<version>.md` and its sidebar entry in `astro.config.mjs` |
-| A screenshot | Replace the PNG under `src/assets/screens/` (1440×900 at 2×, light theme, English) and check the `alt` text where it is used |
+| A screenshot | Replace the PNG under `src/assets/screens/` (1440×900 at 2×, light theme, English) and check the `alt` text where it is used. Take it from folders whose path holds no account name. The Workspaces picture is 1440×810 at 2×, because the app's footer carried a build label |
 | The docs theme | `src/styles/docs.css` (the brand tokens mapped onto Starlight's variables) |
 
 The facts on the site come from the product repository's docs (`README.md`, `docs/getting-started.md`, `docs/nexus_scholar_user_guide.md`, `docs/data-flow.md`, `docs/beta/README.md`, `docs/releases/`, `docs/architecture/agent-system.md` and `agent_autonomy_ladder.md`). When those change, change the matching page here. The site claims only what the tagged release and the release notes say: a feature on `main` is marked as coming with the next beta until it is tagged.
