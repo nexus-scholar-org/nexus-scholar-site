@@ -1,9 +1,57 @@
 /* Nexus Scholar Provenance tokens applied to Starlight (docs/ux/brand/tokens.json). */
+
+/* Local fallbacks sized to the bundled faces, so the text does not reflow when the web fonts arrive.
+   Widths were measured against the bundled files; ascent and descent are the bundled faces' own. */
+@font-face {
+  font-family: 'Public Sans Fallback';
+  font-weight: 100 500;
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Arimo');
+  size-adjust: 103.7%;
+  ascent-override: 91.6%;
+  descent-override: 21.7%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Public Sans Fallback';
+  font-weight: 600 900;
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Arimo Bold');
+  size-adjust: 97.9%;
+  ascent-override: 97%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Literata Fallback';
+  font-weight: 100 500;
+  src: local('Georgia');
+  size-adjust: 105.7%;
+  ascent-override: 111.4%;
+  descent-override: 29.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Literata Fallback';
+  font-weight: 600 900;
+  src: local('Georgia Bold'), local('Georgia-Bold');
+  size-adjust: 94.7%;
+  ascent-override: 124.3%;
+  descent-override: 32.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'IBM Plex Mono Fallback';
+  src: local('Consolas');
+  size-adjust: 109.1%;
+  ascent-override: 94%;
+  descent-override: 25.2%;
+  line-gap-override: 0%;
+}
+
 :root {
-  --sl-font: 'Public Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --sl-font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
-  --ns-display: 'Literata Variable', Georgia, 'Times New Roman', serif;
-  --sl-content-width: 46rem;
+  --sl-font: 'Public Sans Variable', 'Public Sans Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sl-font-mono: 'IBM Plex Mono', 'IBM Plex Mono Fallback', ui-monospace, Menlo, monospace;
+  --ns-display: 'Literata Variable', 'Literata Fallback', Georgia, 'Times New Roman', serif;
+  --sl-content-width: 44rem;
   --sl-text-h1: 2rem;
   --sl-text-h2: 1.5rem;
   --sl-text-h3: 1.25rem;
@@ -56,10 +104,28 @@
 }
 
 .site-title { font-family: var(--ns-display); font-weight: 600; letter-spacing: -0.005em; }
-.sl-markdown-content h1, .sl-markdown-content h2 { font-family: var(--ns-display); font-weight: 600; letter-spacing: -0.01em; }
+/* The page title (#_top) is set in the display face like the section headings below it. */
+h1#_top, .sl-markdown-content h1, .sl-markdown-content h2 { font-family: var(--ns-display); font-weight: 600; letter-spacing: -0.01em; }
 .sl-markdown-content { font-size: 1.0625rem; line-height: 1.6; }
 .sl-markdown-content code:not(:where(.expressive-code *)) { font-size: 0.875em; }
 .sl-markdown-content table { font-variant-numeric: tabular-nums; }
+
+/* A table wider than its column scrolls in its own box; a shade at the edge that hides more says so.
+   The two cover layers move with the content (local) and hide the shades at either end. */
+:root { --ns-scroll-shade: rgba(201, 219, 245, 0.22); }
+:root[data-theme='light'] { --ns-scroll-shade: rgba(22, 32, 43, 0.22); }
+.sl-markdown-content table:not(:where(.not-content *)) {
+  background:
+    linear-gradient(to right, var(--sl-color-bg) 40%, transparent) left center / 2rem 100% no-repeat local,
+    linear-gradient(to left, var(--sl-color-bg) 40%, transparent) right center / 2rem 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--ns-scroll-shade), transparent) left center / 0.875rem 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--ns-scroll-shade), transparent) right center / 0.875rem 100% no-repeat scroll;
+}
+@media (max-width: 50rem) {
+  /* On a phone a long identifier in a cell may break, so a two- or three-column table fits the screen. */
+  .sl-markdown-content :is(th, td):not(:where(.not-content *)) { padding-inline: 0.5rem; }
+  .sl-markdown-content :is(th, td) code { overflow-wrap: anywhere; }
+}
 
 /* Beta banner */
 .ns-beta { background: var(--sl-color-accent-low); padding: 0.75rem 1rem; border-radius: 6px; }
