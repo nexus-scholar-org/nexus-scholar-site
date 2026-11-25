@@ -79,10 +79,10 @@ identifiers of your records** (DOIs, titles), never your decisions:
 | Inception: Explore and Direction (a first sample of papers per database) | The Explore and Direction screens (1.1.0b7); the terminal wizard and the MCP tools | Your topic as a keyword query, or the query as you edited it, to the databases you choose; a narrower search sends a direction's label |
 | Counts: the query workbench and the size estimate (1.1.0b7) | Inception step 5 and Plan (**Count**); Plan and Harvest (size estimate) | The query, to the databases you count; for the seed check, your known papers' DOIs to OpenAlex (only with `SCHOLAR_OPENALEX_KEY`). Each button says how many requests it sends |
 | Citation chasing (1.1.0b7) | Discovery, **Chase**; `nexus-scholar chase run` | Each included study's identifier (its DOI, OpenAlex id or Semantic Scholar id), to OpenAlex first and Semantic Scholar second, to fetch its references and citing papers |
-| Open-access look-up and download (1.1.0b7) | Charting, **Look up open-access copies**; `scholar-pdf download` and `ingest` | Your studies' DOIs and your contact email to Unpaywall; the DOIs to OpenAlex only with `SCHOLAR_OPENALEX_KEY`; from Charting, the arXiv id of a study with no DOI to arXiv; then the PDF fetched from a location those services list as open access. Each download request names your contact email in its User-Agent header to the website that holds the PDF (a publisher or a repository) and to any site it redirects to |
+| Open-access look-up and download (1.1.0b7) | Charting, **Look up open-access copies**; `scholar-pdf download` and `ingest` | Your studies' DOIs and your contact e-mail to Unpaywall; the DOIs to OpenAlex only with `SCHOLAR_OPENALEX_KEY`; from Charting, the arXiv id of a study with no DOI to arXiv; then the PDF fetched from a location those services list as open access. Each download request names your contact e-mail in its User-Agent header to the website that holds the PDF (a publisher or a repository) and to any site it redirects to |
 
 With every search request the engine also sends who is asking: your contact
-email (`SCHOLAR_MAILTO`) in the User-Agent header to every provider and as
+e-mail (`SCHOLAR_MAILTO`) in the User-Agent header to every provider and as
 `email` to PubMed. Citation chasing, the look-ups and PDF downloads carry the
 same header, so the address also reaches Unpaywall and the websites PDFs are
 downloaded from. The engine also sends your OpenAlex key, to OpenAlex only, when set; your Semantic

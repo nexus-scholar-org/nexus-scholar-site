@@ -15,7 +15,7 @@ Each run writes a PRISMA-S identification record per database.
 Two settings are needed before you start the app; see
 [Configuration](../../configuration/):
 
-- **`SCHOLAR_MAILTO`**, your contact email. A search refuses to start without
+- **`SCHOLAR_MAILTO`**, your contact e-mail. A search refuses to start without
   it (`MAILTO_NOT_SET`).
 - **`SCHOLAR_OPENALEX_KEY`**, a free OpenAlex API key. OpenAlex has required a
   key since 2026-02-13. A browser harvest that selects OpenAlex refuses to
