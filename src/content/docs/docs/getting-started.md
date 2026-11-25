@@ -133,9 +133,9 @@ Go to **Screening**. The steps are across the top:
 4. **Agreement.** Only meaningful if an agent proposed drafts.
 5. **Publish.** Type your name under **Approver** and **Save name**. Approvals
    are recorded under it; it is a name typed on this computer, not a verified
-   sign-in. For each batch, click **Show a code in the terminal**, read the code
-   in the terminal where the app runs, type it, and approve. When every check
-   passes, **Publish the screening**.
+   sign-in. Click **Show the codes for every decided batch**, read the codes in
+   the terminal where the app runs (or in the small window it opens), paste
+   them, and approve. When every check passes, **Publish the screening**.
 
 A decision changed after publishing makes the screening read "Published,
 decisions since": publish again so the exports match. The details are in
@@ -174,7 +174,7 @@ zip under `.nexus-copies/` in your reviews folder; the five newest copies are
 kept. The copy is on the same disk, so it is not a backup. 1.1.0b7 and earlier
 do not check the format, so do not go back to them on a review a newer version
 has written. How to restore a copy is in the user guide,
-["The copy made before an update"](https://github.com/nexus-scholar-org/nexus-scholar-harness/blob/main/docs/nexus_scholar_user_guide.md#the-copy-made-before-an-update).
+["The copy made before an update"](https://github.com/nexus-scholar-org/nexus-scholar-harness/blob/v1.1.0b8/docs/nexus_scholar_user_guide.md#the-copy-made-before-an-update).
 During the beta, finish a screening on the version you started it with when
 you can.
 
@@ -186,10 +186,10 @@ you can.
 | `uv tool install` says no version matches, or installs 1.0.0 | Keep the version in the command: `"nexus-scholar>=1.1.0b8"` (the beta is a pre-release). |
 | The app stops at start with `No module named 'httpcore'` | It was installed with `--prerelease allow`. Reinstall: `uv tool install --force "nexus-scholar>=1.1.0b8"`. |
 | "No accepted corpus" (`SNAPSHOT_NOT_ACCEPTED`) | Import and accept your search results (step 4). |
-| `MAILTO_NOT_SET` before a search | Set `SCHOLAR_MAILTO` (and `SCHOLAR_OPENALEX_KEY`) as in [Configuration](../configuration/), then start the app again. |
-| `OPENALEX_KEY_NOT_SET` before a search | Set `SCHOLAR_OPENALEX_KEY` as in [Configuration](../configuration/), then start the app again, or leave OpenAlex out of the run. |
+| `MAILTO_NOT_SET` before a search | Save your e-mail on the **Settings** screen (it applies at once), or set `SCHOLAR_MAILTO` as in [Configuration](../configuration/) and start the app again. |
+| `OPENALEX_KEY_NOT_SET` before a search | Save the OpenAlex key on the **Settings** screen, or set `SCHOLAR_OPENALEX_KEY` as in [Configuration](../configuration/) and start the app again; or leave OpenAlex out of the run. |
 | `VERIFIED_EXISTS` when adding an export | `literature/verified.json` holds records that no search and no import of this app made, so the app does not know where they came from. Accept them as they are, or remove the file to import exports instead. After a search in the app, exports can be added: the Hand-off accept combines both. |
-| "Made with a newer version of Nexus Scholar" | A newer version has opened this review. Install that version or a later one to continue. |
+| "Made with a newer version of Nexus Scholar" | A newer version has written this review in a format this version cannot read. Install that version or a later one to continue. |
 | "No records in this file" (`SOURCE_NOT_RIS`) | Export the results as RIS (`.ris` or `.txt`) from the database, or as `.nbib` from PubMed, not as CSV or BibTeX. |
 | "File too large" (`SOURCE_TOO_LARGE`) | Export in parts of under 50 MB and add each part under the same database name. |
 | `OPERATOR_CONTEXT_MISSING` when approving | Save your name under **Approver** on the Publish screen, then ask for a new code. |

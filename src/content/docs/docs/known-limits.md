@@ -37,8 +37,9 @@ PRISMA counts and a draft methods paragraph.
   harvest that selects OpenAlex refuses to start without the key.
 - **Near-duplicate pairs cannot be reviewed one by one.** Duplicates shows
   counts per rule only.
-- **Approval uses a code shown on your computer:** in a small window, and also
-  in the terminal when you started the app with `nexus-scholar ui`.
+- **Approval uses a code shown only on your computer:** in the terminal of
+  `nexus-scholar ui` (and in a small window when the app can open one), or,
+  with the start without a terminal, in a small window only.
 - **The approver is a typed name,** not a verified sign-in.
 - **AI drafts are optional and not validated.** Do not report a recall or
   accuracy figure for them. The agent's measured thresholds are not decided,

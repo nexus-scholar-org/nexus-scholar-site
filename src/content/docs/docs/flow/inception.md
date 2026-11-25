@@ -58,8 +58,8 @@ Explore and Direction send your topic to the databases, so they need
 Since 1.1.0b7 a Checks panel runs about 50 fixed checks (no AI) on Inception and
 Discovery, and suggestions wait for you to Apply, Edit or Reject them. You can also
 **Start from an existing review**, from a workspace's protocol or a protocol
-file. These steps were used on one real review; the query workbench only on
-test data. See [Known limits](../../known-limits/).
+file. Inception was taken through on one real review; the query workbench was
+used only on test data. See [Known limits](../../known-limits/).
 
 ## From the terminal
 

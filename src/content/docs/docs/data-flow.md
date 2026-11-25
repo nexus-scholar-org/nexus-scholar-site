@@ -13,8 +13,10 @@ on 2026-11-23 (1.1.0b7); no automated test checks it now.
 
 This page lists every place where data leaves the machine, what is sent, and to
 whom. It was checked against the code on 2026-11-10, for the beta 1.1.0b6. The
-lines for what 1.1.0b7 and 1.1.0b8 added come from their release notes and the
-user guide, not from a new check of the code.
+rows added for 1.1.0b7 (Explore and Direction, the counts, citation chasing and
+the open-access look-up), the contact e-mail and the keys kept by the Settings
+screen were checked against the code of 1.1.0b8 on 2026-11-25. The lines on the
+MCP assistant tools come from the release notes.
 
 ## Importing and screening: nothing
 
@@ -74,10 +76,10 @@ identifiers of your records** (DOIs, titles), never your decisions:
 | Plan (dry run) | Discovery, **Plan** | Nothing: the strings are translated on your computer |
 | Recall check | Discovery, **Recall** | The protocol query, to the protocol's databases; then each seed's identifier to Crossref and OpenAlex for a title check |
 | Abstract hydration and DOI verification, after a harvest | Part of the same run | Record DOIs (and arXiv ids) to Semantic Scholar, OpenAlex and Crossref |
-| Inception: Explore and Direction (a first sample of papers per database) | The Explore and Direction screens (1.1.0b7); the terminal wizard and the MCP tools | Your topic as a query, to the databases you choose |
-| Counts: the query workbench and the size estimate (1.1.0b7) | Inception step 5 and Plan (**Count**); Plan and Harvest (size estimate) | The query, to the databases you count; each button says how many requests it sends |
-| Citation chasing (1.1.0b7) | Discovery, **Chase**; `nexus-scholar chase run` | Your included studies, to OpenAlex first and Semantic Scholar second, to fetch their references and citing papers |
-| Open-access look-up and download (1.1.0b7) | Charting, **Look up open-access copies**; `scholar-pdf download` and `ingest` | Your studies' DOIs and your contact email to Unpaywall; to OpenAlex only with `SCHOLAR_OPENALEX_KEY`; then the PDF fetched from a location those services list as open access |
+| Inception: Explore and Direction (a first sample of papers per database) | The Explore and Direction screens (1.1.0b7); the terminal wizard and the MCP tools | Your topic as a keyword query, or the query as you edited it, to the databases you choose; a narrower search sends a direction's label |
+| Counts: the query workbench and the size estimate (1.1.0b7) | Inception step 5 and Plan (**Count**); Plan and Harvest (size estimate) | The query, to the databases you count; for the seed check, your known papers' DOIs to OpenAlex (only with `SCHOLAR_OPENALEX_KEY`). Each button says how many requests it sends |
+| Citation chasing (1.1.0b7) | Discovery, **Chase**; `nexus-scholar chase run` | Each included study's identifier (its DOI, OpenAlex id or Semantic Scholar id), to OpenAlex first and Semantic Scholar second, to fetch its references and citing papers |
+| Open-access look-up and download (1.1.0b7) | Charting, **Look up open-access copies**; `scholar-pdf download` and `ingest` | Your studies' DOIs and your contact email to Unpaywall; the DOIs to OpenAlex only with `SCHOLAR_OPENALEX_KEY`; from Charting, the arXiv id of a study with no DOI to arXiv; then the PDF fetched from a location those services list as open access |
 
 With every search request the engine also sends who is asking: your contact
 email (`SCHOLAR_MAILTO`) in the User-Agent header to every provider and as

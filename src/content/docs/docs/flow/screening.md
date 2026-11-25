@@ -85,14 +85,15 @@ drafts and what a sample found. The decisions themselves are not changed.
 
 1. Type your name under **Approver** and **Save name**. Approvals are recorded
    under it. It is a name typed on this computer, not a verified sign-in.
-2. For each batch, click **Show a code in the terminal**, read the code in the
-   terminal where the app runs, type it, and approve. The approval is bound to
-   the batch's content: a decision changed after approval refuses publication
-   with `APPROVAL_CONTENT_CHANGED` until you approve again. Since 1.1.0b7
-   **Show the codes for every decided batch** prints one line per batch, and
-   you paste them all at once; each approval still binds its own batch. When
-   you start the app without a terminal (1.1.0b8), the codes are shown in a
-   small window only.
+2. Click **Show the codes for every decided batch** (since 1.1.0b7). The codes
+   appear only on this computer: in the terminal where `nexus-scholar ui`
+   runs, and also in a small window when the app can open one. When you start
+   the app without a terminal (1.1.0b8), they are shown in the small window
+   only. Paste the lines, one per batch, and approve; each approval still
+   binds its own batch. **Approve one batch at a time** has a **Show a code
+   for** button per batch instead. The approval is bound to the batch's
+   content: a decision changed after approval refuses publication with
+   `APPROVAL_CONTENT_CHANGED` until you approve again.
 3. When every check passes (every record decided, no open conflicts, every
    decision recorded as the reviewer's, decisions stored from drafts declared,
    the protocol unchanged), **Publish the screening**.

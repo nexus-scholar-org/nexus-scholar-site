@@ -32,8 +32,8 @@ and the steps are:
 
 1. **Plan.** The exact string each database will receive, and what it cannot
    express. Showing the plan sends nothing. You choose and order the databases
-   here; the order sets the sample priority only, never which record
-   represents a duplicate group. A size estimate gives a count per database
+   here; the order only sets the order in which the databases are searched
+   and listed, and never changes the corpus. A size estimate gives a count per database
    and a suggested cap. The query workbench opens here too; **Record this amendment**
    needs a one-sentence reason and lists what the amendment makes stale.
 2. **Recall** (optional). Give papers you already know are relevant; the check
