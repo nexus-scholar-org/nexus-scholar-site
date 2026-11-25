@@ -35,7 +35,7 @@ const criteria = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <SiteMeta
       title="Nexus Scholar: screen your systematic review on your own computer"
-      description="Nexus Scholar is a free, local-first tool for systematic literature reviews. Write the protocol, search five free databases, screen titles and abstracts. Your workspace is a folder on your disk. Beta."
+      description="Nexus Scholar is a free, local-first tool for systematic literature reviews. Write the protocol, search up to six free databases, screen titles and abstracts. Your workspace is a folder on your disk. Beta."
       path=""
     />
     <script is:inline>
@@ -153,7 +153,7 @@ const criteria = [
           </article>
 
           <article class="exchange">
-            <p class="say">Then, search five free databases. The plan shows the exact string each one will receive before anything is sent.</p>
+            <p class="say">Then, search up to six free databases. The plan shows the exact string each one will receive before anything is sent.</p>
             <div class="call">
               <p class="who">What the protocol compiles for OpenAlex, shown before it is sent</p>
               <pre>(UAV OR UAS OR drone OR drones OR "unmanned aerial vehicle" …) AND (weed OR weeds OR "crop weed" OR crop-weed …) AND (mapping OR detection OR segmentation OR classification …)</pre>
@@ -163,7 +163,7 @@ const criteria = [
                 <div class="crop drift" style="--zoom:130%;--x:-14%;--y:-5.85%"><Image src={discovery} alt="The Search plan step of the app. The heading reads: This is what each database will receive. The protocol fingerprint, then the OpenAlex query string marked Translated, not yet sent. A Limits card with the date window 2020 to 2026, language en, and a cap of 10000 per database. A card says the contact email is not set and shows the line to set it." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 150vw, 80vw" /></div>
                 <figcaption>Plan. A dry run: the protocol fingerprint, each database's translated query, and what the database cannot express. The search refuses to start until a contact email is set, as here.</figcaption>
               </figure>
-              <p class="note"><strong>Not yet tried by a second person.</strong> A search needs your contact email, and OpenAlex needs a free API key. OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed; no other database. You can also import RIS or PubMed exports, instead of a search or, since 1.1.0b7, with it in one corpus.</p>
+              <p class="note"><strong>Not yet tried by a second person.</strong> A search needs your contact email, and OpenAlex needs a free API key. OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed, and bioRxiv when you tick it; no other database. You can also import RIS or PubMed exports, instead of a search or, since 1.1.0b7, with it in one corpus.</p>
             </div>
           </article>
 
@@ -231,7 +231,7 @@ const criteria = [
               <li><span class="dot"></span><span>Title and abstract screening</span><span class="val">unclear goes to full text</span></li>
               <li><span class="dot"></span><span>Imports: RIS, and PubMed <code>.nbib</code></span><span class="val">not CSV or BibTeX</span></li>
               <li><span class="dot"></span><span>Protocol written in the browser, with Explore, Direction and the query workbench</span><span class="val">Scope to Done</span></li>
-              <li><span class="dot"></span><span>Searching five free databases from the browser, with a PRISMA-S record</span><span class="val">needs an OpenAlex key</span></li>
+              <li><span class="dot"></span><span>Searching up to six free databases from the browser, with a PRISMA-S record</span><span class="val">needs an OpenAlex key</span></li>
               <li><span class="dot"></span><span>One corpus from a search plus imported exports</span><span class="val">since 1.1.0b7</span></li>
               <li><span class="dot"></span><span>Citation chasing, a criteria pilot, and charting the kept studies at full text</span><span class="val">used mostly on test data</span></li>
               <li><span class="dot"></span><span>Approval with a code shown on your computer; the approver is a typed name</span><span class="val">not a sign-in</span></li>
@@ -255,7 +255,7 @@ const criteria = [
             <h3 id="g3">What leaves your computer</h3>
             <ul>
               <li><span class="dot none"></span><span>Importing, screening, publishing, exporting</span><span class="val">nothing</span></li>
-              <li><span class="dot none"></span><span>A search: your query and your contact email</span><span class="val">OpenAlex, Semantic Scholar, Crossref, arXiv, PubMed</span></li>
+              <li><span class="dot none"></span><span>A search: your query and your contact email</span><span class="val">OpenAlex, Semantic Scholar, Crossref, arXiv, PubMed, bioRxiv if ticked</span></li>
               <li><span class="dot none"></span><span>Citation chasing and the open-access look-up: your studies' identifiers and your contact email</span><span class="val">OpenAlex, Semantic Scholar, Unpaywall, arXiv, and the site a PDF is downloaded from</span></li>
               <li><span class="dot none"></span><span>AI drafts: title, abstract, year and your criteria, after you tick consent</span><span class="val">the provider you chose</span></li>
               <li><span class="dot none"></span><span>Telemetry, analytics, accounts, update checks</span><span class="val">none</span></li>
@@ -316,6 +316,7 @@ const criteria = [
             <li>Crossref</li>
             <li>arXiv</li>
             <li>PubMed</li>
+            <li>bioRxiv (off by default)</li>
           </ul>
         </div>
         <div class="tile contact">
