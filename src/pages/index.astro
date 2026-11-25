@@ -4,6 +4,7 @@ import '@fontsource-variable/literata/opsz.css';
 import '@fontsource-variable/public-sans';
 import '@fontsource/ibm-plex-mono/400.css';
 import '../styles/landing.css';
+import SiteMeta from '../components/SiteMeta.astro';
 import inception from '../assets/screens/inception.png';
 import discovery from '../assets/screens/discovery.png';
 import screening from '../assets/screens/screening.png';
@@ -31,14 +32,11 @@ const criteria = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Nexus Scholar: screen your systematic review on your own computer</title>
-    <meta name="description" content="Nexus Scholar is a free, local-first tool for systematic literature reviews. Write the protocol, search five free databases, screen titles and abstracts. Your workspace is a folder on your disk. Beta." />
-    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
-    <link rel="canonical" href="https://nexus-scholar-org.github.io/nexus-scholar-site/" />
-    <meta name="color-scheme" content="light dark" />
-    <meta property="og:title" content="Nexus Scholar" />
-    <meta property="og:description" content="A local-first tool for systematic literature reviews. Beta." />
-    <meta property="og:type" content="website" />
+    <SiteMeta
+      title="Nexus Scholar: screen your systematic review on your own computer"
+      description="Nexus Scholar is a free, local-first tool for systematic literature reviews. Write the protocol, search five free databases, screen titles and abstracts. Your workspace is a folder on your disk. Beta."
+      path=""
+    />
     <script is:inline>
       // The theme follows the choice made in the docs (Starlight keeps it under the same key),
       // else the system setting. Nothing is sent anywhere.
@@ -50,8 +48,17 @@ const criteria = [
         document.documentElement.classList.add('js');
       })();
     </script>
+    <noscript>
+      <style>
+        /* Without script the page is a plain document: the fragment shows its record, its criteria and the recorded event; controls that would do nothing are not shown. */
+        .theme, .copy, [data-ui] .t-more, [data-ui] .t-answers, [data-ui] .t-decide { display: none !important; }
+        [data-ui] .t-abstract { max-height: none !important; }
+        [data-ui] .t-criteria { max-height: none !important; }
+      </style>
+    </noscript>
   </head>
   <body>
+    <a class="skip" href="#main">Skip to the content</a>
     <header class="nav">
       <div class="wrap">
         <a class="mark" href={`${base}/`}>Nexus Scholar</a>
@@ -60,13 +67,13 @@ const criteria = [
             <li><a href={`${docs}/getting-started/`}>Docs</a></li>
             <li><a href={repo}>GitHub</a></li>
             <li><a href={pypi}>PyPI</a></li>
-            <li><button class="theme" type="button" id="theme" aria-label="Switch to the dark theme">Dark</button></li>
+            <li><button class="theme" type="button" id="theme" aria-label="Switch to the dark theme"><span class="to-dark">Dark</span><span class="to-light">Light</span></button></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <main>
+    <main id="main">
       <section class="hero" aria-labelledby="title">
         <div class="hero-text">
           <h1 id="title" class="lines">
@@ -110,10 +117,10 @@ const criteria = [
               <button type="button" class="primary" id="include" disabled>Include</button>
               <button type="button" id="exclude" disabled>Exclude</button>
               <button type="button" id="unclear">Unclear → full text</button>
-              <p class="t-ready" id="ready">Answer the criteria. Include is ready when every inclusion criterion is yes; Exclude as soon as one criterion fails. Four of the protocol's seven criteria are shown.</p>
+              <p class="t-ready" id="ready" aria-live="polite">Answer the criteria. Include is ready when every inclusion criterion is yes; Exclude as soon as one criterion fails. Four of the protocol's seven criteria are shown.</p>
             </div>
             <div class="t-journal">
-              <p class="t-label"><span id="jlabel">The event the engine wrote for this record on 6 November 2026</span><span class="badge">HUMAN</span></p>
+              <p class="t-label" aria-live="polite"><span id="jlabel">The event the engine wrote for this record on 6 November 2026</span><span class="badge">HUMAN</span></p>
               <pre id="journal"><span class="k">"outcome":</span> <span class="ev">"EXCLUDE"</span>, <span class="k">"reason_code":</span> <span class="ev">"EXC-03"</span>,
 <span class="k">"method":</span> "HUMAN", <span class="k">"screener_id":</span> "researcher:local",
 <span class="k">"study_id":</span> "STU-10b7daa204b9eab1ffe895b4d35ff61b",
@@ -138,7 +145,7 @@ const criteria = [
             </div>
             <div class="response">
               <figure>
-                <div class="crop" style="--zoom:150%;--x:-24.75%;--y:-6.75%"><Image src={inception} alt="The Concepts and criteria step of the app. Three concepts, crop-weed, reliability and generalization, in text fields. Below, an inclusion criterion written by the wizard, marked Waiting for you with Accept and Reject buttons, and three exclusion criteria marked Accepted." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 150vw, 80vw" loading="eager" /></div>
+                <div class="crop drift" style="--zoom:150%;--x:-24.75%;--y:-6.75%"><Image src={inception} alt="The Concepts and criteria step of the app. Three concepts, crop-weed, reliability and generalization, in text fields. Below, an inclusion criterion written by the wizard, marked Waiting for you with Accept and Reject buttons, and three exclusion criteria marked Accepted." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 150vw, 80vw" /></div>
                 <figcaption>Concepts and criteria. Every criterion is shown word for word with where it came from. A criterion the wizard wrote waits for your Accept.</figcaption>
               </figure>
             </div>
@@ -152,7 +159,7 @@ const criteria = [
             </div>
             <div class="response">
               <figure>
-                <div class="crop" style="--zoom:130%;--x:-14%;--y:-5.85%"><Image src={discovery} alt="The Search plan step of the app. The heading reads: This is what each database will receive. The protocol fingerprint, then the OpenAlex query string marked Translated, not yet sent. A Limits card with the date window 2020 to 2026, language en, and a cap of 10000 per database. A card says the contact email is not set and shows the line to set it." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 150vw, 80vw" /></div>
+                <div class="crop drift" style="--zoom:130%;--x:-14%;--y:-5.85%"><Image src={discovery} alt="The Search plan step of the app. The heading reads: This is what each database will receive. The protocol fingerprint, then the OpenAlex query string marked Translated, not yet sent. A Limits card with the date window 2020 to 2026, language en, and a cap of 10000 per database. A card says the contact email is not set and shows the line to set it." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 150vw, 80vw" /></div>
                 <figcaption>Plan. A dry run: the protocol fingerprint, each database's translated query, and what the database cannot express. The search refuses to start until a contact email is set, as here.</figcaption>
               </figure>
               <p class="note"><strong>Not yet tried by a second person.</strong> A search needs your contact email, and OpenAlex needs a free API key. OpenAlex, Semantic Scholar, Crossref, arXiv and PubMed; no other database. You can also import RIS or PubMed exports, instead of a search or, since 1.1.0b7, with it in one corpus.</p>
@@ -168,7 +175,7 @@ const criteria = [
             <div class="response">
               <figure>
                 <div class="frame drift">
-                  <Image src={screening} alt="The triage screen of the app at desktop width. Left, a counts rail: 30 need you, 0 decided, 0 skipped, with the current and next record. Centre, the record Determination of Olive Tree Components from Unmanned Aerial Vehicle Data, 2022, with its full abstract. Right, the optional checklist with the inclusion criteria INC-01 and INC-02 and Yes, No and Not reported buttons. Along the bottom, Include, Exclude, Unclear to full text and Skip." widths={[640, 960, 1280, 1800, 2400]} sizes="(max-width: 48rem) 100vw, 64rem" />
+                  <Image src={screening} alt="The triage screen of the app at desktop width. Left, a counts rail: 30 need you, 0 decided, 0 skipped, with the current and next record. Centre, the record Determination of Olive Tree Components from Unmanned Aerial Vehicle Data, 2022, with its full abstract. Right, the optional checklist with the inclusion criteria INC-01 and INC-02 and Yes, No and Not reported buttons. Along the bottom, Include, Exclude, Unclear to full text and Skip." widths={[640, 960, 1280, 1800, 2400]} sizes="(min-width: 90rem) 85rem, 96vw" />
                 </div>
                 <figcaption>Triage on a desktop. The record in the middle, the queue on the left, the checklist on the right. The draft an agent made, if you asked for one, stays hidden until you have decided.</figcaption>
               </figure>
@@ -258,19 +265,20 @@ const criteria = [
       </section>
 
       <section class="install" id="install" aria-labelledby="h-install">
-        <div class="wrap reveal">
+        <div class="wrap">
           <div>
             <h2 id="h-install">Two commands,<br />then this screen.</h2>
             <p class="after">The app opens in your browser on Workspaces. Each review is a folder in Documents. Keep the terminal open: approval codes appear there.</p>
             <div class="cmd">
-              <pre id="cmd" tabindex="0">{install}</pre>
+              <pre id="cmd">{install}</pre>
               <button class="copy" type="button" id="copy">Copy the commands</button>
+              <span class="sr-only" role="status" id="copied"></span>
             </div>
             <p class="small">Needs <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>. The version in the command keeps uv from taking betas of anything else; never use <code>--prerelease allow</code>. Then follow <a href={`${docs}/getting-started/`}>Getting started</a>, about 15 minutes.</p>
             <p class="small">On Windows there is a second way: <code>NexusScholar-1.1.0b8-setup.exe</code> from the <a href={release}>release page</a>, with no Python and no terminal. It is not signed, so Windows may warn you. It was built and tried in CI and on one developer PC, not on a clean computer. Windows only.</p>
           </div>
           <figure>
-            <div class="frame"><Image src={workspaces} alt="The Workspaces screen of the app. The heading asks which review you are working on. Below, New workspace and New review buttons, then a table with two workspaces, Golden UAV 30 marked Screening in progress and a second review marked No corpus yet, each with its folder on this computer." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 100vw, 52vw" /></div>
+            <div class="frame drift"><Image src={workspaces} alt="The Workspaces screen of the app. The heading asks which review you are working on. Below, New workspace and New review buttons, then a table with two workspaces, Golden UAV 30 marked Screening in progress and a second review marked No corpus yet, each with its folder on this computer." widths={[640, 960, 1280, 1800]} sizes="(max-width: 64rem) 100vw, 52vw" /></div>
             <figcaption>Workspaces, the first screen. Everything you see here is a folder on your disk.</figcaption>
           </figure>
         </div>
@@ -325,7 +333,8 @@ const criteria = [
       // Theme toggle: writes the key the docs use, so both halves of the site agree.
       const root = document.documentElement;
       const themeBtn = document.getElementById('theme') as HTMLButtonElement;
-      const label = () => { const next = root.dataset.theme === 'dark' ? 'Light' : 'Dark'; themeBtn.textContent = next; themeBtn.setAttribute('aria-label', `Switch to the ${next.toLowerCase()} theme`); };
+      // The visible word comes from CSS (data-theme), so it is right before this script runs.
+      const label = () => { const next = root.dataset.theme === 'dark' ? 'light' : 'dark'; themeBtn.setAttribute('aria-label', `Switch to the ${next} theme`); };
       label();
       themeBtn.addEventListener('click', () => {
         root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -336,10 +345,12 @@ const criteria = [
       // Copy the install commands.
       const copy = document.getElementById('copy') as HTMLButtonElement;
       const cmd = document.getElementById('cmd') as HTMLPreElement;
+      const copied = document.getElementById('copied')!;
       copy.addEventListener('click', async () => {
         try { await navigator.clipboard.writeText(cmd.textContent || ''); copy.textContent = 'Copied'; }
         catch { copy.textContent = 'Select and copy the lines above'; }
-        setTimeout(() => { copy.textContent = 'Copy the commands'; }, 2500);
+        copied.textContent = copy.textContent;
+        setTimeout(() => { copy.textContent = 'Copy the commands'; copied.textContent = ''; }, 2500);
       });
 
       // The abstract disclosure.
@@ -420,7 +431,7 @@ const criteria = [
 
       // Keys, only while the fragment has focus, as in the app.
       document.getElementById('triage')!.addEventListener('keydown', (e) => {
-        if ((e.target as HTMLElement).tagName === 'TEXTAREA') return;
+        if ((e.target as HTMLElement).tagName === 'TEXTAREA' || e.ctrlKey || e.metaKey || e.altKey) return;
         const map: Record<string, string> = { '1': 'yes', '2': 'no', '3': 'not_reported' };
         if (map[e.key]) { answer(items[current], map[e.key]); e.preventDefault(); }
         else if (e.key === 'i' || e.key === 'I') { if (!include.disabled) include.click(); }
@@ -428,11 +439,32 @@ const criteria = [
         else if (e.key === 'u' || e.key === 'U') { unclear.click(); }
       });
 
-      // Entrances: sections arrive once as they enter the viewport.
-      const io = new IntersectionObserver((entries) => {
-        for (const en of entries) if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-      }, { rootMargin: '0px 0px -10% 0px' });
-      document.querySelectorAll('.reveal, .drift').forEach((el) => io.observe(el));
+      // Entrances. A section is held back only by this script, only when it starts below the first
+      // screen and only with motion allowed; it is released as soon as its top comes near the
+      // viewport, and one that a jump (End, a #link) carried past arrives at once, without travel.
+      const waiting = Array.from(document.querySelectorAll<HTMLElement>('.reveal, .drift'))
+        .filter((el) => el.getBoundingClientRect().top > innerHeight);
+      if (waiting.length && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+        waiting.forEach((el) => el.classList.add('wait'));
+        let queued = false;
+        const release = () => {
+          queued = false;
+          const edge = innerHeight * 0.92;
+          for (let i = waiting.length - 1; i >= 0; i--) {
+            const el = waiting[i], r = el.getBoundingClientRect();
+            if (r.top >= edge) continue;
+            if (r.top < innerHeight * 0.25) el.classList.add('now');
+            el.classList.remove('wait');
+            waiting.splice(i, 1);
+          }
+          if (!waiting.length) { removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); }
+        };
+        const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(release); } };
+        addEventListener('scroll', onScroll, { passive: true });
+        addEventListener('resize', onScroll);
+        addEventListener('hashchange', release);
+        release();
+      }
     </script>
   </body>
 </html>

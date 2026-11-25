@@ -19,6 +19,7 @@
   --unclear-soft: #fbf0e0;
   --exclude: #4b5563;
   --exclude-soft: #eceef1;
+  --blocked: #9b1c1c;
   /* the hero and the wordmark tile use the dark theme's values in both themes */
   --field: #16202b;
   --field-2: #1f262e;
@@ -26,6 +27,7 @@
   --field-muted: #9aa5b1;
   --field-surface: #ffffff;
   --field-surface-ink: #16202b;
+  --focus: var(--brand);
 
   --font-display: 'Literata Variable', Georgia, 'Times New Roman', serif;
   --font-text: 'Public Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -66,8 +68,36 @@
   --unclear-soft: #33261a;
   --exclude: #aab4bf;
   --exclude-soft: #262e36;
+  --blocked: #f08c8c;
   --field: #111519;
   --field-2: #181d23;
+}
+
+/* Without script (no data-theme), the system setting decides. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --ground: #111519;
+    --surface: #181d23;
+    --raised: #1f262e;
+    --ink: #e6e9ed;
+    --muted: #9aa5b1;
+    --hairline: #2c343d;
+    --brand: #8fb3e6;
+    --brand-soft: #1b2a3f;
+    --on-brand: #0f1a2b;
+    --anchor: #e2a94c;
+    --anchor-soft: #3a2c14;
+    --include: #7fd0a0;
+    --include-soft: #16301f;
+    --unclear: #f0b06a;
+    --unclear-soft: #33261a;
+    --exclude: #aab4bf;
+    --exclude-soft: #262e36;
+    --blocked: #f08c8c;
+  --blocked: #f08c8c;
+    --field: #111519;
+    --field-2: #181d23;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -86,7 +116,14 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 h1, h2, h3, p, ul, ol, figure { margin: 0; }
 button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+/* the focus ring takes the colour that reads on the ground it is drawn over */
+.nav, .hero, .hero-stage .caption { --focus: var(--field-ink); }
+[data-ui] { --focus: var(--brand); }
+.install { --focus: var(--on-brand); }
+.foot .tile.go { --focus: var(--ink); }
+.skip { position: absolute; left: var(--margin); top: 0.5rem; z-index: 10; padding: 0.6rem 1rem; background: var(--field-surface); color: var(--field-surface-ink); font-weight: 600; transform: translateY(-200%); }
+.skip:focus { transform: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .wrap { padding-inline: var(--margin); max-width: 90rem; margin-inline: auto; }
@@ -98,9 +135,12 @@ button { font: inherit; color: inherit; }
   background: var(--field); color: var(--field-ink);
 }
 .nav .wrap { display: flex; align-items: center; gap: 1.5rem; width: 100%; }
-.nav .mark { font-family: var(--font-display); font-weight: 600; font-size: var(--step-lead); letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; }
-.nav ul { list-style: none; padding: 0; display: flex; gap: 1.25rem; margin-left: auto; }
-.nav ul a { text-decoration: none; padding: 0.5rem 0; }
+.nav .mark { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-display); font-weight: 600; font-size: var(--step-lead); letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; }
+.nav nav { margin-left: auto; }
+.nav ul { list-style: none; padding: 0; display: flex; align-items: center; gap: 1.25rem; }
+.nav ul a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.theme .to-light, :root[data-theme='dark'] .theme .to-dark { display: none; }
+:root[data-theme='dark'] .theme .to-light { display: inline; }
 .nav ul a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .theme {
   background: var(--field-2); border: 0; color: inherit;
@@ -153,7 +193,6 @@ button { font: inherit; color: inherit; }
   .hero { grid-template-columns: 1fr; background: var(--field); }
   .hero-text { min-height: 58svh; justify-content: flex-end; }
   .hero-stage { padding-block: 2rem 2.5rem; justify-items: center; }
-  [data-ui].triage { max-height: 80svh; overflow: auto; }
 }
 
 /* ---------- The live triage fragment (the product's own conventions apply inside) ---------- */
@@ -170,17 +209,17 @@ button { font: inherit; color: inherit; }
 [data-ui] .t-meta { color: var(--muted); font-size: var(--step-small); margin-top: 0.25rem; }
 [data-ui] .t-abstract { margin-top: 0.6rem; color: var(--ink); max-height: 4.4em; overflow: hidden; position: relative; }
 [data-ui] .t-abstract.open { max-height: none; }
-[data-ui] .t-more { background: none; border: 0; padding: 0.25rem 0; color: var(--brand); text-decoration: underline; cursor: pointer; font-size: var(--step-small); }
+[data-ui] .t-more { background: none; border: 0; padding: 0.25rem 0; color: var(--brand); text-decoration: underline; cursor: pointer; font-size: var(--step-small); min-height: 44px; }
 [data-ui] .t-criteria { list-style: none; margin: 0; padding: 0.25rem 1rem 0; border-top: 1px solid var(--hairline); max-height: 14rem; overflow: auto; }
 [data-ui] .t-criteria li { padding: 0.65rem 0; border-bottom: 1px solid var(--hairline); }
 [data-ui] .t-criteria li:last-child { border-bottom: 0; }
 [data-ui] .t-crit-head { display: flex; gap: 0.5rem; align-items: baseline; font-size: var(--step-small); color: var(--muted); }
 [data-ui] .t-crit-head code { font-family: var(--font-mono); font-size: var(--step-small); color: var(--ink); }
 [data-ui] .t-crit-text { margin-top: 0.15rem; }
-[data-ui] .t-answers { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
+[data-ui] .t-answers { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
 [data-ui] .t-answers button {
   background: var(--surface); border: 1px solid var(--hairline); border-radius: 6px;
-  padding: 0.35rem 0.6rem; cursor: pointer; min-height: 36px; font-size: var(--step-small);
+  padding: 0.35rem 0.75rem; cursor: pointer; min-height: 44px; min-width: 44px; font-size: var(--step-small);
   transition: background var(--t-hover) var(--ease-out), border-color var(--t-hover) var(--ease-out), transform var(--t-press) var(--ease-out);
 }
 [data-ui] .t-answers button:hover { background: var(--raised); }
@@ -191,7 +230,7 @@ button { font: inherit; color: inherit; }
 [data-ui] .t-decide { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; padding: 0.75rem 1rem; border-top: 1px solid var(--hairline); background: var(--raised); border-radius: 0 0 6px 6px; }
 [data-ui] .t-decide button {
   border: 1px solid var(--hairline); background: var(--surface); border-radius: 6px;
-  padding: 0.45rem 0.8rem; cursor: pointer; min-height: 40px; font-weight: 500;
+  padding: 0.45rem 0.8rem; cursor: pointer; min-height: 44px; font-weight: 500;
   transition: transform var(--t-press) var(--ease-out), background var(--t-hover) var(--ease-out);
 }
 [data-ui] .t-decide button:active { transform: scale(0.98); }
@@ -236,12 +275,12 @@ button { font: inherit; color: inherit; }
 .exchange .response { margin-left: 3.5rem; }
 .exchange .response figure { display: grid; gap: 0.6rem; }
 .exchange .response img { width: 100%; height: auto; border-radius: 6px; }
-.exchange .response figcaption { font-size: var(--step-small); color: var(--muted); max-width: 40rem; }
+.exchange .response figcaption { font-size: var(--step-small); color: var(--muted); max-width: 62ch; }
 .exchange.wide { max-width: none; }
 .exchange.wide .response { margin-left: 3.5rem; max-width: 64rem; }
 .exchange.wide .response .frame { overflow: clip; border-radius: 6px; }
 .exchange.wide .response .frame img { border-radius: 0; }
-.note { margin-top: 0.4rem; font-size: var(--step-small); color: var(--muted); }
+.note { margin-top: 0.4rem; font-size: var(--step-small); color: var(--muted); max-width: 62ch; }
 .note strong { color: var(--ink); }
 @media (max-width: 48rem) {
   .flow { gap: 4rem; margin-left: 0; }
@@ -260,8 +299,7 @@ button { font: inherit; color: inherit; }
 .journal td.by { color: var(--muted); }
 .journal tr.day td { padding-top: 2rem; font-weight: 600; background: transparent; }
 .journal tr.day td { font-size: var(--step-lead); }
-.journal tr.refused td.what { color: var(--blocked, #9b1c1c); }
-:root[data-theme='dark'] .journal tr.refused td.what { color: #f08c8c; }
+.journal tr.refused td.what { color: var(--blocked); }
 @media (max-width: 48rem) {
   .journal thead { display: none; }
   .journal tr { display: block; padding: 0.75rem 0.5rem; }
@@ -291,6 +329,7 @@ button { font: inherit; color: inherit; }
 .limits li .val { font-size: var(--step-small); color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; padding-top: 0.2rem; white-space: nowrap; }
 .limits li .val a { color: var(--brand); }
 @media (max-width: 48rem) {
+  .limits { margin-left: 0; }
   .limits li { grid-template-columns: 1rem 1fr; }
   .limits li .val { grid-column: 2; text-align: left; white-space: normal; padding-top: 0; }
 }
@@ -312,8 +351,10 @@ button { font: inherit; color: inherit; }
 }
 .install pre {
   margin: 0; background: var(--field); color: var(--field-ink);
-  padding: 1rem 1.25rem; border-radius: 6px; font-family: var(--font-mono); /* taste-skill-ignore: the install command */ font-size: var(--step-small); line-height: 1.6;
-  white-space: pre; overflow-x: auto; max-width: 100%;
+  padding: 1rem clamp(0.875rem, 2.5vw, 1.25rem); border-radius: 6px; font-family: var(--font-mono); /* taste-skill-ignore: the install command */
+  font-size: clamp(0.8125rem, 3.3vw, 0.875rem); line-height: 1.6;
+  /* one command per line at every width from 375px; narrower screens wrap at a space, never mid-word */
+  white-space: pre-wrap; overflow-wrap: normal; max-width: 100%;
 }
 .install .copy {
   justify-self: start; background: rgba(255,255,255,0.14); border: 0; padding: 0.5rem 0.9rem;
@@ -324,7 +365,7 @@ button { font: inherit; color: inherit; }
 :root[data-theme='dark'] .install .copy { background: rgba(0,0,0,0.14); }
 :root[data-theme='dark'] .install .copy:hover { background: rgba(0,0,0,0.24); }
 .install .copy:active { transform: scale(0.98); }
-.install .small { margin-top: 1rem; font-size: var(--step-small); max-width: 40ch; }
+.install .small { margin-top: 1rem; font-size: 1rem; max-width: 50ch; }
 .install .small a { color: inherit; }
 .install figure { display: grid; gap: 0.6rem; }
 .install figure .frame { aspect-ratio: 16 / 9; overflow: clip; border-radius: 6px; }
@@ -346,7 +387,7 @@ button { font: inherit; color: inherit; }
 .tile.contact { grid-column: span 3; }
 .tile h3 { font-size: var(--step-small); font-weight: 500; color: var(--muted); margin-bottom: 0.5rem; }
 .tile ul { list-style: none; padding: 0; display: grid; gap: 0.25rem; }
-.tile a { text-decoration: none; }
+.tile a { text-decoration: none; display: inline-block; padding-block: 0.125rem; }
 .tile a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .tile .legal { font-size: var(--step-small); color: var(--muted); }
 .tile.contact a.mail { font-size: var(--step-lead); font-weight: 500; }
@@ -359,8 +400,12 @@ button { font: inherit; color: inherit; }
 @media (max-width: 64rem) {
   .tiles { grid-template-columns: 1fr 1fr; gap: 0.375rem; }
   .tile.wordmark { grid-column: span 2; order: -2; min-height: 10rem; }
-  .tile.go { grid-column: span 2; order: -1; min-height: 12rem; }
-  .tile.statement, .tile.navi, .tile.sources, .tile.contact { grid-column: span 1; min-height: 11rem; }
+  .tile.go { grid-column: span 2; min-height: 12rem; }
+  .tiles { grid-auto-flow: row dense; }
+  .tile.statement { grid-column: span 2; min-height: 0; gap: 1.5rem; }
+  .tile.navi, .tile.contact { grid-column: span 1; min-height: 11rem; }
+  .tile.sources { grid-column: span 2; min-height: 0; }
+  .tile.sources ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
 }
 @media (max-width: 30rem) {
   .tile.statement, .tile.navi, .tile.sources, .tile.contact { grid-column: span 2; min-height: auto; gap: 1rem; }
@@ -369,7 +414,6 @@ button { font: inherit; color: inherit; }
 /* ---------- Motion ---------- */
 .lines .line { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
 .lines [data-line] { display: block; }
-.reveal > * { }
 @media (prefers-reduced-motion: no-preference) {
   .js .lines [data-line] {
     transform: translateY(105%);
@@ -384,15 +428,17 @@ button { font: inherit; color: inherit; }
   .js .hero .hero-actions { animation-delay: 740ms; }
   .js .hero .beta { animation-delay: 820ms; }
   .js .hero-stage > * { animation-delay: 500ms; }
-  .js .reveal > * { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease-out), transform 800ms var(--ease-expo); }
-  .js .reveal.in > * { opacity: 1; transform: none; }
-  .js .reveal.in > *:nth-child(2) { transition-delay: 80ms; }
-  .js .reveal.in > *:nth-child(3) { transition-delay: 160ms; }
-  .js .reveal.in > *:nth-child(4) { transition-delay: 240ms; }
-  .js .reveal.in > *:nth-child(5) { transition-delay: 320ms; }
-  .js .reveal.in > *:nth-child(n+6) { transition-delay: 400ms; }
-  .js .drift img { transform: scale(1.04); transition: transform 1600ms var(--ease-expo); }
-  .js .drift.in img { transform: none; }
+  /* Sections are held back only while the page script marks them .wait (see index.astro), so a
+     page whose script fails shows everything; .now drops the travel after a jump. */
+  .reveal > * { transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-expo); }
+  .reveal.wait > * { opacity: 0; transform: translateY(24px); }
+  .reveal > *:nth-child(2) { transition-delay: 70ms; }
+  .reveal > *:nth-child(3) { transition-delay: 140ms; }
+  .reveal > *:nth-child(4) { transition-delay: 210ms; }
+  .reveal > *:nth-child(n+5) { transition-delay: 280ms; }
+  .drift img { transition: transform 1600ms var(--ease-expo); }
+  .drift.wait img { transform: scale(1.04); }
+  .reveal.now > *, .drift.now img { transition: none; }
 }
 @keyframes line-up { to { transform: none; } }
 @keyframes fade-up { to { opacity: 1; transform: none; } }
