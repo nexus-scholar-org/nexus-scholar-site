@@ -26,15 +26,15 @@ const repo = 'https://github.com/nexus-scholar-org/nexus-scholar-harness';
       })();
     </script>
   </head>
-  <body class="notfound">
+  <body class="notfound ns-prose">
     <a class="skip" href="#main">Skip to the content</a>
     <header class="nav">
       <div class="wrap">
         <a class="mark" href={`${base}/`}>Nexus Scholar</a>
         <nav aria-label="Site">
           <ul>
-            <li><a href={`${docs}/getting-started/`}>Docs</a></li>
-            <li><a href={repo}>GitHub</a></li>
+            <li><a class="ns-nav-link" href={`${docs}/getting-started/`}>Docs</a></li>
+            <li><a class="ns-nav-link" href={repo}>GitHub</a></li>
           </ul>
         </nav>
       </div>
@@ -45,10 +45,10 @@ const repo = 'https://github.com/nexus-scholar-org/nexus-scholar-harness';
         <h1>This page is not here.</h1>
         <p class="lead">The address may be mistyped, or the page has moved since the link was made. Every page of the site starts from one of these.</p>
         <ul class="ways">
-          <li><a class="btn" href={`${base}/`}>The home page</a></li>
-          <li><a href={`${docs}/getting-started/`}>Getting started</a></li>
-          <li><a href={`${docs}/known-limits/`}>Known limits</a></li>
-          <li><a href={`${docs}/releases/1-1-0b8/`}>Release notes, 1.1.0b8</a></li>
+          <li><a class="ns-btn ns-btn-primary ns-btn-action" href={`${base}/`}>The home page</a></li>
+          <li><a class="ns-link" href={`${docs}/getting-started/`}>Getting started</a></li>
+          <li><a class="ns-link" href={`${docs}/known-limits/`}>Known limits</a></li>
+          <li><a class="ns-link" href={`${docs}/releases/1-1-0b8/`}>Release notes, 1.1.0b8</a></li>
         </ul>
         <p class="search">Or search the docs from the box at the top of any <a href={`${docs}/getting-started/`}>docs page</a>.</p>
       </div>

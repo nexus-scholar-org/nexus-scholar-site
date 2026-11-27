@@ -1,3 +1,5 @@
+@import './controls.css';
+
 /* Nexus Scholar landing page. Tokens from docs/ux/brand/tokens.json; composition from the
    dealt direction "The product performs" (.taste-skill/direction.json). */
 
@@ -94,7 +96,6 @@
     --exclude: #aab4bf;
     --exclude-soft: #262e36;
     --blocked: #f08c8c;
-  --blocked: #f08c8c;
     --field: #111519;
     --field-2: #181d23;
   }
@@ -116,13 +117,12 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 h1, h2, h3, p, ul, ol, figure { margin: 0; }
 button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-/* the focus ring takes the colour that reads on the ground it is drawn over */
-.nav, .hero, .hero-stage .caption { --focus: var(--field-ink); }
+/* the focus ring (controls.css) takes the colour that reads on the ground it is drawn over */
+.skip, .nav, .hero, .hero-stage .caption { --focus: var(--field-ink); }
 [data-ui] { --focus: var(--brand); }
 .install { --focus: var(--on-brand); }
 .foot .tile.go { --focus: var(--ink); }
-.skip { position: absolute; left: var(--margin); top: 0.5rem; z-index: 10; padding: 0.6rem 1rem; background: var(--field-surface); color: var(--field-surface-ink); font-weight: 600; transform: translateY(-200%); }
+.skip { position: absolute; left: var(--margin); top: 0.5rem; z-index: 10; display: inline-flex; align-items: center; min-height: var(--ns-h); padding: 0 var(--ns-pad); border-radius: var(--ns-radius); background: var(--field-surface); color: var(--field-surface-ink); font-weight: var(--ns-weight); text-decoration: none; transform: translateY(-200%); }
 .skip:focus { transform: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -138,21 +138,16 @@ button { font: inherit; color: inherit; }
 .nav .mark { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-display); font-weight: 600; font-size: var(--step-lead); letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; }
 .nav nav { margin-left: auto; }
 .nav ul { list-style: none; padding: 0; display: flex; align-items: center; gap: 1.25rem; }
-.nav ul a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.nav ul a { display: inline-flex; align-items: center; min-height: var(--ns-h); }
 .theme .to-light, :root[data-theme='dark'] .theme .to-dark { display: none; }
 :root[data-theme='dark'] .theme .to-light { display: inline; }
-.nav ul a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
-.theme {
-  background: var(--field-2); border: 0; color: inherit;
-  padding: 0.4rem 0.75rem; cursor: pointer; min-height: 44px; white-space: nowrap;
-  transition: background var(--t-hover) var(--ease-out);
-}
-.theme:hover { background: #2c343d; }
+/* the theme switch is a utility button: the secondary fill at the control size */
+.theme { padding-inline: 0.875rem; white-space: nowrap; }
 @media (max-width: 40rem) {
   .nav .wrap { gap: 0.75rem; }
   .nav ul { gap: 0.75rem; }
   .nav ul li:nth-child(3) { display: none; }
-  .theme { padding-inline: 0.6rem; }
+  .theme { padding-inline: 0.75rem; }
 }
 
 /* ---------- Hero: two tones, split at 50% ---------- */
@@ -173,16 +168,12 @@ button { font: inherit; color: inherit; }
 .hero-text .lead { margin-top: 1.5rem; max-width: 44ch; font-size: var(--step-lead); color: var(--field-muted); text-wrap: pretty; }
 .hero-text .lead strong { color: var(--field-ink); font-weight: 500; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 48px; padding: 0 1.25rem;
-  background: var(--field-surface); color: var(--field-surface-ink);
-  text-decoration: none; font-weight: 600;
-  transition: transform var(--t-press) var(--ease-out), background var(--t-hover) var(--ease-out);
-}
-.btn:hover { background: #e8eef7; }
-.btn:active { transform: translateY(1px) scale(0.99); }
-.hero-actions .text { text-decoration: underline; text-underline-offset: 0.2em; min-height: 44px; display: inline-flex; align-items: center; }
+/* The primary takes the ground's strongest contrast: brand on the page, white on the dark field,
+   the band's ink on the blue install band. */
+.ns-btn-primary { --btn-bg: var(--brand); --btn-ink: var(--on-brand); }
+.hero .ns-btn-primary, .lost .ns-btn-primary { --btn-bg: var(--field-surface); --btn-ink: var(--field-surface-ink); }
+[data-ui] .ns-btn-primary { --btn-bg: var(--brand); --btn-ink: var(--on-brand); }
+.hero-actions .text { min-height: var(--ns-h-action); display: inline-flex; align-items: center; font-weight: var(--ns-weight); }
 .hero .beta { margin-top: 1.75rem; font-size: var(--step-small); color: var(--field-muted); max-width: 44ch; }
 .hero .beta strong { color: var(--field-ink); font-weight: 600; }
 
@@ -209,7 +200,7 @@ button { font: inherit; color: inherit; }
 [data-ui] .t-meta { color: var(--muted); font-size: var(--step-small); margin-top: 0.25rem; }
 [data-ui] .t-abstract { margin-top: 0.6rem; color: var(--ink); max-height: 4.4em; overflow: hidden; position: relative; }
 [data-ui] .t-abstract.open { max-height: none; }
-[data-ui] .t-more { background: none; border: 0; padding: 0.25rem 0; color: var(--brand); text-decoration: underline; cursor: pointer; font-size: var(--step-small); min-height: 44px; }
+[data-ui] .t-more { background: none; border: 0; padding: 0; color: var(--brand); cursor: pointer; font: inherit; font-size: var(--step-small); min-height: var(--ns-h); }
 [data-ui] .t-criteria { list-style: none; margin: 0; padding: 0.25rem 1rem 0; border-top: 1px solid var(--hairline); max-height: 14rem; overflow: auto; }
 [data-ui] .t-criteria li { padding: 0.65rem 0; border-bottom: 1px solid var(--hairline); }
 [data-ui] .t-criteria li:last-child { border-bottom: 0; }
@@ -217,25 +208,18 @@ button { font: inherit; color: inherit; }
 [data-ui] .t-crit-head code { font-family: var(--font-mono); font-size: var(--step-small); color: var(--ink); }
 [data-ui] .t-crit-text { margin-top: 0.15rem; }
 [data-ui] .t-answers { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
-[data-ui] .t-answers button {
-  background: var(--surface); border: 1px solid var(--hairline); border-radius: 6px;
-  padding: 0.35rem 0.75rem; cursor: pointer; min-height: 44px; min-width: 44px; font-size: var(--step-small);
-  transition: background var(--t-hover) var(--ease-out), border-color var(--t-hover) var(--ease-out), transform var(--t-press) var(--ease-out);
+/* The app's own controls (triage-page.tsx, components/ui/base.tsx): hairline-bordered answers, an
+   answer chosen in brand on brand-soft; the decision bar is the app's Button, its secondary bordered in
+   ink-muted. The borders are the product's and stay inside this fragment (data-ui). */
+[data-ui] .t-answers .ns-btn {
+  --btn-bg: var(--surface); --btn-ink: var(--ink);
+  border: 1px solid var(--hairline); min-width: var(--ns-h); padding: 0 0.75rem;
+  font-size: var(--step-small); font-weight: 400;
 }
-[data-ui] .t-answers button:hover { background: var(--raised); }
-[data-ui] .t-answers button:active { transform: scale(0.98); }
-[data-ui] .t-answers button[aria-pressed='true'] { background: var(--brand-soft); border-color: var(--brand); color: var(--ink); }
-[data-ui] .t-answers button[aria-pressed='true'].no { background: var(--exclude-soft); border-color: var(--exclude); }
-[data-ui] .t-answers button[aria-pressed='true'].nr { background: var(--unclear-soft); border-color: var(--unclear); }
+/* chosen: brand on brand-soft, and the border doubles, so the choice does not rest on colour alone */
+[data-ui] .t-answers .ns-btn[aria-pressed='true'] { --btn-bg: var(--brand-soft); --btn-ink: var(--brand); border-color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand); }
 [data-ui] .t-decide { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; padding: 0.75rem 1rem; border-top: 1px solid var(--hairline); background: var(--raised); border-radius: 0 0 6px 6px; }
-[data-ui] .t-decide button {
-  border: 1px solid var(--hairline); background: var(--surface); border-radius: 6px;
-  padding: 0.45rem 0.8rem; cursor: pointer; min-height: 44px; font-weight: 500;
-  transition: transform var(--t-press) var(--ease-out), background var(--t-hover) var(--ease-out);
-}
-[data-ui] .t-decide button:active { transform: scale(0.98); }
-[data-ui] .t-decide button.primary { background: var(--brand); color: var(--on-brand); border-color: var(--brand); }
-[data-ui] .t-decide button[disabled] { opacity: 0.45; cursor: not-allowed; }
+[data-ui] .t-decide .ns-btn:not(.ns-btn-primary) { --btn-bg: var(--surface); --btn-ink: var(--ink); border: 1px solid var(--muted); }
 [data-ui] .t-decide .t-ready { flex-basis: 100%; font-size: var(--step-small); color: var(--muted); }
 [data-ui] .t-journal { padding: 0.75rem 1rem 1rem; border-top: 1px solid var(--hairline); }
 [data-ui] .t-journal .t-label { font-size: var(--step-small); color: var(--muted); display: flex; justify-content: space-between; gap: 1rem; }
@@ -282,6 +266,7 @@ button { font: inherit; color: inherit; }
 .exchange.wide .response .frame img { border-radius: 0; }
 .note { margin-top: 0.4rem; font-size: var(--step-small); color: var(--muted); max-width: 62ch; }
 .note strong { color: var(--ink); }
+.section p a:not([class]) { color: var(--brand); }
 @media (max-width: 48rem) {
   .flow { gap: 4rem; margin-left: 0; }
   .exchange .response, .exchange.wide .response { margin-left: 0; }
@@ -356,19 +341,19 @@ button { font: inherit; color: inherit; }
   /* one command per line at every width from 375px; narrower screens wrap at a space, never mid-word */
   white-space: pre-wrap; overflow-wrap: normal; max-width: 100%;
 }
-.install .copy {
-  justify-self: start; background: rgba(255,255,255,0.14); border: 0; padding: 0.5rem 0.9rem;
-  cursor: pointer; min-height: 44px; border-radius: 0;
-  transition: background var(--t-hover) var(--ease-out), transform var(--t-press) var(--ease-out);
-}
-.install .copy:hover { background: rgba(255,255,255,0.24); }
-:root[data-theme='dark'] .install .copy { background: rgba(0,0,0,0.14); }
-:root[data-theme='dark'] .install .copy:hover { background: rgba(0,0,0,0.24); }
-.install .copy:active { transform: scale(0.98); }
+/* On the band the primary is the band's ink; the copy button is the secondary fill under the commands. */
+.install .ns-btn-primary { --btn-bg: var(--on-brand); --btn-ink: var(--brand); }
+.install .copy { justify-self: start; }
+/* copied: the fill turns solid and the label says so */
+.install .copy.done { background: var(--on-brand); color: var(--brand); }
 .install .small { margin-top: 1rem; font-size: 1rem; max-width: 50ch; }
 .install .small a { color: inherit; }
 .install .download { margin-top: 2.5rem; }
 .install .download h3 { font-family: var(--font-display); font-weight: 600; font-size: var(--step-lead); margin-bottom: 1rem; }
+/* The installer is the band's main action: the larger button, with the file it gives you on its second line. */
+.install .dl { flex-direction: column; align-items: flex-start; gap: 0.125rem; padding-block: 0.625rem; text-align: left; }
+.install .dl-file { font-size: var(--step-small); font-weight: 400; opacity: 0.8; overflow-wrap: anywhere; }
+.install .dl + .small { margin-top: 0.75rem; }
 .install figure { display: grid; gap: 0.6rem; }
 .install figure .frame { aspect-ratio: 16 / 9; overflow: clip; border-radius: 6px; }
 .install figure img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
@@ -389,14 +374,26 @@ button { font: inherit; color: inherit; }
 .tile.contact { grid-column: span 3; }
 .tile h3 { font-size: var(--step-small); font-weight: 500; color: var(--muted); margin-bottom: 0.5rem; }
 .tile ul { list-style: none; padding: 0; display: grid; gap: 0.25rem; }
-.tile a { text-decoration: none; display: inline-block; padding-block: 0.125rem; }
-.tile a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.tile a { display: inline-block; padding-block: 0.125rem; }
+@media (max-width: 64rem) { .tile a { display: inline-flex; align-items: center; min-height: var(--ns-h); padding-block: 0; } .tile ul { gap: 0; } }
 .tile .legal { font-size: var(--step-small); color: var(--muted); }
 .tile.contact a.mail { font-size: var(--step-lead); font-weight: 500; }
 .tile.wordmark { grid-column: span 8; min-height: 20rem; background: var(--field); color: var(--field-ink); display: grid; place-items: center; }
 .tile.wordmark span { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.5rem, 8.5vw, 9rem); letter-spacing: -0.02em; line-height: 1; text-align: center; }
-.tile.go { grid-column: span 4; min-height: 20rem; background: var(--brand); color: var(--on-brand); text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform var(--t-hover) var(--ease-out); }
-.tile.go:hover { text-decoration: none; transform: translateY(-2px); }
+.tile.go { grid-column: span 4; min-height: 20rem; background: var(--brand); color: var(--on-brand); text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; position: relative; isolation: isolate; }
+/* the go tile is a large primary: the same veil as every button, and its arrow travels on hover */
+.tile.go::after { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: currentColor; opacity: 0; pointer-events: none; }
+@media (hover: hover) and (pointer: fine) {
+  .tile.go:hover::after { opacity: var(--ns-veil-hover); }
+  .tile.go:hover svg { transform: translateX(6px); }
+}
+.tile.go:active::after { opacity: var(--ns-veil-press); }
+@media (prefers-reduced-motion: no-preference) {
+  .tile.go { transition: transform var(--ns-t-press) var(--ns-ease); }
+  .tile.go::after { transition: opacity var(--ns-t-hover) var(--ns-ease); }
+  .tile.go svg { transition: transform 320ms var(--ns-ease); }
+  .tile.go:active { transform: var(--ns-press); }
+}
 .tile.go span { font-family: var(--font-display); font-weight: 600; font-size: var(--step-head); line-height: 1.15; }
 .tile.go svg { align-self: flex-end; width: 3rem; height: 3rem; }
 @media (max-width: 64rem) {

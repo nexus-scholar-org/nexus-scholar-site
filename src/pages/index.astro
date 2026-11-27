@@ -58,17 +58,17 @@ const criteria = [
       </style>
     </noscript>
   </head>
-  <body>
+  <body class="ns-prose">
     <a class="skip" href="#main">Skip to the content</a>
     <header class="nav">
       <div class="wrap">
         <a class="mark" href={`${base}/`}>Nexus Scholar</a>
         <nav aria-label="Site">
           <ul>
-            <li><a href={`${docs}/getting-started/`}>Docs</a></li>
-            <li><a href={repo}>GitHub</a></li>
-            <li><a href={pypi}>PyPI</a></li>
-            <li><button class="theme" type="button" id="theme" aria-label="Switch to the dark theme"><span class="to-dark">Dark</span><span class="to-light">Light</span></button></li>
+            <li><a class="ns-nav-link" href={`${docs}/getting-started/`}>Docs</a></li>
+            <li><a class="ns-nav-link" href={repo}>GitHub</a></li>
+            <li><a class="ns-nav-link" href={pypi}>PyPI</a></li>
+            <li><button class="theme ns-btn ns-btn-secondary" type="button" id="theme" aria-label="Switch to the dark theme"><span class="to-dark">Dark</span><span class="to-light">Light</span></button></li>
           </ul>
         </nav>
       </div>
@@ -83,8 +83,8 @@ const criteria = [
           </h1>
           <p class="lead">Nexus Scholar is a free tool for systematic literature reviews. <strong>Your workspace is a folder on your disk,</strong> every decision is a line in its audit journal, and nothing is sent anywhere unless you start a search, a full-text look-up or an AI run.</p>
           <div class="hero-actions">
-            <a class="btn" href="#install">Install the beta</a>
-            <a class="text" href={`${docs}/getting-started/`}>Read the docs</a>
+            <a class="ns-btn ns-btn-primary ns-btn-action" href="#install">Install the beta</a>
+            <a class="text ns-link" href={`${docs}/getting-started/`}>Read the docs</a>
           </div>
           <p class="beta"><strong>Beta 1.1.0b8.</strong> One reviewer, desktop only, title and abstract screening, a search and RIS or PubMed imports. The <a href={`${docs}/known-limits/`}>known limits</a> say the rest.</p>
         </div>
@@ -99,7 +99,7 @@ const criteria = [
               <p class="t-title">Emerging UAV Solutions for Precision Crop Management</p>
               <p class="t-meta">2025 · The database of origin is hidden.</p>
               <p class="t-abstract" id="abstract">The rapid advancement of Unmanned Aerial Vehicles (UAVs) has significantly transformed the landscape of precision agriculture. Through high-resolution imaging, real-time data acquisition, autonomous field inspection, and integration with IoT-based sensor networks, drones have become central to modern farm management. This review synthesizes ten research papers published between 2021 and 2025 that collectively examine UAV applications in sustainable agriculture, weed and disease detection, field mapping, environmental monitoring, communication systems, and low-cost smart farming systems. Across these studies, drones demonstrate significant advantages: enhanced inspection accuracy, efficient resource allocation, improved sustainability, early detection of crop stress, and reduced labour requirements. At the same time, persisting challenges include battery limitations, weather dependence, high data-processing demands, fragmented data standardization, and limited usability for smallholder farmers.</p>
-              <button class="t-more" type="button" id="more" aria-expanded="false" aria-controls="abstract">Show the whole abstract</button>
+              <button class="t-more ns-link" type="button" id="more" aria-expanded="false" aria-controls="abstract">Show the whole abstract</button>
             </div>
             <ul class="t-criteria" id="criteria">
               {criteria.map((c) => (
@@ -107,17 +107,17 @@ const criteria = [
                   <div class="t-crit-head"><code>{c.id}</code><span>{c.kind}</span></div>
                   <p class="t-crit-text">{c.text}</p>
                   <div class="t-answers" role="group" aria-label={`${c.id} answer`}>
-                    <button type="button" class="yes" data-answer="yes" aria-pressed="false">Yes</button>
-                    <button type="button" class="no" data-answer="no" aria-pressed="false">No</button>
-                    <button type="button" class="nr" data-answer="not_reported" aria-pressed="false">Not reported</button>
+                    <button type="button" class="ns-btn yes" data-answer="yes" aria-pressed="false">Yes</button>
+                    <button type="button" class="ns-btn no" data-answer="no" aria-pressed="false">No</button>
+                    <button type="button" class="ns-btn nr" data-answer="not_reported" aria-pressed="false">Not reported</button>
                   </div>
                 </li>
               ))}
             </ul>
             <div class="t-decide">
-              <button type="button" class="primary" id="include" disabled>Include</button>
-              <button type="button" id="exclude" disabled>Exclude</button>
-              <button type="button" id="unclear">Unclear → full text</button>
+              <button type="button" class="ns-btn ns-btn-primary" id="include" disabled>Include</button>
+              <button type="button" class="ns-btn" id="exclude" disabled>Exclude</button>
+              <button type="button" class="ns-btn" id="unclear">Unclear → full text</button>
               <p class="t-ready" id="ready" aria-live="polite">Answer the criteria. Include is ready when every inclusion criterion is yes; Exclude as soon as one criterion fails. Four of the protocol's seven criteria are shown.</p>
             </div>
             <div class="t-journal">
@@ -272,13 +272,13 @@ const criteria = [
             <p class="after">The app opens in your browser on Workspaces. Each review is a folder in Documents. Keep the terminal open: approval codes appear there.</p>
             <div class="cmd">
               <pre id="cmd">{install}</pre>
-              <button class="copy" type="button" id="copy">Copy the commands</button>
+              <button class="copy ns-btn ns-btn-secondary" type="button" id="copy">Copy the commands</button>
               <span class="sr-only" role="status" id="copied"></span>
             </div>
             <p class="small">Needs <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>. The version in the command keeps uv from taking betas of anything else; never use <code>--prerelease allow</code>. Then follow <a href={`${docs}/getting-started/`}>Getting started</a>, about 15 minutes.</p>
             <div class="download">
               <h3 id="h-download">Or the Windows installer</h3>
-              <a class="btn" href={setup}>Download for Windows</a>
+              <a class="dl ns-btn ns-btn-primary ns-btn-action" href={setup}><span class="dl-main">Download for Windows</span><span class="dl-file">NexusScholar-1.1.0b8-setup.exe, about 112 MB</span></a>
               <p class="small"><code>NexusScholar-1.1.0b8-setup.exe</code>, about 112 MB, from the <a href={release}>release page</a>. No Python and no terminal. It is not signed, so Windows may warn you. It was built and tried in CI and on one developer PC, not on a clean computer.</p>
               <p class="small"><strong>macOS and Linux installers are coming soon.</strong> Until then the two commands above work on both.</p>
             </div>
@@ -300,12 +300,12 @@ const criteria = [
         <div class="tile navi">
           <h3>Docs</h3>
           <ul>
-            <li><a href={`${docs}/getting-started/`}>Getting started</a></li>
-            <li><a href={`${docs}/configuration/`}>Configuration</a></li>
-            <li><a href={`${docs}/data-flow/`}>Data flow and privacy</a></li>
-            <li><a href={`${docs}/ai/`}>How the AI is used</a></li>
-            <li><a href={`${docs}/known-limits/`}>Known limits</a></li>
-            <li><a href={`${docs}/releases/1-1-0b8/`}>Release notes, 1.1.0b8</a></li>
+            <li><a class="ns-nav-link" href={`${docs}/getting-started/`}>Getting started</a></li>
+            <li><a class="ns-nav-link" href={`${docs}/configuration/`}>Configuration</a></li>
+            <li><a class="ns-nav-link" href={`${docs}/data-flow/`}>Data flow and privacy</a></li>
+            <li><a class="ns-nav-link" href={`${docs}/ai/`}>How the AI is used</a></li>
+            <li><a class="ns-nav-link" href={`${docs}/known-limits/`}>Known limits</a></li>
+            <li><a class="ns-nav-link" href={`${docs}/releases/1-1-0b8/`}>Release notes, 1.1.0b8</a></li>
           </ul>
         </div>
         <div class="tile sources">
@@ -322,10 +322,10 @@ const criteria = [
         <div class="tile contact">
           <h3>Source and feedback</h3>
           <ul>
-            <li><a class="mail" href={`${repo}/issues`}>Open an issue</a></li>
-            <li><a href={repo}>github.com/nexus-scholar-org</a></li>
-            <li><a href={pypi}>pypi.org/project/nexus-scholar</a></li>
-            <li><a href={`${docs}/contributing/`}>Contributing</a></li>
+            <li><a class="ns-nav-link mail" href={`${repo}/issues`}>Open an issue</a></li>
+            <li><a class="ns-nav-link" href={repo}>github.com/nexus-scholar-org</a></li>
+            <li><a class="ns-nav-link" href={pypi}>pypi.org/project/nexus-scholar</a></li>
+            <li><a class="ns-nav-link" href={`${docs}/contributing/`}>Contributing</a></li>
           </ul>
         </div>
         <div class="tile wordmark" aria-hidden="true"><span>Nexus Scholar</span></div>
@@ -354,10 +354,10 @@ const criteria = [
       const cmd = document.getElementById('cmd') as HTMLPreElement;
       const copied = document.getElementById('copied')!;
       copy.addEventListener('click', async () => {
-        try { await navigator.clipboard.writeText(cmd.textContent || ''); copy.textContent = 'Copied'; }
+        try { await navigator.clipboard.writeText(cmd.textContent || ''); copy.textContent = 'Copied'; copy.classList.add('done'); }
         catch { copy.textContent = 'Select and copy the lines above'; }
         copied.textContent = copy.textContent;
-        setTimeout(() => { copy.textContent = 'Copy the commands'; copied.textContent = ''; }, 2500);
+        setTimeout(() => { copy.textContent = 'Copy the commands'; copy.classList.remove('done'); copied.textContent = ''; }, 2500);
       });
 
       // The abstract disclosure.
