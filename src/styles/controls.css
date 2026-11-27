@@ -1,0 +1,110 @@
+/* The control system the landing page, the 404 page and the docs share. Its anatomy is the app's own
+   (apps/research-ui/components/ui/base.tsx and the brand book, docs/ux/brand/): radius-md corners, a
+   44px target, weight 500, a 2px focus ring offset by 2px. Colours come from the ground a control
+   sits on: each ground sets --btn-bg, --btn-ink and --focus, and nothing here names a colour. */
+
+:root {
+  --ns-radius: 6px;          /* radius-md: buttons, panels, figures */
+  --ns-radius-sm: 4px;       /* radius-sm: inline code, keys, small marks */
+  --ns-h: 44px;              /* every control, as in the app (min-h-11) */
+  --ns-h-action: 48px;       /* a page's own actions on the landing and 404 pages */
+  --ns-pad: 1rem;
+  --ns-pad-action: 1.25rem;
+  --ns-gap: 0.5rem;
+  --ns-weight: 500;
+  --ns-text: 0.9375rem;      /* 15px, the app's button text */
+  --ns-text-action: 1.0625rem;
+  --ns-ring: 2px;
+  --ns-ring-offset: 2px;
+  --ns-tint: 12%;            /* a secondary button's fill: its own text colour over the ground */
+  --ns-veil-hover: 0.1;      /* hover and press lay the text colour over the fill */
+  --ns-veil-press: 0.18;
+  --ns-press: translateY(1px);
+  --ns-t-press: 140ms;
+  --ns-t-hover: 180ms;
+  --ns-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ns-underline: 0.07em;    /* links in running text */
+  --ns-underline-hover: 0.14em;
+  --ns-underline-offset: 0.2em;
+  --ns-underline-rest: 55%;  /* the rest underline is the link's colour at this share */
+}
+
+/* One focus ring for every link and control; each ground sets --focus to the colour that reads on it. */
+:where(a, button, select, summary, input, textarea, [tabindex]):focus-visible {
+  outline: var(--ns-ring) solid var(--focus);
+  outline-offset: var(--ns-ring-offset);
+}
+
+/* ---------- Buttons ---------- */
+.ns-btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ns-gap);
+  min-height: var(--ns-h);
+  padding: 0 var(--ns-pad);
+  border: 0;
+  border-radius: var(--ns-radius);
+  background: var(--btn-bg, transparent);
+  color: var(--btn-ink, inherit);
+  font: inherit;
+  font-size: var(--ns-text);
+  font-weight: var(--ns-weight);
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+/* The veil: the button's text colour laid over its fill, so hover and press work on every ground
+   without a colour of their own, and only opacity moves. */
+.ns-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+}
+.ns-btn-action { min-height: var(--ns-h-action); padding-inline: var(--ns-pad-action); font-size: var(--ns-text-action); }
+.ns-btn-secondary { background: color-mix(in srgb, currentColor var(--ns-tint), transparent); color: inherit; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ns-btn:hover::after { opacity: var(--ns-veil-hover); }
+}
+.ns-btn:active::after { opacity: var(--ns-veil-press); }
+.ns-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.ns-btn:disabled::after { opacity: 0; }
+
+/* ---------- Links ---------- */
+/* In running text a link is underlined at rest; hover darkens the line and doubles its weight. */
+.ns-link,
+.ns-prose p a:not([class]),
+.sl-markdown-content a:not([class]):not(:where(.not-content *)) {
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--ns-underline);
+  text-underline-offset: var(--ns-underline-offset);
+  text-decoration-color: color-mix(in srgb, currentColor var(--ns-underline-rest), transparent);
+}
+/* A link that is a destination in a list (navigation, footer) is plain at rest and underlined on hover. */
+.ns-nav-link { text-decoration: none; text-underline-offset: var(--ns-underline-offset); }
+@media (hover: hover) and (pointer: fine) {
+  .ns-link:hover,
+  .ns-prose p a:not([class]):hover,
+  .sl-markdown-content a:not([class]):not(:where(.not-content *)):hover,
+  .ns-nav-link:hover {
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: var(--ns-underline-hover);
+  }
+}
+
+/* ---------- Motion: transform and opacity only ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .ns-btn { transition: transform var(--ns-t-press) var(--ns-ease); }
+  .ns-btn::after { transition: opacity var(--ns-t-hover) var(--ns-ease); }
+  .ns-btn:not(:disabled):active { transform: var(--ns-press); }
+}
