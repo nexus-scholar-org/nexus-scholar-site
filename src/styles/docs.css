@@ -41,8 +41,20 @@
   descent-override: 32.5%;
   line-gap-override: 0%;
 }
+/* Bold code (strong around code) falls back to Consolas Bold, which keeps the monospace advance, instead of
+   a synthesised bold that is wider and moves the line breaks when the bundled face arrives. */
+@font-face {
+  font-family: 'IBM Plex Mono Fallback'; /* taste-skill-ignore: the code face */
+  font-weight: 500 900;
+  src: local('Consolas Bold'), local('Consolas-Bold');
+  size-adjust: 109.1%;
+  ascent-override: 94%;
+  descent-override: 25.2%;
+  line-gap-override: 0%;
+}
 @font-face {
   font-family: 'IBM Plex Mono Fallback'; /* taste-skill-ignore: the code face, used in code, pre and kbd only */
+  font-weight: 100 400;
   src: local('Consolas');
   size-adjust: 109.1%;
   ascent-override: 94%;
@@ -141,7 +153,7 @@ h1#_top, .sl-markdown-content h1, .sl-markdown-content h2 { font-family: var(--n
 }
 
 /* Beta banner */
-.ns-beta { background: var(--sl-color-accent-low); color: var(--sl-color-white); padding: 1rem 1.25rem; border-radius: var(--ns-radius); }
+.ns-beta { background: var(--sl-color-accent-low); color: var(--sl-color-white); padding: 0.875rem 1rem; border-radius: var(--ns-radius); }
 .sl-markdown-content .ns-beta code:not(:where(.not-content *)) { background: var(--sl-color-black); }
 
 /* Guide screenshots (src/components/Shot.astro): a quiet frame so a white screen does not melt into the
@@ -192,7 +204,6 @@ button[data-open-modal] kbd[data-key]::before { content: attr(data-key); }
 /* Space above a heading is about twice the space below it. */
 .sl-markdown-content > :not(.sl-heading-wrapper) + .sl-heading-wrapper.level-h2 { margin-top: 2.75rem; }
 .sl-markdown-content > :not(.sl-heading-wrapper) + .sl-heading-wrapper.level-h3 { margin-top: 2rem; }
-.sl-markdown-content :is(ul, ol):not(:where(.not-content *)) { padding-inline-start: 1.5rem; }
 .sl-markdown-content li + li:not(:where(.not-content *)) { margin-top: 0.375rem; }
 .sl-markdown-content li::marker { color: var(--sl-color-gray-3); }
 .sl-markdown-content ol > li::marker { font-weight: 600; font-variant-numeric: tabular-nums; }
